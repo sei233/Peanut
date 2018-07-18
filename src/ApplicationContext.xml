@@ -27,6 +27,6 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
     <!--Mybatis动态代理-->
     <bean id="mapperFactory" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.peanut.mapper"/>
+        <property name="basePackage" value="cn.peanut.mapper"/>
     </bean>
 </beans>
