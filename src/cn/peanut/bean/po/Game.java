@@ -1,85 +1,109 @@
 package cn.peanut.bean.po;
 
+
 public class Game {
-    private Integer id;
-    private String name;
-    private String title;
-    private Integer download;
-    private Integer size;
-    private Boolean status;
-    private String type;
-    private String operation;
-    private String advise_type;
+    private Integer gameId;
 
-    public Integer getId() {
-        return id;
+    private String gameName;
+
+    private String gameTitle;
+
+    private Integer gameDownload;
+
+    private Integer gameSize;
+
+    private Byte gameStatus;
+
+    private String gameType;
+
+    private String gameOperation;
+
+    private String gameAdviseType;
+
+    public Integer getGameId() {
+        return gameId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setGameId(Integer gameId) {
+        this.gameId = gameId;
     }
 
-    public String getName() {
-        return name;
+    public String getGameName() {
+        return gameName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGameName(String gameName) {
+        this.gameName = gameName == null ? null : gameName.trim();
     }
 
-    public String getTitle() {
-        return title;
+    public String getGameTitle() {
+        return gameTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setGameTitle(String gameTitle) {
+        this.gameTitle = gameTitle == null ? null : gameTitle.trim();
     }
 
-    public Integer getDownload() {
-        return download;
+    public Integer getGameDownload() {
+        return gameDownload;
     }
 
-    public void setDownload(Integer download) {
-        this.download = download;
+    public void setGameDownload(Integer gameDownload) {
+        this.gameDownload = gameDownload;
     }
 
-    public Integer getSize() {
-        return size;
+    public Integer getGameSize() {
+        return gameSize;
     }
 
-    public void setSize(Integer size) {
-        this.size = size;
+    public void setGameSize(Integer gameSize) {
+        this.gameSize = gameSize;
     }
 
-    public Boolean getStatus() {
-        return status;
+    public Byte getGameStatus() {
+        return gameStatus;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setGameStatus(Byte gameStatus) {
+        this.gameStatus = gameStatus;
     }
 
-    public String getType() {
-        return type;
+    public String getGameType() {
+        return gameType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setGameType(String gameType) {
+        this.gameType = gameType == null ? null : gameType.trim();
     }
 
-    public String getOperation() {
-        return operation;
+    public String getGameOperation() {
+        return gameOperation;
     }
 
-    public void setOperation(String operation) {
-        this.operation = operation;
+    public void setGameOperation(String gameOperation) {
+        this.gameOperation = gameOperation == null ? null : gameOperation.trim();
     }
 
-    public String getAdvise_type() {
-        return advise_type;
+    public String getGameAdviseType() {
+        return gameAdviseType;
     }
 
-    public void setAdvise_type(String advise_type) {
-        this.advise_type = advise_type;
+    public void setGameAdviseType(String gameAdviseType) {
+        this.gameAdviseType = gameAdviseType == null ? null : gameAdviseType.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "gameId=" + gameId +
+                ", gameName='" + gameName + '\'' +
+                ", gameTitle='" + gameTitle + '\'' +
+                ", gameDownload=" + gameDownload +
+                ", gameSize=" + gameSize +
+                ", gameStatus=" + gameStatus +
+                ", gameType='" + gameType + '\'' +
+                ", gameOperation='" + gameOperation + '\'' +
+                ", gameAdviseType='" + gameAdviseType + '\'' +
+                '}';
     }
 }
