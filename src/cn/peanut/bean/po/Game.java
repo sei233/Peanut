@@ -1,4 +1,4 @@
-package com.peanut.bean.po;
+package cn.peanut.bean.po;
 
 public class Game {
     private Integer id;

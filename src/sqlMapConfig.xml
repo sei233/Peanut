@@ -5,7 +5,7 @@
 <configuration>
     <!--设置别名-->
     <typeAliases>
-        <package name="com.bean" />
+        <package name="cn.peanut.bean" />
     </typeAliases>
 
     <!--交给了spring容器-->
