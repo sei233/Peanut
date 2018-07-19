@@ -11,6 +11,8 @@
     <title></title>
 </head>
 <body bgcolor="#EBC79E">
-    <h3>Frame B</h3>
+<h3>FrameB</h3>
+<a href="${pageContext.request.contextPath}/test.action"
+   target=main>－ 游戏管理</a>
 </body>
 </html>

@@ -494,62 +494,52 @@ public class GameExample {
             return (Criteria) this;
         }
 
-        public Criteria andGameTypeEqualTo(String value) {
+        public Criteria andGameTypeEqualTo(Byte value) {
             addCriterion("game_type =", value, "gameType");
             return (Criteria) this;
         }
 
-        public Criteria andGameTypeNotEqualTo(String value) {
+        public Criteria andGameTypeNotEqualTo(Byte value) {
             addCriterion("game_type <>", value, "gameType");
             return (Criteria) this;
         }
 
-        public Criteria andGameTypeGreaterThan(String value) {
+        public Criteria andGameTypeGreaterThan(Byte value) {
             addCriterion("game_type >", value, "gameType");
             return (Criteria) this;
         }
 
-        public Criteria andGameTypeGreaterThanOrEqualTo(String value) {
+        public Criteria andGameTypeGreaterThanOrEqualTo(Byte value) {
             addCriterion("game_type >=", value, "gameType");
             return (Criteria) this;
         }
 
-        public Criteria andGameTypeLessThan(String value) {
+        public Criteria andGameTypeLessThan(Byte value) {
             addCriterion("game_type <", value, "gameType");
             return (Criteria) this;
         }
 
-        public Criteria andGameTypeLessThanOrEqualTo(String value) {
+        public Criteria andGameTypeLessThanOrEqualTo(Byte value) {
             addCriterion("game_type <=", value, "gameType");
             return (Criteria) this;
         }
 
-        public Criteria andGameTypeLike(String value) {
-            addCriterion("game_type like", value, "gameType");
-            return (Criteria) this;
-        }
-
-        public Criteria andGameTypeNotLike(String value) {
-            addCriterion("game_type not like", value, "gameType");
-            return (Criteria) this;
-        }
-
-        public Criteria andGameTypeIn(List<String> values) {
+        public Criteria andGameTypeIn(List<Byte> values) {
             addCriterion("game_type in", values, "gameType");
             return (Criteria) this;
         }
 
-        public Criteria andGameTypeNotIn(List<String> values) {
+        public Criteria andGameTypeNotIn(List<Byte> values) {
             addCriterion("game_type not in", values, "gameType");
             return (Criteria) this;
         }
 
-        public Criteria andGameTypeBetween(String value1, String value2) {
+        public Criteria andGameTypeBetween(Byte value1, Byte value2) {
             addCriterion("game_type between", value1, value2, "gameType");
             return (Criteria) this;
         }
 
-        public Criteria andGameTypeNotBetween(String value1, String value2) {
+        public Criteria andGameTypeNotBetween(Byte value1, Byte value2) {
             addCriterion("game_type not between", value1, value2, "gameType");
             return (Criteria) this;
         }
@@ -564,62 +554,52 @@ public class GameExample {
             return (Criteria) this;
         }
 
-        public Criteria andGameOperationEqualTo(String value) {
+        public Criteria andGameOperationEqualTo(Byte value) {
             addCriterion("game_operation =", value, "gameOperation");
             return (Criteria) this;
         }
 
-        public Criteria andGameOperationNotEqualTo(String value) {
+        public Criteria andGameOperationNotEqualTo(Byte value) {
             addCriterion("game_operation <>", value, "gameOperation");
             return (Criteria) this;
         }
 
-        public Criteria andGameOperationGreaterThan(String value) {
+        public Criteria andGameOperationGreaterThan(Byte value) {
             addCriterion("game_operation >", value, "gameOperation");
             return (Criteria) this;
         }
 
-        public Criteria andGameOperationGreaterThanOrEqualTo(String value) {
+        public Criteria andGameOperationGreaterThanOrEqualTo(Byte value) {
             addCriterion("game_operation >=", value, "gameOperation");
             return (Criteria) this;
         }
 
-        public Criteria andGameOperationLessThan(String value) {
+        public Criteria andGameOperationLessThan(Byte value) {
             addCriterion("game_operation <", value, "gameOperation");
             return (Criteria) this;
         }
 
-        public Criteria andGameOperationLessThanOrEqualTo(String value) {
+        public Criteria andGameOperationLessThanOrEqualTo(Byte value) {
             addCriterion("game_operation <=", value, "gameOperation");
             return (Criteria) this;
         }
 
-        public Criteria andGameOperationLike(String value) {
-            addCriterion("game_operation like", value, "gameOperation");
-            return (Criteria) this;
-        }
-
-        public Criteria andGameOperationNotLike(String value) {
-            addCriterion("game_operation not like", value, "gameOperation");
-            return (Criteria) this;
-        }
-
-        public Criteria andGameOperationIn(List<String> values) {
+        public Criteria andGameOperationIn(List<Byte> values) {
             addCriterion("game_operation in", values, "gameOperation");
             return (Criteria) this;
         }
 
-        public Criteria andGameOperationNotIn(List<String> values) {
+        public Criteria andGameOperationNotIn(List<Byte> values) {
             addCriterion("game_operation not in", values, "gameOperation");
             return (Criteria) this;
         }
 
-        public Criteria andGameOperationBetween(String value1, String value2) {
+        public Criteria andGameOperationBetween(Byte value1, Byte value2) {
             addCriterion("game_operation between", value1, value2, "gameOperation");
             return (Criteria) this;
         }
 
-        public Criteria andGameOperationNotBetween(String value1, String value2) {
+        public Criteria andGameOperationNotBetween(Byte value1, Byte value2) {
             addCriterion("game_operation not between", value1, value2, "gameOperation");
             return (Criteria) this;
         }
@@ -634,62 +614,52 @@ public class GameExample {
             return (Criteria) this;
         }
 
-        public Criteria andGameAdviseTypeEqualTo(String value) {
+        public Criteria andGameAdviseTypeEqualTo(Byte value) {
             addCriterion("game_advise_type =", value, "gameAdviseType");
             return (Criteria) this;
         }
 
-        public Criteria andGameAdviseTypeNotEqualTo(String value) {
+        public Criteria andGameAdviseTypeNotEqualTo(Byte value) {
             addCriterion("game_advise_type <>", value, "gameAdviseType");
             return (Criteria) this;
         }
 
-        public Criteria andGameAdviseTypeGreaterThan(String value) {
+        public Criteria andGameAdviseTypeGreaterThan(Byte value) {
             addCriterion("game_advise_type >", value, "gameAdviseType");
             return (Criteria) this;
         }
 
-        public Criteria andGameAdviseTypeGreaterThanOrEqualTo(String value) {
+        public Criteria andGameAdviseTypeGreaterThanOrEqualTo(Byte value) {
             addCriterion("game_advise_type >=", value, "gameAdviseType");
             return (Criteria) this;
         }
 
-        public Criteria andGameAdviseTypeLessThan(String value) {
+        public Criteria andGameAdviseTypeLessThan(Byte value) {
             addCriterion("game_advise_type <", value, "gameAdviseType");
             return (Criteria) this;
         }
 
-        public Criteria andGameAdviseTypeLessThanOrEqualTo(String value) {
+        public Criteria andGameAdviseTypeLessThanOrEqualTo(Byte value) {
             addCriterion("game_advise_type <=", value, "gameAdviseType");
             return (Criteria) this;
         }
 
-        public Criteria andGameAdviseTypeLike(String value) {
-            addCriterion("game_advise_type like", value, "gameAdviseType");
-            return (Criteria) this;
-        }
-
-        public Criteria andGameAdviseTypeNotLike(String value) {
-            addCriterion("game_advise_type not like", value, "gameAdviseType");
-            return (Criteria) this;
-        }
-
-        public Criteria andGameAdviseTypeIn(List<String> values) {
+        public Criteria andGameAdviseTypeIn(List<Byte> values) {
             addCriterion("game_advise_type in", values, "gameAdviseType");
             return (Criteria) this;
         }
 
-        public Criteria andGameAdviseTypeNotIn(List<String> values) {
+        public Criteria andGameAdviseTypeNotIn(List<Byte> values) {
             addCriterion("game_advise_type not in", values, "gameAdviseType");
             return (Criteria) this;
         }
 
-        public Criteria andGameAdviseTypeBetween(String value1, String value2) {
+        public Criteria andGameAdviseTypeBetween(Byte value1, Byte value2) {
             addCriterion("game_advise_type between", value1, value2, "gameAdviseType");
             return (Criteria) this;
         }
 
-        public Criteria andGameAdviseTypeNotBetween(String value1, String value2) {
+        public Criteria andGameAdviseTypeNotBetween(Byte value1, Byte value2) {
             addCriterion("game_advise_type not between", value1, value2, "gameAdviseType");
             return (Criteria) this;
         }

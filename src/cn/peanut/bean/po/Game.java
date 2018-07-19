@@ -1,6 +1,5 @@
 package cn.peanut.bean.po;
 
-
 public class Game {
     private Integer gameId;
 
@@ -14,11 +13,11 @@ public class Game {
 
     private Byte gameStatus;
 
-    private String gameType;
+    private Byte gameType;
 
-    private String gameOperation;
+    private Byte gameOperation;
 
-    private String gameAdviseType;
+    private Byte gameAdviseType;
 
     public Integer getGameId() {
         return gameId;
@@ -68,28 +67,28 @@ public class Game {
         this.gameStatus = gameStatus;
     }
 
-    public String getGameType() {
+    public Byte getGameType() {
         return gameType;
     }
 
-    public void setGameType(String gameType) {
-        this.gameType = gameType == null ? null : gameType.trim();
+    public void setGameType(Byte gameType) {
+        this.gameType = gameType;
     }
 
-    public String getGameOperation() {
+    public Byte getGameOperation() {
         return gameOperation;
     }
 
-    public void setGameOperation(String gameOperation) {
-        this.gameOperation = gameOperation == null ? null : gameOperation.trim();
+    public void setGameOperation(Byte gameOperation) {
+        this.gameOperation = gameOperation;
     }
 
-    public String getGameAdviseType() {
+    public Byte getGameAdviseType() {
         return gameAdviseType;
     }
 
-    public void setGameAdviseType(String gameAdviseType) {
-        this.gameAdviseType = gameAdviseType == null ? null : gameAdviseType.trim();
+    public void setGameAdviseType(Byte gameAdviseType) {
+        this.gameAdviseType = gameAdviseType;
     }
 
     @Override
@@ -101,9 +100,9 @@ public class Game {
                 ", gameDownload=" + gameDownload +
                 ", gameSize=" + gameSize +
                 ", gameStatus=" + gameStatus +
-                ", gameType='" + gameType + '\'' +
-                ", gameOperation='" + gameOperation + '\'' +
-                ", gameAdviseType='" + gameAdviseType + '\'' +
+                ", gameType=" + gameType +
+                ", gameOperation=" + gameOperation +
+                ", gameAdviseType=" + gameAdviseType +
                 '}';
     }
 }

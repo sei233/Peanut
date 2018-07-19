@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.peanut.mapper.GameMapper" >
-  <resultMap id="BaseResultMap" type="Game" >
+  <resultMap id="BaseResultMap" type="cn.peanut.bean.po.Game" >
     <id column="game_id" property="gameId" jdbcType="INTEGER" />
     <result column="game_name" property="gameName" jdbcType="VARCHAR" />
     <result column="game_title" property="gameTitle" jdbcType="VARCHAR" />
     <result column="game_download" property="gameDownload" jdbcType="INTEGER" />
     <result column="game_size" property="gameSize" jdbcType="INTEGER" />
     <result column="game_status" property="gameStatus" jdbcType="TINYINT" />
-    <result column="game_type" property="gameType" jdbcType="VARCHAR" />
-    <result column="game_operation" property="gameOperation" jdbcType="VARCHAR" />
-    <result column="game_advise_type" property="gameAdviseType" jdbcType="VARCHAR" />
+    <result column="game_type" property="gameType" jdbcType="TINYINT" />
+    <result column="game_operation" property="gameOperation" jdbcType="TINYINT" />
+    <result column="game_advise_type" property="gameAdviseType" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -74,7 +74,7 @@
     game_id, game_name, game_title, game_download, game_size, game_status, game_type, 
     game_operation, game_advise_type
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="GameExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.peanut.bean.po.GameExample" >
     select
     <if test="distinct" >
       distinct
@@ -98,23 +98,23 @@
     delete from game
     where game_id = #{gameId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="GameExample" >
+  <delete id="deleteByExample" parameterType="cn.peanut.bean.po.GameExample" >
     delete from game
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="Game" >
+  <insert id="insert" parameterType="cn.peanut.bean.po.Game" >
     insert into game (game_id, game_name, game_title, 
       game_download, game_size, game_status, 
       game_type, game_operation, game_advise_type
       )
     values (#{gameId,jdbcType=INTEGER}, #{gameName,jdbcType=VARCHAR}, #{gameTitle,jdbcType=VARCHAR}, 
       #{gameDownload,jdbcType=INTEGER}, #{gameSize,jdbcType=INTEGER}, #{gameStatus,jdbcType=TINYINT}, 
-      #{gameType,jdbcType=VARCHAR}, #{gameOperation,jdbcType=VARCHAR}, #{gameAdviseType,jdbcType=VARCHAR}
+      #{gameType,jdbcType=TINYINT}, #{gameOperation,jdbcType=TINYINT}, #{gameAdviseType,jdbcType=TINYINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="Game" >
+  <insert id="insertSelective" parameterType="cn.peanut.bean.po.Game" >
     insert into game
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="gameId != null" >
@@ -165,17 +165,17 @@
         #{gameStatus,jdbcType=TINYINT},
       </if>
       <if test="gameType != null" >
-        #{gameType,jdbcType=VARCHAR},
+        #{gameType,jdbcType=TINYINT},
       </if>
       <if test="gameOperation != null" >
-        #{gameOperation,jdbcType=VARCHAR},
+        #{gameOperation,jdbcType=TINYINT},
       </if>
       <if test="gameAdviseType != null" >
-        #{gameAdviseType,jdbcType=VARCHAR},
+        #{gameAdviseType,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="GameExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="cn.peanut.bean.po.GameExample" resultType="java.lang.Integer" >
     select count(*) from game
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -203,13 +203,13 @@
         game_status = #{record.gameStatus,jdbcType=TINYINT},
       </if>
       <if test="record.gameType != null" >
-        game_type = #{record.gameType,jdbcType=VARCHAR},
+        game_type = #{record.gameType,jdbcType=TINYINT},
       </if>
       <if test="record.gameOperation != null" >
-        game_operation = #{record.gameOperation,jdbcType=VARCHAR},
+        game_operation = #{record.gameOperation,jdbcType=TINYINT},
       </if>
       <if test="record.gameAdviseType != null" >
-        game_advise_type = #{record.gameAdviseType,jdbcType=VARCHAR},
+        game_advise_type = #{record.gameAdviseType,jdbcType=TINYINT},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -224,14 +224,14 @@
       game_download = #{record.gameDownload,jdbcType=INTEGER},
       game_size = #{record.gameSize,jdbcType=INTEGER},
       game_status = #{record.gameStatus,jdbcType=TINYINT},
-      game_type = #{record.gameType,jdbcType=VARCHAR},
-      game_operation = #{record.gameOperation,jdbcType=VARCHAR},
-      game_advise_type = #{record.gameAdviseType,jdbcType=VARCHAR}
+      game_type = #{record.gameType,jdbcType=TINYINT},
+      game_operation = #{record.gameOperation,jdbcType=TINYINT},
+      game_advise_type = #{record.gameAdviseType,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="Game" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.peanut.bean.po.Game" >
     update game
     <set >
       <if test="gameName != null" >
@@ -250,27 +250,27 @@
         game_status = #{gameStatus,jdbcType=TINYINT},
       </if>
       <if test="gameType != null" >
-        game_type = #{gameType,jdbcType=VARCHAR},
+        game_type = #{gameType,jdbcType=TINYINT},
       </if>
       <if test="gameOperation != null" >
-        game_operation = #{gameOperation,jdbcType=VARCHAR},
+        game_operation = #{gameOperation,jdbcType=TINYINT},
       </if>
       <if test="gameAdviseType != null" >
-        game_advise_type = #{gameAdviseType,jdbcType=VARCHAR},
+        game_advise_type = #{gameAdviseType,jdbcType=TINYINT},
       </if>
     </set>
     where game_id = #{gameId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="Game" >
+  <update id="updateByPrimaryKey" parameterType="cn.peanut.bean.po.Game" >
     update game
     set game_name = #{gameName,jdbcType=VARCHAR},
       game_title = #{gameTitle,jdbcType=VARCHAR},
       game_download = #{gameDownload,jdbcType=INTEGER},
       game_size = #{gameSize,jdbcType=INTEGER},
       game_status = #{gameStatus,jdbcType=TINYINT},
-      game_type = #{gameType,jdbcType=VARCHAR},
-      game_operation = #{gameOperation,jdbcType=VARCHAR},
-      game_advise_type = #{gameAdviseType,jdbcType=VARCHAR}
+      game_type = #{gameType,jdbcType=TINYINT},
+      game_operation = #{gameOperation,jdbcType=TINYINT},
+      game_advise_type = #{gameAdviseType,jdbcType=TINYINT}
     where game_id = #{gameId,jdbcType=INTEGER}
   </update>
 </mapper>
