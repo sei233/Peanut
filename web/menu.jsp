@@ -12,7 +12,7 @@
 </head>
 <body bgcolor="#EBC79E">
 <h3>FrameB</h3>
-<a href="${pageContext.request.contextPath}/test.action"
+<a href="${pageContext.request.contextPath}/show.action"
    target=main>－ 游戏管理</a>
 </body>
 </html>
