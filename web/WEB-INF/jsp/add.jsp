@@ -38,28 +38,28 @@
     <div>
         <div><label>游戏图标</label></div>
         <div>
-            <input type="file"  name="iconFile"/>
+            <input type="file"  name="gameIcon"/>
         </div>
     </div>
 
     <div>
         <div><label>游戏详情图片</label></div>
         <div>
-            <input type="file"  name="pictureFile"/>
+            <input type="file"  name="gamePic"/>
         </div>
     </div>
 
     <div>
         <div><label>ios下载地址</label></div>
         <div>
-            <input style="background-color: #EbEbEb" type="text" name="iosAddress" placeholder="ios下载地址">
+            <input style="background-color: #EbEbEb" type="text" name="gameIosaddress" placeholder="ios下载地址">
         </div>
     </div>
 
     <div>
         <div><label>android下载地址</label></div>
         <div>
-            <input style="background-color: #EbEbEb" type="text" name="androidAddress" placeholder="android下载地址">
+            <input style="background-color: #EbEbEb" type="text" name="gameAndroidaddress" placeholder="android下载地址">
         </div>
     </div>
 
@@ -68,6 +68,7 @@
             <div><label>推荐类型</label></div>
             <div>
                 <select name="gameAdviseType">
+                    <option value="">请选择</option>
                     <option value="0">普通</option>
                     <option value="1">最新</option>
                     <option value="2">精选</option>
@@ -79,6 +80,7 @@
             <div><label>状态</label></div>
             <div>
                 <select name="gameStatus">
+                    <option value="">请选择</option>
                     <option value="0">下线</option>
                     <option value="1">启用</option>
                 </select>
@@ -90,7 +92,8 @@
         <div style="display: inline-block">
             <div><label>游戏分类</label></div>
             <div>
-                <select name="gameAdviseType">
+                <select name="gameType">
+                    <option value="">请选择</option>
                     <option value="0">休闲益智</option>
                     <option value="1">网络游戏</option>
                     <option value="2">动作冒险</option>
@@ -105,7 +108,8 @@
         <div style="display: inline-block">
             <div><label>平台类型</label></div>
             <div>
-                <select name="gameStatus">
+                <select name="gameOperation">
+                    <option value="">请选择</option>
                     <option value="0">all</option>
                     <option value="1">ios</option>
                     <option value="2">android</option>

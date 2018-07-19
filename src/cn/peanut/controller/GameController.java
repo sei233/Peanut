@@ -55,8 +55,13 @@ public class GameController {
     @RequestMapping(value = "/add.action", method = RequestMethod.POST)
     public String gameAdd(Game game){
 //        通过名字检索是否存在
+        Game game1 = gameService.selectGame(game.getGameName());
 //        存在就调用更新
-//        不存在就添加
+        if(game1!=null)gameService.updateGame(game,game1.getGameId());
+        else gameService.addGame(game);
+        Game game2 = gameService.selectGame(game.getGameName());
+        System.out.println(game2.toString());
         return "redirect:/show.action";
+
     }
 }

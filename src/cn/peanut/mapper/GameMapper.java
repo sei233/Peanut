@@ -21,6 +21,8 @@ public interface GameMapper {
 
     Game selectByPrimaryKey(Integer gameId);
 
+    Game selectByName(String gameName);
+
     int updateByExampleSelective(@Param("record") Game record, @Param("example") GameExample example);
 
     int updateByExample(@Param("record") Game record, @Param("example") GameExample example);

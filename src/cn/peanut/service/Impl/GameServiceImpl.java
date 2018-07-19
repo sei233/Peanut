@@ -112,4 +112,20 @@ public class GameServiceImpl implements GameService {
     public List<Game> selectGamesList(){
         return gameMapper.selectByExample(null);
     }
+
+    public Game selectGame(String name){
+        return gameMapper.selectByName(name);
+    }
+
+    @Override
+    public void addGame(Game game) {
+        game.setGameDownload(0);
+        gameMapper.insert(game);
+    }
+
+    @Override
+    public void updateGame(Game game,Integer id) {
+        game.setGameId(id);
+        gameMapper.updateByPrimaryKeySelective(game);
+    }
 }

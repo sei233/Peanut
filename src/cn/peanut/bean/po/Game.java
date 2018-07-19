@@ -140,4 +140,24 @@ public class Game {
     public void setGameDescription(String gameDescription) {
         this.gameDescription = gameDescription == null ? null : gameDescription.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "gameId=" + gameId +
+                ", gameName='" + gameName + '\'' +
+                ", gameTitle='" + gameTitle + '\'' +
+                ", gameDownload=" + gameDownload +
+                ", gameSize=" + gameSize +
+                ", gameStatus=" + gameStatus +
+                ", gameType=" + gameType +
+                ", gameOperation=" + gameOperation +
+                ", gameAdviseType=" + gameAdviseType +
+                ", gameIcon='" + gameIcon + '\'' +
+                ", gamePic='" + gamePic + '\'' +
+                ", gameIosaddress='" + gameIosaddress + '\'' +
+                ", gameAndroidaddress='" + gameAndroidaddress + '\'' +
+                ", gameDescription='" + gameDescription + '\'' +
+                '}';
+    }
 }

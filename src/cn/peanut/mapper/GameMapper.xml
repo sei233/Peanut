@@ -100,6 +100,12 @@
     from game
     where game_id = #{gameId,jdbcType=INTEGER}
   </select>
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from game
+    where game_name = #{gameName,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from game
     where game_id = #{gameId,jdbcType=INTEGER}
@@ -292,10 +298,10 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.peanut.bean.po.Game" >
     update game
     <set >
-      <if test="gameName != null" >
+      <if test="gameName != null and gameName !=''" >
         game_name = #{gameName,jdbcType=VARCHAR},
       </if>
-      <if test="gameTitle != null" >
+      <if test="gameTitle != null and gameTitle !=''" >
         game_title = #{gameTitle,jdbcType=VARCHAR},
       </if>
       <if test="gameDownload != null" >
@@ -316,19 +322,19 @@
       <if test="gameAdviseType != null" >
         game_advise_type = #{gameAdviseType,jdbcType=TINYINT},
       </if>
-      <if test="gameIcon != null" >
+      <if test="gameIcon != null and gameIcon !=''" >
         game_icon = #{gameIcon,jdbcType=VARCHAR},
       </if>
-      <if test="gamePic != null" >
+      <if test="gamePic != null and gamePic !=''" >
         game_pic = #{gamePic,jdbcType=VARCHAR},
       </if>
-      <if test="gameIosaddress != null" >
+      <if test="gameIosaddress != null and gameIosaddress !=''" >
         game_iosAddress = #{gameIosaddress,jdbcType=VARCHAR},
       </if>
-      <if test="gameAndroidaddress != null" >
+      <if test="gameAndroidaddress != null and gameAndroidaddress !=''" >
         game_androidAddress = #{gameAndroidaddress,jdbcType=VARCHAR},
       </if>
-      <if test="gameDescription != null" >
+      <if test="gameDescription != null and gameDescription !=''" >
         game_description = #{gameDescription,jdbcType=VARCHAR},
       </if>
     </set>
