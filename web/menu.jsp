@@ -13,6 +13,8 @@
 <body bgcolor="#EBC79E">
 <h3>FrameB</h3>
 <a href="${pageContext.request.contextPath}/show.action"
-   target=main>－ 游戏管理</a>
+   target=main>－游戏管理</a><br>
+<a href="${pageContext.request.contextPath}/add.action"
+   target=main><h6>游戏配置</h6></a>
 </body>
 </html>

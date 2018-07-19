@@ -11,7 +11,7 @@
   <head>
     <title>$Title$</title>
   </head>
-  <body>
+  <body bgcolor="#FFFFCC">
   <table border="1">
     <tr>
       <th>游戏名</th>
@@ -22,6 +22,7 @@
       <th>分类</th>
       <th>平台类型</th>
       <th>推荐类型</th>
+      <th>操作</th>
     </tr>
 <c:forEach items="${gamesList}" var="game" varStatus="s">
     <tr>
@@ -33,6 +34,7 @@
       <td>${game.gameType}</td>
       <td>${game.gameOperation}</td>
       <td>${game.gameAdviseType}</td>
+      <td><a>修改</a></td>
     </tr>
 </c:forEach>
   </table>

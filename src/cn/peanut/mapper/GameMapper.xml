@@ -11,6 +11,11 @@
     <result column="game_type" property="gameType" jdbcType="TINYINT" />
     <result column="game_operation" property="gameOperation" jdbcType="TINYINT" />
     <result column="game_advise_type" property="gameAdviseType" jdbcType="TINYINT" />
+    <result column="game_icon" property="gameIcon" jdbcType="VARCHAR" />
+    <result column="game_pic" property="gamePic" jdbcType="VARCHAR" />
+    <result column="game_iosAddress" property="gameIosaddress" jdbcType="VARCHAR" />
+    <result column="game_androidAddress" property="gameAndroidaddress" jdbcType="VARCHAR" />
+    <result column="game_description" property="gameDescription" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,7 +77,8 @@
   </sql>
   <sql id="Base_Column_List" >
     game_id, game_name, game_title, game_download, game_size, game_status, game_type, 
-    game_operation, game_advise_type
+    game_operation, game_advise_type, game_icon, game_pic, game_iosAddress, game_androidAddress, 
+    game_description
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.peanut.bean.po.GameExample" >
     select
@@ -107,12 +113,14 @@
   <insert id="insert" parameterType="cn.peanut.bean.po.Game" >
     insert into game (game_id, game_name, game_title, 
       game_download, game_size, game_status, 
-      game_type, game_operation, game_advise_type
-      )
+      game_type, game_operation, game_advise_type, 
+      game_icon, game_pic, game_iosAddress, 
+      game_androidAddress, game_description)
     values (#{gameId,jdbcType=INTEGER}, #{gameName,jdbcType=VARCHAR}, #{gameTitle,jdbcType=VARCHAR}, 
       #{gameDownload,jdbcType=INTEGER}, #{gameSize,jdbcType=INTEGER}, #{gameStatus,jdbcType=TINYINT}, 
-      #{gameType,jdbcType=TINYINT}, #{gameOperation,jdbcType=TINYINT}, #{gameAdviseType,jdbcType=TINYINT}
-      )
+      #{gameType,jdbcType=TINYINT}, #{gameOperation,jdbcType=TINYINT}, #{gameAdviseType,jdbcType=TINYINT}, 
+      #{gameIcon,jdbcType=VARCHAR}, #{gamePic,jdbcType=VARCHAR}, #{gameIosaddress,jdbcType=VARCHAR}, 
+      #{gameAndroidaddress,jdbcType=VARCHAR}, #{gameDescription,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.peanut.bean.po.Game" >
     insert into game
@@ -144,6 +152,21 @@
       <if test="gameAdviseType != null" >
         game_advise_type,
       </if>
+      <if test="gameIcon != null" >
+        game_icon,
+      </if>
+      <if test="gamePic != null" >
+        game_pic,
+      </if>
+      <if test="gameIosaddress != null" >
+        game_iosAddress,
+      </if>
+      <if test="gameAndroidaddress != null" >
+        game_androidAddress,
+      </if>
+      <if test="gameDescription != null" >
+        game_description,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="gameId != null" >
@@ -172,6 +195,21 @@
       </if>
       <if test="gameAdviseType != null" >
         #{gameAdviseType,jdbcType=TINYINT},
+      </if>
+      <if test="gameIcon != null" >
+        #{gameIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="gamePic != null" >
+        #{gamePic,jdbcType=VARCHAR},
+      </if>
+      <if test="gameIosaddress != null" >
+        #{gameIosaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="gameAndroidaddress != null" >
+        #{gameAndroidaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="gameDescription != null" >
+        #{gameDescription,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -211,6 +249,21 @@
       <if test="record.gameAdviseType != null" >
         game_advise_type = #{record.gameAdviseType,jdbcType=TINYINT},
       </if>
+      <if test="record.gameIcon != null" >
+        game_icon = #{record.gameIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gamePic != null" >
+        game_pic = #{record.gamePic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameIosaddress != null" >
+        game_iosAddress = #{record.gameIosaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameAndroidaddress != null" >
+        game_androidAddress = #{record.gameAndroidaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameDescription != null" >
+        game_description = #{record.gameDescription,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -226,7 +279,12 @@
       game_status = #{record.gameStatus,jdbcType=TINYINT},
       game_type = #{record.gameType,jdbcType=TINYINT},
       game_operation = #{record.gameOperation,jdbcType=TINYINT},
-      game_advise_type = #{record.gameAdviseType,jdbcType=TINYINT}
+      game_advise_type = #{record.gameAdviseType,jdbcType=TINYINT},
+      game_icon = #{record.gameIcon,jdbcType=VARCHAR},
+      game_pic = #{record.gamePic,jdbcType=VARCHAR},
+      game_iosAddress = #{record.gameIosaddress,jdbcType=VARCHAR},
+      game_androidAddress = #{record.gameAndroidaddress,jdbcType=VARCHAR},
+      game_description = #{record.gameDescription,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -258,6 +316,21 @@
       <if test="gameAdviseType != null" >
         game_advise_type = #{gameAdviseType,jdbcType=TINYINT},
       </if>
+      <if test="gameIcon != null" >
+        game_icon = #{gameIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="gamePic != null" >
+        game_pic = #{gamePic,jdbcType=VARCHAR},
+      </if>
+      <if test="gameIosaddress != null" >
+        game_iosAddress = #{gameIosaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="gameAndroidaddress != null" >
+        game_androidAddress = #{gameAndroidaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="gameDescription != null" >
+        game_description = #{gameDescription,jdbcType=VARCHAR},
+      </if>
     </set>
     where game_id = #{gameId,jdbcType=INTEGER}
   </update>
@@ -270,7 +343,12 @@
       game_status = #{gameStatus,jdbcType=TINYINT},
       game_type = #{gameType,jdbcType=TINYINT},
       game_operation = #{gameOperation,jdbcType=TINYINT},
-      game_advise_type = #{gameAdviseType,jdbcType=TINYINT}
+      game_advise_type = #{gameAdviseType,jdbcType=TINYINT},
+      game_icon = #{gameIcon,jdbcType=VARCHAR},
+      game_pic = #{gamePic,jdbcType=VARCHAR},
+      game_iosAddress = #{gameIosaddress,jdbcType=VARCHAR},
+      game_androidAddress = #{gameAndroidaddress,jdbcType=VARCHAR},
+      game_description = #{gameDescription,jdbcType=VARCHAR}
     where game_id = #{gameId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -19,6 +19,16 @@ public class Game {
 
     private Byte gameAdviseType;
 
+    private String gameIcon;
+
+    private String gamePic;
+
+    private String gameIosaddress;
+
+    private String gameAndroidaddress;
+
+    private String gameDescription;
+
     public Integer getGameId() {
         return gameId;
     }
@@ -91,18 +101,43 @@ public class Game {
         this.gameAdviseType = gameAdviseType;
     }
 
-    @Override
-    public String toString() {
-        return "Game{" +
-                "gameId=" + gameId +
-                ", gameName='" + gameName + '\'' +
-                ", gameTitle='" + gameTitle + '\'' +
-                ", gameDownload=" + gameDownload +
-                ", gameSize=" + gameSize +
-                ", gameStatus=" + gameStatus +
-                ", gameType=" + gameType +
-                ", gameOperation=" + gameOperation +
-                ", gameAdviseType=" + gameAdviseType +
-                '}';
+    public String getGameIcon() {
+        return gameIcon;
+    }
+
+    public void setGameIcon(String gameIcon) {
+        this.gameIcon = gameIcon == null ? null : gameIcon.trim();
+    }
+
+    public String getGamePic() {
+        return gamePic;
+    }
+
+    public void setGamePic(String gamePic) {
+        this.gamePic = gamePic == null ? null : gamePic.trim();
+    }
+
+    public String getGameIosaddress() {
+        return gameIosaddress;
+    }
+
+    public void setGameIosaddress(String gameIosaddress) {
+        this.gameIosaddress = gameIosaddress == null ? null : gameIosaddress.trim();
+    }
+
+    public String getGameAndroidaddress() {
+        return gameAndroidaddress;
+    }
+
+    public void setGameAndroidaddress(String gameAndroidaddress) {
+        this.gameAndroidaddress = gameAndroidaddress == null ? null : gameAndroidaddress.trim();
+    }
+
+    public String getGameDescription() {
+        return gameDescription;
+    }
+
+    public void setGameDescription(String gameDescription) {
+        this.gameDescription = gameDescription == null ? null : gameDescription.trim();
     }
 }

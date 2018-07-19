@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -37,10 +38,25 @@ public class GameController {
 
         while(iter.hasNext()){
             gameVo = gameService.change((Game) iter.next());
-            gameVoList.add(gameVo);
+            if(gameVo.getGameStatus().equals("启用"))gameVoList.add(gameVo);
         }
 
         model.addAttribute("gamesList",gameVoList);
         return "/index";
+    }
+
+    //跳转add.jsp
+    @RequestMapping(value = "/add.action",method = RequestMethod.GET)
+    public String gameRedirect(){
+        return "/add";
+    }
+
+    //提交add表单
+    @RequestMapping(value = "/add.action", method = RequestMethod.POST)
+    public String gameAdd(Game game){
+//        通过名字检索是否存在
+//        存在就调用更新
+//        不存在就添加
+        return "redirect:/show.action";
     }
 }

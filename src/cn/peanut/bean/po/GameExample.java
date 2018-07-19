@@ -663,6 +663,356 @@ public class GameExample {
             addCriterion("game_advise_type not between", value1, value2, "gameAdviseType");
             return (Criteria) this;
         }
+
+        public Criteria andGameIconIsNull() {
+            addCriterion("game_icon is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIconIsNotNull() {
+            addCriterion("game_icon is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIconEqualTo(String value) {
+            addCriterion("game_icon =", value, "gameIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIconNotEqualTo(String value) {
+            addCriterion("game_icon <>", value, "gameIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIconGreaterThan(String value) {
+            addCriterion("game_icon >", value, "gameIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIconGreaterThanOrEqualTo(String value) {
+            addCriterion("game_icon >=", value, "gameIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIconLessThan(String value) {
+            addCriterion("game_icon <", value, "gameIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIconLessThanOrEqualTo(String value) {
+            addCriterion("game_icon <=", value, "gameIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIconLike(String value) {
+            addCriterion("game_icon like", value, "gameIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIconNotLike(String value) {
+            addCriterion("game_icon not like", value, "gameIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIconIn(List<String> values) {
+            addCriterion("game_icon in", values, "gameIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIconNotIn(List<String> values) {
+            addCriterion("game_icon not in", values, "gameIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIconBetween(String value1, String value2) {
+            addCriterion("game_icon between", value1, value2, "gameIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIconNotBetween(String value1, String value2) {
+            addCriterion("game_icon not between", value1, value2, "gameIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andGamePicIsNull() {
+            addCriterion("game_pic is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGamePicIsNotNull() {
+            addCriterion("game_pic is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGamePicEqualTo(String value) {
+            addCriterion("game_pic =", value, "gamePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andGamePicNotEqualTo(String value) {
+            addCriterion("game_pic <>", value, "gamePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andGamePicGreaterThan(String value) {
+            addCriterion("game_pic >", value, "gamePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andGamePicGreaterThanOrEqualTo(String value) {
+            addCriterion("game_pic >=", value, "gamePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andGamePicLessThan(String value) {
+            addCriterion("game_pic <", value, "gamePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andGamePicLessThanOrEqualTo(String value) {
+            addCriterion("game_pic <=", value, "gamePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andGamePicLike(String value) {
+            addCriterion("game_pic like", value, "gamePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andGamePicNotLike(String value) {
+            addCriterion("game_pic not like", value, "gamePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andGamePicIn(List<String> values) {
+            addCriterion("game_pic in", values, "gamePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andGamePicNotIn(List<String> values) {
+            addCriterion("game_pic not in", values, "gamePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andGamePicBetween(String value1, String value2) {
+            addCriterion("game_pic between", value1, value2, "gamePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andGamePicNotBetween(String value1, String value2) {
+            addCriterion("game_pic not between", value1, value2, "gamePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIosaddressIsNull() {
+            addCriterion("game_iosAddress is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIosaddressIsNotNull() {
+            addCriterion("game_iosAddress is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIosaddressEqualTo(String value) {
+            addCriterion("game_iosAddress =", value, "gameIosaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIosaddressNotEqualTo(String value) {
+            addCriterion("game_iosAddress <>", value, "gameIosaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIosaddressGreaterThan(String value) {
+            addCriterion("game_iosAddress >", value, "gameIosaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIosaddressGreaterThanOrEqualTo(String value) {
+            addCriterion("game_iosAddress >=", value, "gameIosaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIosaddressLessThan(String value) {
+            addCriterion("game_iosAddress <", value, "gameIosaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIosaddressLessThanOrEqualTo(String value) {
+            addCriterion("game_iosAddress <=", value, "gameIosaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIosaddressLike(String value) {
+            addCriterion("game_iosAddress like", value, "gameIosaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIosaddressNotLike(String value) {
+            addCriterion("game_iosAddress not like", value, "gameIosaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIosaddressIn(List<String> values) {
+            addCriterion("game_iosAddress in", values, "gameIosaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIosaddressNotIn(List<String> values) {
+            addCriterion("game_iosAddress not in", values, "gameIosaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIosaddressBetween(String value1, String value2) {
+            addCriterion("game_iosAddress between", value1, value2, "gameIosaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameIosaddressNotBetween(String value1, String value2) {
+            addCriterion("game_iosAddress not between", value1, value2, "gameIosaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAndroidaddressIsNull() {
+            addCriterion("game_androidAddress is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAndroidaddressIsNotNull() {
+            addCriterion("game_androidAddress is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAndroidaddressEqualTo(String value) {
+            addCriterion("game_androidAddress =", value, "gameAndroidaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAndroidaddressNotEqualTo(String value) {
+            addCriterion("game_androidAddress <>", value, "gameAndroidaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAndroidaddressGreaterThan(String value) {
+            addCriterion("game_androidAddress >", value, "gameAndroidaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAndroidaddressGreaterThanOrEqualTo(String value) {
+            addCriterion("game_androidAddress >=", value, "gameAndroidaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAndroidaddressLessThan(String value) {
+            addCriterion("game_androidAddress <", value, "gameAndroidaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAndroidaddressLessThanOrEqualTo(String value) {
+            addCriterion("game_androidAddress <=", value, "gameAndroidaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAndroidaddressLike(String value) {
+            addCriterion("game_androidAddress like", value, "gameAndroidaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAndroidaddressNotLike(String value) {
+            addCriterion("game_androidAddress not like", value, "gameAndroidaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAndroidaddressIn(List<String> values) {
+            addCriterion("game_androidAddress in", values, "gameAndroidaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAndroidaddressNotIn(List<String> values) {
+            addCriterion("game_androidAddress not in", values, "gameAndroidaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAndroidaddressBetween(String value1, String value2) {
+            addCriterion("game_androidAddress between", value1, value2, "gameAndroidaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAndroidaddressNotBetween(String value1, String value2) {
+            addCriterion("game_androidAddress not between", value1, value2, "gameAndroidaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameDescriptionIsNull() {
+            addCriterion("game_description is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameDescriptionIsNotNull() {
+            addCriterion("game_description is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameDescriptionEqualTo(String value) {
+            addCriterion("game_description =", value, "gameDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameDescriptionNotEqualTo(String value) {
+            addCriterion("game_description <>", value, "gameDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameDescriptionGreaterThan(String value) {
+            addCriterion("game_description >", value, "gameDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("game_description >=", value, "gameDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameDescriptionLessThan(String value) {
+            addCriterion("game_description <", value, "gameDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("game_description <=", value, "gameDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameDescriptionLike(String value) {
+            addCriterion("game_description like", value, "gameDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameDescriptionNotLike(String value) {
+            addCriterion("game_description not like", value, "gameDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameDescriptionIn(List<String> values) {
+            addCriterion("game_description in", values, "gameDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameDescriptionNotIn(List<String> values) {
+            addCriterion("game_description not in", values, "gameDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameDescriptionBetween(String value1, String value2) {
+            addCriterion("game_description between", value1, value2, "gameDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameDescriptionNotBetween(String value1, String value2) {
+            addCriterion("game_description not between", value1, value2, "gameDescription");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
