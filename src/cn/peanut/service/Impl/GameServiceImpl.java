@@ -133,4 +133,9 @@ public class GameServiceImpl implements GameService {
     public void updateGame(Game game) {
         gameMapper.updateByPrimaryKeySelective(game);
     }
+
+    @Override
+    public void delete(Integer id) {
+        gameMapper.deleteByPrimaryKey(id);
+    }
 }

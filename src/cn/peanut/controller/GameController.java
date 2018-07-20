@@ -76,6 +76,13 @@ public class GameController {
         return "redirect:/show.action";
     }
 
+    //删除
+    @RequestMapping(value = "/delete.action")
+    public String gameDelete(Integer id){
+        gameService.delete(id);
+        return "redirect:/show.action";
+    }
+
     //跳转update.jsp
     @RequestMapping(value = "/update.action",method = RequestMethod.GET)
     public String gameRedirect2(Model model,Integer id){

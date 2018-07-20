@@ -23,6 +23,7 @@
       <th>平台类型</th>
       <th>推荐类型</th>
       <th>操作</th>
+      <th>操作</th>
     </tr>
 <c:forEach items="${gamesList}" var="game" varStatus="s">
     <tr>
@@ -35,6 +36,7 @@
       <td>${game.gameOperation}</td>
       <td>${game.gameAdviseType}</td>
       <td><a href="${pageContext.request.contextPath }/update.action?id=${game.gameId}">修改</a></td>
+      <td><a href="${pageContext.request.contextPath }/delete.action?id=${game.gameId}">删除</a></td>
     </tr>
 </c:forEach>
   </table>

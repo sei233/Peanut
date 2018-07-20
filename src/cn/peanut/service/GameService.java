@@ -13,4 +13,5 @@ public interface GameService {
     Game selectGame(String name);
     void addGame(Game game);
     void updateGame(Game game);
+    void delete(Integer id);
 }
