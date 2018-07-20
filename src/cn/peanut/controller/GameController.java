@@ -54,14 +54,23 @@ public class GameController {
     //提交add表单
     @RequestMapping(value = "/add.action", method = RequestMethod.POST)
     public String gameAdd(Game game){
-//        通过名字检索是否存在
-        Game game1 = gameService.selectGame(game.getGameName());
-//        存在就调用更新
-        if(game1!=null)gameService.updateGame(game,game1.getGameId());
-        else gameService.addGame(game);
-        Game game2 = gameService.selectGame(game.getGameName());
-        System.out.println(game2.toString());
+//        名字检索是否存在
+        if(game.getGameName()!=null) gameService.addGame(game);
         return "redirect:/show.action";
+    }
 
+    //跳转update.jsp
+    @RequestMapping(value = "/update.action",method = RequestMethod.GET)
+    public String gameRedirect2(Model model,Integer id){
+        Game game = gameService.selectGame(id);
+        GameVo gameVo = gameService.change(game);
+        model.addAttribute("game",gameVo);
+        return "/update";
+    }
+
+    @RequestMapping(value = "/update.action", method = RequestMethod.POST)
+    public String gameUpdate(Game game){
+        gameService.updateGame(game);
+        return "redirect:/show.action";
     }
 }

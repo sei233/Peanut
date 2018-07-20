@@ -98,6 +98,7 @@ public class GameServiceImpl implements GameService {
                 advise="未知";
         }
 
+        gameVo.setGameId(game.getGameId());
         gameVo.setGameName(game.getGameName());
         gameVo.setGameTitle(game.getGameTitle());
         gameVo.setGameDownload(game.getGameDownload());
@@ -106,6 +107,11 @@ public class GameServiceImpl implements GameService {
         gameVo.setGameType(type);
         gameVo.setGameOperation(operation);
         gameVo.setGameAdviseType(advise);
+        gameVo.setGameIcon(game.getGameIcon());
+        gameVo.setGamePic(game.getGamePic());
+        gameVo.setGameIosaddress(game.getGameIosaddress());
+        gameVo.setGameAndroidaddress(game.getGameAndroidaddress());
+        gameVo.setGameDescription(game.getGameDescription());
         return gameVo;
     }
 
@@ -124,8 +130,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void updateGame(Game game,Integer id) {
-        game.setGameId(id);
+    public void updateGame(Game game) {
         gameMapper.updateByPrimaryKeySelective(game);
     }
 }

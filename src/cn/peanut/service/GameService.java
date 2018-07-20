@@ -12,5 +12,5 @@ public interface GameService {
     GameVo change(Game game);
     Game selectGame(String name);
     void addGame(Game game);
-    void updateGame(Game game,Integer id);
+    void updateGame(Game game);
 }

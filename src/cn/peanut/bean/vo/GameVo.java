@@ -2,6 +2,8 @@ package cn.peanut.bean.vo;
 
 public class GameVo {
 
+    private Integer gameId;
+
     private String gameName;
 
     private String gameTitle;
@@ -18,7 +20,23 @@ public class GameVo {
 
     private String gameAdviseType;
 
+    private String gameIcon;
 
+    private String gamePic;
+
+    private String gameIosaddress;
+
+    private String gameAndroidaddress;
+
+    private String gameDescription;
+
+    public Integer getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(Integer gameId) {
+        this.gameId = gameId;
+    }
 
     public String getGameName() {
         return gameName;
@@ -84,17 +102,44 @@ public class GameVo {
         this.gameAdviseType = gameAdviseType;
     }
 
-    @Override
-    public String toString() {
-        return "GameVo{" +
-                ", gameName='" + gameName + '\'' +
-                ", gameTitle='" + gameTitle + '\'' +
-                ", gameDownload=" + gameDownload +
-                ", gameSize=" + gameSize +
-                ", gameStatus=" + gameStatus +
-                ", gameType=" + gameType +
-                ", gameOperation=" + gameOperation +
-                ", gameAdviseType=" + gameAdviseType +
-                '}';
+
+    public String getGameIcon() {
+        return gameIcon;
+    }
+
+    public void setGameIcon(String gameIcon) {
+        this.gameIcon = gameIcon;
+    }
+
+    public String getGamePic() {
+        return gamePic;
+    }
+
+    public void setGamePic(String gamePic) {
+        this.gamePic = gamePic;
+    }
+
+    public String getGameIosaddress() {
+        return gameIosaddress;
+    }
+
+    public void setGameIosaddress(String gameIosaddress) {
+        this.gameIosaddress = gameIosaddress;
+    }
+
+    public String getGameAndroidaddress() {
+        return gameAndroidaddress;
+    }
+
+    public void setGameAndroidaddress(String gameAndroidaddress) {
+        this.gameAndroidaddress = gameAndroidaddress;
+    }
+
+    public String getGameDescription() {
+        return gameDescription;
+    }
+
+    public void setGameDescription(String gameDescription) {
+        this.gameDescription = gameDescription;
     }
 }

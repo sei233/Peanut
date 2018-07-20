@@ -34,7 +34,7 @@
       <td>${game.gameType}</td>
       <td>${game.gameOperation}</td>
       <td>${game.gameAdviseType}</td>
-      <td><a>修改</a></td>
+      <td><a href="${pageContext.request.contextPath }/update.action?id=${game.gameId}">修改</a></td>
     </tr>
 </c:forEach>
   </table>
