@@ -13,53 +13,58 @@
 </head>
 <body bgcolor="#FFFFCC">
 
-<form style="text-align: center" action="${pageContext.request.contextPath }/update.action?gameId=${game.gameId}" method="post">
+<form style="text-align: center" action="${pageContext.request.contextPath }/update.action?game.gameId=${game.gameId}" method="post"
+      enctype="multipart/form-data">
     <div>
         <div><label>游戏名称</label></div>
         <div>
-            <input style="background-color: #EbEbEb" type="text" name="gameName" placeholder="${game.gameName}">
+            <input style="background-color: #EbEbEb" type="text" name="game.gameName" placeholder="${game.gameName}">
         </div>
     </div>
 
     <div>
         <div><label>游戏标题</label></div>
         <div>
-            <input style="background-color: #EbEbEb" type="text" name="gameTitle" placeholder="${game.gameTitle}">
+            <input style="background-color: #EbEbEb" type="text" name="game.gameTitle" placeholder="${game.gameTitle}">
         </div>
     </div>
 
     <div>
         <div><label>游戏大小</label></div>
         <div>
-            <input style="background-color: #EbEbEb" type="text" name="gameSize" placeholder="${game.gameSize}">
+            <input style="background-color: #EbEbEb" type="text" name="game.gameSize" placeholder="${game.gameSize}">
         </div>
     </div>
 
-    <div>
-        <div><label>游戏图标</label></div>
-        <div>
-            <input type="file"  name="gameIcon"/>
-        </div>
-    </div>
+    <%--<div>--%>
+        <%--<div><label>游戏图标</label></div>--%>
+        <%--<div>--%>
+            <%--<input type="file"  name="game.gameIcon"/>--%>
+        <%--</div>--%>
+    <%--</div>--%>
 
     <div>
         <div><label>游戏详情图片</label></div>
         <div>
-            <input type="file"  name="gamePic"/>
+            <c:if test="${game.gamePic !=null}">
+                <img src="/pic/${game.gamePic}" width=100 height=100/>
+                <br/>
+            </c:if>
+            <input type="file"  name="pictureFile">
         </div>
     </div>
 
     <div>
         <div><label>ios下载地址</label></div>
         <div>
-            <input style="background-color: #EbEbEb" type="text" name="gameIosaddress" placeholder="${game.gameIosaddress}">
+            <input style="background-color: #EbEbEb" type="text" name="game.gameIosaddress" placeholder="${game.gameIosaddress}">
         </div>
     </div>
 
     <div>
         <div><label>android下载地址</label></div>
         <div>
-            <input style="background-color: #EbEbEb" type="text" name="gameAndroidaddress" placeholder="${game.gameAndroidaddress}">
+            <input style="background-color: #EbEbEb" type="text" name="game.gameAndroidaddress" placeholder="${game.gameAndroidaddress}">
         </div>
     </div>
 
@@ -67,7 +72,7 @@
         <div style="display: inline-block">
             <div><label>推荐类型</label></div>
             <div>
-                <select name="gameAdviseType">
+                <select name="game.gameAdviseType">
                     <option value="">${game.gameAdviseType}</option>
                     <option value="">----------</option>
                     <option value="0">普通</option>
@@ -80,7 +85,7 @@
         <div style="display: inline-block">
             <div><label>状态</label></div>
             <div>
-                <select name="gameStatus">
+                <select name="game.gameStatus">
                     <option value="">${game.gameStatus}</option>
                     <option value="">----------</option>
                     <option value="0">下线</option>
@@ -94,7 +99,7 @@
         <div style="display: inline-block">
             <div><label>游戏分类</label></div>
             <div>
-                <select name="gameType">
+                <select name="game.gameType">
                     <option value="">${game.gameType}</option>
                     <option value="">----------</option>
                     <option value="0">休闲益智</option>
@@ -111,7 +116,7 @@
         <div style="display: inline-block">
             <div><label>平台类型</label></div>
             <div>
-                <select name="gameOperation">
+                <select name="game.gameOperation">
                     <option value="">${game.gameOperation}</option>
                     <option value="">----------</option>
                     <option value="0">all</option>
@@ -125,7 +130,7 @@
     <div>
         <div><label>游戏描述</label></div>
         <div>
-            <input style="background-color: #EbEbEb" type="text" name="gameDescription" placeholder="${game.gameDescription}">
+            <input style="background-color: #EbEbEb" type="text" name="game.gameDescription" placeholder="${game.gameDescription}">
         </div>
     </div>
 

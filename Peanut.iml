@@ -32,5 +32,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="spring+mybatis" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.31" level="application_server_libraries" />
+    <orderEntry type="library" name="file-up" level="project" />
+    <orderEntry type="library" name="json" level="project" />
   </component>
 </module>

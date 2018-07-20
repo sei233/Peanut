@@ -15,6 +15,6 @@
 <a href="${pageContext.request.contextPath}/show.action"
    target=main>－游戏管理</a><br>
 <a href="${pageContext.request.contextPath}/add.action"
-   target=main><h6>游戏配置</h6></a>
+   target=main><h6>添加游戏</h6></a>
 </body>
 </html>

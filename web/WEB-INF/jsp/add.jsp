@@ -13,7 +13,7 @@
 </head>
 <body bgcolor="#FFFFCC">
 
-<form style="text-align: center" action="${pageContext.request.contextPath }/add.action" method="post">
+<form style="text-align: center" action="${pageContext.request.contextPath }/add.action" method="post" enctype="multipart/form-data">
     <div>
         <div><label>游戏名称</label></div>
         <div>
@@ -35,17 +35,17 @@
         </div>
     </div>
 
-    <div>
-        <div><label>游戏图标</label></div>
-        <div>
-            <input type="file"  name="gameIcon"/>
-        </div>
-    </div>
+    <%--<div>--%>
+        <%--<div><label>游戏图标</label></div>--%>
+        <%--<div>--%>
+            <%--<input type="file"  name="gameIcon"/>--%>
+        <%--</div>--%>
+    <%--</div>--%>
 
     <div>
         <div><label>游戏详情图片</label></div>
         <div>
-            <input type="file"  name="gamePic"/>
+            <input type="file"  name="gamepic"/>
         </div>
     </div>
 
