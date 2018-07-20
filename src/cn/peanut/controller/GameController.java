@@ -61,14 +61,16 @@ public class GameController {
     //提交add表单
     @RequestMapping(value = "/add.action", method = RequestMethod.POST)
     public String gameAdd(Game game, MultipartFile gamepic) throws IOException {
-        //图片名
-        String name = UUID.randomUUID().toString().replaceAll("-","");
-        //图片后缀名
-        String ext = FilenameUtils.getExtension(gamepic.getOriginalFilename());
-        //保存图片到目录
-        gamepic.transferTo(new File("C:\\Users\\石乾\\Pictures\\Saved Pictures\\" + name + "." + ext));
+        if(gamepic.getSize()!=0) {
+            //图片名
+            String name = UUID.randomUUID().toString().replaceAll("-", "");
+            //图片后缀名
+            String ext = FilenameUtils.getExtension(gamepic.getOriginalFilename());
+            //保存图片到目录
+            gamepic.transferTo(new File("C:\\Users\\石乾\\Pictures\\Saved Pictures\\" + name + "." + ext));
 
-        game.setGamePic(name+"."+ext);
+            game.setGamePic(name + "." + ext);
+        }
         //名字检索是否存在
         if(game.getGameName()!=null) gameService.addGame(game);
         return "redirect:/show.action";
@@ -86,15 +88,15 @@ public class GameController {
     //提交update.jsp
     @RequestMapping(value = "/update.action", method = RequestMethod.POST)
     public String gameUpdate(QueryVo vo,MultipartFile pictureFile) throws IOException {
-        //图片名
-        String name = UUID.randomUUID().toString().replaceAll("-","");
-        //图片后缀名
-        String ext = FilenameUtils.getExtension(pictureFile.getOriginalFilename());
-        //保存图片到目录
-        pictureFile.transferTo(new File("C:\\Users\\石乾\\Pictures\\Saved Pictures\\" + name + "." + ext));
-
-        vo.getGame().setGamePic(name+"."+ext);
-
+        if(pictureFile.getSize()!=0) {
+            //图片名
+            String name = UUID.randomUUID().toString().replaceAll("-", "");
+            //图片后缀名
+            String ext = FilenameUtils.getExtension(pictureFile.getOriginalFilename());
+            //保存图片到目录
+            pictureFile.transferTo(new File("C:\\Users\\石乾\\Pictures\\Saved Pictures\\" + name + "." + ext));
+            vo.getGame().setGamePic(name + "." + ext);
+        }
         gameService.updateGame(vo.getGame());
         return "redirect:/show.action";
     }

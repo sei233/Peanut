@@ -39,7 +39,7 @@
     <%--<div>--%>
         <%--<div><label>游戏图标</label></div>--%>
         <%--<div>--%>
-            <%--<input type="file"  name="game.gameIcon"/>--%>
+            <%--<input type="file"  name="iconFile"/>--%>
         <%--</div>--%>
     <%--</div>--%>
 
