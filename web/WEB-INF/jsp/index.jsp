@@ -11,11 +11,22 @@
   <head>
     <title>$Title$</title>
 
-    <script src="../js/jquery-1.4.4.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/js/page.js"></script>
+
     <script type="text/javascript">
-            function del(){
-                return window.confirm("您确定删除吗?");
-            }
+        $(function() {
+            $('.pageTest').page({
+                leng: 100,//分页总数
+                activeClass: 'activP', //active 类样式定义
+                clickBack: function (page) {
+                    console.log(page)
+                }
+            });
+        });
+        function del() {
+            return window.confirm("您确定删除吗?");
+        }
     </script>
   </head>
   <body bgcolor="#FFFFCC">
@@ -47,5 +58,6 @@
     </tr>
 </c:forEach>
   </table>
+  <div class="pageTest"></div>
   </body>
 </html>

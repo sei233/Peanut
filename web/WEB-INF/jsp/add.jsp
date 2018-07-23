@@ -11,7 +11,7 @@
 <head>
     <title>$Title$</title>
 
-    <script src="../js/jquery-1.4.4.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">
         $(function(){
             $('#submit').click(function () {
