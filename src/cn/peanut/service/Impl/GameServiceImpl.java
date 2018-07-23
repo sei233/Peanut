@@ -2,6 +2,7 @@ package cn.peanut.service.Impl;
 
 import cn.peanut.bean.po.Game;
 import cn.peanut.bean.vo.GameVo;
+import cn.peanut.exception.MessageException;
 import cn.peanut.mapper.GameMapper;
 import cn.peanut.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,14 +138,23 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void updateGame(Game game) {
+    public void updateGame(Game game) throws MessageException{
+        if(game.getGameName().equals("")
+                &&game.getGameTitle().equals("")
+                &&game.getGameSize()==null
+                &&game.getGamePic()==null
+                &&game.getGameIosaddress().equals("")
+                &&game.getGameAndroidaddress().equals("")
+                &&game.getGameAdviseType()==null
+                &&game.getGameStatus()==null
+                &&game.getGameType()==null
+                &&game.getGameOperation()==null
+                &&game.getGameDescription().equals("")){throw new MessageException("条目不能全为空");}
         gameMapper.updateByPrimaryKeySelective(game);
     }
 
     @Override
-    @Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = true)
     public void delete(Integer id) {
         gameMapper.deleteByPrimaryKey(id);
-//        int i = 1/0;
     }
 }

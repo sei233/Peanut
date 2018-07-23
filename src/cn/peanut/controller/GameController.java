@@ -3,6 +3,7 @@ package cn.peanut.controller;
 import cn.peanut.bean.po.Game;
 import cn.peanut.bean.vo.GameVo;
 import cn.peanut.bean.vo.QueryVo;
+import cn.peanut.exception.MessageException;
 import cn.peanut.service.GameService;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,7 +95,7 @@ public class GameController {
 
     //提交update.jsp
     @RequestMapping(value = "/update.action", method = RequestMethod.POST)
-    public String gameUpdate(QueryVo vo,MultipartFile pictureFile) throws IOException {
+    public String gameUpdate(QueryVo vo,MultipartFile pictureFile) throws Exception{
         if(pictureFile.getSize()!=0) {
             //图片名
             String name = UUID.randomUUID().toString().replaceAll("-", "");
