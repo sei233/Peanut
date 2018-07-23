@@ -5,11 +5,20 @@
   Time: 11:06
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+
 <head>
     <title>$Title$</title>
+
+    <script src="../js/jquery-1.4.4.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#submit').click(function () {
+                return window.confirm("您确定添加吗?");
+            })
+         });
+    </script>
 </head>
 <body bgcolor="#FFFFCC">
 
@@ -125,7 +134,7 @@
         </div>
     </div>
 
-    <input type="submit" value="保存">
+    <input id="submit" type="submit" value="保存">
 </form>
 
 </body>

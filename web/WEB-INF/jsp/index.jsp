@@ -10,6 +10,13 @@
 <html>
   <head>
     <title>$Title$</title>
+
+    <script src="../js/jquery-1.4.4.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+            function del(){
+                return window.confirm("您确定删除吗?");
+            }
+    </script>
   </head>
   <body bgcolor="#FFFFCC">
   <table border="1">
@@ -36,7 +43,7 @@
       <td>${game.gameOperation}</td>
       <td>${game.gameAdviseType}</td>
       <td><a href="${pageContext.request.contextPath }/update.action?id=${game.gameId}">修改</a></td>
-      <td><a href="${pageContext.request.contextPath }/delete.action?id=${game.gameId}">删除</a></td>
+      <td><a onclick="return del()" href="${pageContext.request.contextPath }/delete.action?id=${game.gameId}">删除</a></td>
     </tr>
 </c:forEach>
   </table>
