@@ -6,16 +6,21 @@ import cn.peanut.mapper.GameMapper;
 import cn.peanut.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = false)
 public class GameServiceImpl implements GameService {
 
     @Autowired
     private GameMapper gameMapper;
 
     //查询商品列表
+    @Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = true)
     public Game selectGame(Integer id){
         return gameMapper.selectByPrimaryKey(id);
     }
@@ -115,10 +120,12 @@ public class GameServiceImpl implements GameService {
         return gameVo;
     }
 
+    @Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = true)
     public List<Game> selectGamesList(){
         return gameMapper.selectByExample(null);
     }
 
+    @Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = true)
     public Game selectGame(String name){
         return gameMapper.selectByName(name);
     }
@@ -135,7 +142,9 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = true)
     public void delete(Integer id) {
         gameMapper.deleteByPrimaryKey(id);
+//        int i = 1/0;
     }
 }
