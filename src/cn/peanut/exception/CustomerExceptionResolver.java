@@ -20,7 +20,7 @@ public class CustomerExceptionResolver implements HandlerExceptionResolver {
             //预期异常
             MessageException me = (MessageException)e;
             mav.addObject("error",me.getMsg());
-            mav.setViewName("redirect:/show.action");
+            mav.setViewName("/error");
         }else{
             //无脑返回首页
             mav.addObject("error","未知异常");

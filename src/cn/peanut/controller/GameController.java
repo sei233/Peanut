@@ -41,7 +41,7 @@ public class GameController {
     @RequestMapping("/show.action")
     public String showGameList(Model model, Integer page){
         if(page==null)page=1;
-        Integer size=2;
+        Integer size=3;
         List<GameVo> gameVoList = new ArrayList<>();
         GameVo gameVo;
         List<Game> gameList = gameService.selectGamesListByPage(page,size);
