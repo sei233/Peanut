@@ -39,8 +39,8 @@ public class GameController {
 
     //显示游戏列表
     @RequestMapping("/show.action")
-    public String showGameList(Model model,Integer page){
-        if(page==null){page=1;}
+    public String showGameList(Model model, Integer page){
+        if(page==null)page=1;
         Integer size=2;
         List<GameVo> gameVoList = new ArrayList<>();
         GameVo gameVo;
@@ -54,24 +54,6 @@ public class GameController {
 
         model.addAttribute("gamesList",gameVoList);
         return "/index";
-    }
-
-    @RequestMapping("/page.action")
-    public  @ResponseBody
-    List<GameVo> showGameListByPage(Model model, Integer page){
-        if(page==null){page=1;}
-        Integer size=2;
-        List<GameVo> gameVoList = new ArrayList<>();
-        GameVo gameVo;
-        List<Game> gameList = gameService.selectGamesListByPage(page,size);
-        Iterator iter = gameList.iterator();
-
-        while(iter.hasNext()){
-            gameVo = gameService.change((Game) iter.next());
-            if(gameVo.getGameStatus().equals("启用"))gameVoList.add(gameVo);
-        }
-
-        return gameVoList;
     }
 
     //跳转add.jsp

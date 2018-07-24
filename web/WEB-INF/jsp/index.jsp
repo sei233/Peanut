@@ -35,11 +35,14 @@
                     var paramData = {
                         page:page
                     };
-                    $("#table").empty();
+                    // $("#table").empty();
                     $.post({
-                        url: '${pageContext.request.contextPath}/show.action',
+                        url: '${pageContext.request.contextPath}/page.action',
                         data: paramData,
-                        dataType: "json"
+                        dataType: "json",
+                        error(){
+                            window.location.reload();
+                        }
                     })
                 }
             });
