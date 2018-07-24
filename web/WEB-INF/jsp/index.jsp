@@ -40,10 +40,8 @@
                         url: '${pageContext.request.contextPath}/page.action',
                         data: paramData,
                         dataType: "json",
-                        error(){
-                            window.location.reload();
-                        }
-                    })
+                    });
+                    window.location.reload();
                 }
             });
         });
