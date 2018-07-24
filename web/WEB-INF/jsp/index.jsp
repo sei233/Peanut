@@ -31,7 +31,16 @@
                 leng: 10,//分页总数
                 activeClass: 'activP', //active 类样式定义
                 clickBack: function (page) {
-                    console.log(page)
+                    console.log(page);
+                    var paramData = {
+                        page:page
+                    };
+                    $("#table").empty();
+                    $.post({
+                        url: '${pageContext.request.contextPath}/show.action',
+                        data: paramData,
+                        dataType: "json"
+                    })
                 }
             });
         });
@@ -41,7 +50,7 @@
     </script>
   </head>
   <body>
-  <table border="1" >
+  <table id="table" border="1" >
     <tr>
       <th>游戏名</th>
       <th>标题</th>

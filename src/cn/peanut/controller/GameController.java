@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -38,10 +39,12 @@ public class GameController {
 
     //显示游戏列表
     @RequestMapping("/show.action")
-    public String showGameList(Model model){
+    public String showGameList(Model model,Integer page){
+        if(page==null){page=1;}
+        Integer size=2;
         List<GameVo> gameVoList = new ArrayList<>();
         GameVo gameVo;
-        List<Game> gameList = gameService.selectGamesList();
+        List<Game> gameList = gameService.selectGamesListByPage(page,size);
         Iterator iter = gameList.iterator();
 
         while(iter.hasNext()){
@@ -51,6 +54,24 @@ public class GameController {
 
         model.addAttribute("gamesList",gameVoList);
         return "/index";
+    }
+
+    @RequestMapping("/page.action")
+    public  @ResponseBody
+    List<GameVo> showGameListByPage(Model model, Integer page){
+        if(page==null){page=1;}
+        Integer size=2;
+        List<GameVo> gameVoList = new ArrayList<>();
+        GameVo gameVo;
+        List<Game> gameList = gameService.selectGamesListByPage(page,size);
+        Iterator iter = gameList.iterator();
+
+        while(iter.hasNext()){
+            gameVo = gameService.change((Game) iter.next());
+            if(gameVo.getGameStatus().equals("启用"))gameVoList.add(gameVo);
+        }
+
+        return gameVoList;
     }
 
     //跳转add.jsp

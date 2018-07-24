@@ -20,12 +20,6 @@ public class GameServiceImpl implements GameService {
     @Autowired
     private GameMapper gameMapper;
 
-    //查询商品列表
-    @Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = true)
-    public Game selectGame(Integer id){
-        return gameMapper.selectByPrimaryKey(id);
-    }
-
     public GameVo change(Game game){
         GameVo gameVo = new GameVo();
         String status;
@@ -121,14 +115,29 @@ public class GameServiceImpl implements GameService {
         return gameVo;
     }
 
+    //通过id查询商品
     @Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = true)
-    public List<Game> selectGamesList(){
-        return gameMapper.selectByExample(null);
+    public Game selectGame(Integer id){
+        return gameMapper.selectByPrimaryKey(id);
     }
 
+    //通过name查询商品
     @Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = true)
     public Game selectGame(String name){
         return gameMapper.selectByName(name);
+    }
+
+    //通过页数查询商品列表
+    @Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = true)
+    public List<Game> selectGamesListByPage(Integer page,Integer size) {
+        int index=(page-1)*size;
+        return gameMapper.selectByPage(index,size);
+    }
+
+    //查询所有的商品列表
+    @Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = true)
+    public List<Game> selectAllGamesList(){
+        return gameMapper.selectByExample(null);
     }
 
     @Override

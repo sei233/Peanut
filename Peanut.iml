@@ -35,5 +35,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.31" level="application_server_libraries" />
     <orderEntry type="library" name="file-up" level="project" />
     <orderEntry type="library" name="json" level="project" />
+    <orderEntry type="library" name="jquery-1.10.2" level="application" />
+    <orderEntry type="library" name="jquery-3.1.1" level="application" />
   </component>
 </module>

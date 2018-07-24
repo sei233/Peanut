@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface GameService {
 
-    List<Game> selectGamesList();
+    List<Game> selectGamesListByPage(Integer page,Integer size);
+    List<Game> selectAllGamesList();
     Game selectGame(Integer id);
     GameVo change(Game game);
     Game selectGame(String name);

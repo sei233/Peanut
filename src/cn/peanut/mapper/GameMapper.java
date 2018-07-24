@@ -19,6 +19,8 @@ public interface GameMapper {
 
     List<Game> selectByExample(GameExample example);
 
+    List<Game> selectByPage(Integer index,Integer size);
+
     Game selectByPrimaryKey(Integer gameId);
 
     Game selectByName(String gameName);
