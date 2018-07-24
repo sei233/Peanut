@@ -11,13 +11,24 @@
   <head>
     <title>$Title$</title>
 
+    <style type="text/css">
+      .pageTest{ width: 1000px; height: 5px; margin-top: 5px;    }
+      .activP{
+        background-color: #367fa9!important;
+        color: #fff!important;
+      }
+      td{text-align:center;}
+    </style>
+
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <%--<script src="/js/jquery.min.js"></script>--%>
     <script type="text/javascript" src="/js/page.js"></script>
+    <link rel="stylesheet" href="/css/page.css">
 
     <script type="text/javascript">
         $(function() {
             $('.pageTest').page({
-                leng: 100,//分页总数
+                leng: 10,//分页总数
                 activeClass: 'activP', //active 类样式定义
                 clickBack: function (page) {
                     console.log(page)
@@ -29,8 +40,8 @@
         }
     </script>
   </head>
-  <body bgcolor="#FFFFCC">
-  <table border="1">
+  <body>
+  <table border="1" >
     <tr>
       <th>游戏名</th>
       <th>标题</th>
@@ -57,7 +68,12 @@
       <td><a onclick="return del()" href="${pageContext.request.contextPath }/delete.action?id=${game.gameId}">删除</a></td>
     </tr>
 </c:forEach>
+    <tr>
+      <td colspan="10">
+        <!--必须要的div-->
+        <div class="pageTest"></div>
+      </td>
+    </tr>
   </table>
-  <div class="pageTest"></div>
   </body>
 </html>

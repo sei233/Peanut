@@ -8,7 +8,7 @@
   float: left;
   width: 30px;
   height: 30px;
-  list-style: 30px;
+  /*list-style: 30px;*/
   text-align: center;
 }
 .pagingUl li a{
