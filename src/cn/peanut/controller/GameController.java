@@ -28,15 +28,6 @@ public class GameController {
     @Autowired
     GameService gameService;
 
-    //通过id查找——>通过name模糊查询
-    @RequestMapping("/find.action")
-    public String gameSearch(Model model,Integer id){
-        Game game = gameService.selectGame(id);
-        GameVo gameVo = gameService.change(game);
-        model.addAttribute("game",gameVo);
-        return "/index";
-    }
-
     //显示游戏列表
     @RequestMapping("/show.action")
     public String showGameList(Model model, Integer page){
@@ -110,5 +101,12 @@ public class GameController {
         }
         gameService.updateGame(vo.getGame());
         return "redirect:/show.action";
+    }
+
+    //查询
+    @RequestMapping(value = "/search.action")
+    public String gameSearch(Model model,String condition){
+
+        return "/index";
     }
 }

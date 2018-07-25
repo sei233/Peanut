@@ -1,6 +1,7 @@
 package cn.peanut.service.Impl;
 
 import cn.peanut.bean.po.Game;
+import cn.peanut.bean.po.GameExample;
 import cn.peanut.bean.vo.GameVo;
 import cn.peanut.exception.MessageException;
 import cn.peanut.mapper.GameMapper;
@@ -125,6 +126,12 @@ public class GameServiceImpl implements GameService {
     @Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = true)
     public Game selectGame(String name){
         return gameMapper.selectByName(name);
+    }
+
+    //多例查询
+    @Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = true)
+    public List<Game> selectByExample(GameExample example) {
+        return gameMapper.selectByExample(example);
     }
 
     //通过页数查询商品列表
