@@ -16,6 +16,8 @@
     <result column="game_iosAddress" property="gameIosaddress" jdbcType="VARCHAR" />
     <result column="game_androidAddress" property="gameAndroidaddress" jdbcType="VARCHAR" />
     <result column="game_description" property="gameDescription" jdbcType="VARCHAR" />
+    <result column="game_year" property="gameYear" jdbcType="INTEGER" />
+    <result column="game_month" property="gameMonth" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -78,7 +80,7 @@
   <sql id="Base_Column_List" >
     game_id, game_name, game_title, game_download, game_size, game_status, game_type, 
     game_operation, game_advise_type, game_icon, game_pic, game_iosAddress, game_androidAddress, 
-    game_description
+    game_description, game_year, game_month
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.peanut.bean.po.GameExample" >
     select
@@ -106,12 +108,6 @@
     from game
     where game_id = #{gameId,jdbcType=INTEGER}
   </select>
-  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select
-    <include refid="Base_Column_List" />
-    from game
-    where game_name = #{gameName,jdbcType=VARCHAR}
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from game
     where game_id = #{gameId,jdbcType=INTEGER}
@@ -127,12 +123,14 @@
       game_download, game_size, game_status, 
       game_type, game_operation, game_advise_type, 
       game_icon, game_pic, game_iosAddress, 
-      game_androidAddress, game_description)
+      game_androidAddress, game_description, game_year, 
+      game_month)
     values (#{gameId,jdbcType=INTEGER}, #{gameName,jdbcType=VARCHAR}, #{gameTitle,jdbcType=VARCHAR}, 
       #{gameDownload,jdbcType=INTEGER}, #{gameSize,jdbcType=INTEGER}, #{gameStatus,jdbcType=TINYINT}, 
       #{gameType,jdbcType=TINYINT}, #{gameOperation,jdbcType=TINYINT}, #{gameAdviseType,jdbcType=TINYINT}, 
       #{gameIcon,jdbcType=VARCHAR}, #{gamePic,jdbcType=VARCHAR}, #{gameIosaddress,jdbcType=VARCHAR}, 
-      #{gameAndroidaddress,jdbcType=VARCHAR}, #{gameDescription,jdbcType=VARCHAR})
+      #{gameAndroidaddress,jdbcType=VARCHAR}, #{gameDescription,jdbcType=VARCHAR}, #{gameYear,jdbcType=INTEGER}, 
+      #{gameMonth,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cn.peanut.bean.po.Game" >
     insert into game
@@ -179,6 +177,12 @@
       <if test="gameDescription != null" >
         game_description,
       </if>
+      <if test="gameYear != null" >
+        game_year,
+      </if>
+      <if test="gameMonth != null" >
+        game_month,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="gameId != null" >
@@ -222,6 +226,12 @@
       </if>
       <if test="gameDescription != null" >
         #{gameDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="gameYear != null" >
+        #{gameYear,jdbcType=INTEGER},
+      </if>
+      <if test="gameMonth != null" >
+        #{gameMonth,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -276,6 +286,12 @@
       <if test="record.gameDescription != null" >
         game_description = #{record.gameDescription,jdbcType=VARCHAR},
       </if>
+      <if test="record.gameYear != null" >
+        game_year = #{record.gameYear,jdbcType=INTEGER},
+      </if>
+      <if test="record.gameMonth != null" >
+        game_month = #{record.gameMonth,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -296,7 +312,9 @@
       game_pic = #{record.gamePic,jdbcType=VARCHAR},
       game_iosAddress = #{record.gameIosaddress,jdbcType=VARCHAR},
       game_androidAddress = #{record.gameAndroidaddress,jdbcType=VARCHAR},
-      game_description = #{record.gameDescription,jdbcType=VARCHAR}
+      game_description = #{record.gameDescription,jdbcType=VARCHAR},
+      game_year = #{record.gameYear,jdbcType=INTEGER},
+      game_month = #{record.gameMonth,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -343,6 +361,12 @@
       <if test="gameDescription != null and gameDescription !=''" >
         game_description = #{gameDescription,jdbcType=VARCHAR},
       </if>
+      <if test="gameYear != null" >
+        game_year = #{gameYear,jdbcType=INTEGER},
+      </if>
+      <if test="gameMonth != null" >
+        game_month = #{gameMonth,jdbcType=INTEGER},
+      </if>
     </set>
     where game_id = #{gameId,jdbcType=INTEGER}
   </update>
@@ -360,7 +384,9 @@
       game_pic = #{gamePic,jdbcType=VARCHAR},
       game_iosAddress = #{gameIosaddress,jdbcType=VARCHAR},
       game_androidAddress = #{gameAndroidaddress,jdbcType=VARCHAR},
-      game_description = #{gameDescription,jdbcType=VARCHAR}
+      game_description = #{gameDescription,jdbcType=VARCHAR},
+      game_year = #{gameYear,jdbcType=INTEGER},
+      game_month = #{gameMonth,jdbcType=INTEGER}
     where game_id = #{gameId,jdbcType=INTEGER}
   </update>
 </mapper>

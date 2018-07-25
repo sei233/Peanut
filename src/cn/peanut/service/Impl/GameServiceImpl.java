@@ -122,12 +122,6 @@ public class GameServiceImpl implements GameService {
         return gameMapper.selectByPrimaryKey(id);
     }
 
-    //通过name查询商品
-    @Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = true)
-    public Game selectGame(String name){
-        return gameMapper.selectByName(name);
-    }
-
     //多例查询
     @Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = true)
     public List<Game> selectByExample(GameExample example) {

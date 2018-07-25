@@ -29,6 +29,10 @@ public class Game {
 
     private String gameDescription;
 
+    private Integer gameYear;
+
+    private Integer gameMonth;
+
     public Integer getGameId() {
         return gameId;
     }
@@ -141,23 +145,19 @@ public class Game {
         this.gameDescription = gameDescription == null ? null : gameDescription.trim();
     }
 
-    @Override
-    public String toString() {
-        return "Game{" +
-                "gameId=" + gameId +
-                ", gameName='" + gameName + '\'' +
-                ", gameTitle='" + gameTitle + '\'' +
-                ", gameDownload=" + gameDownload +
-                ", gameSize=" + gameSize +
-                ", gameStatus=" + gameStatus +
-                ", gameType=" + gameType +
-                ", gameOperation=" + gameOperation +
-                ", gameAdviseType=" + gameAdviseType +
-                ", gameIcon='" + gameIcon + '\'' +
-                ", gamePic='" + gamePic + '\'' +
-                ", gameIosaddress='" + gameIosaddress + '\'' +
-                ", gameAndroidaddress='" + gameAndroidaddress + '\'' +
-                ", gameDescription='" + gameDescription + '\'' +
-                '}';
+    public Integer getGameYear() {
+        return gameYear;
+    }
+
+    public void setGameYear(Integer gameYear) {
+        this.gameYear = gameYear;
+    }
+
+    public Integer getGameMonth() {
+        return gameMonth;
+    }
+
+    public void setGameMonth(Integer gameMonth) {
+        this.gameMonth = gameMonth;
     }
 }
