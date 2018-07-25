@@ -1013,6 +1013,126 @@ public class GameExample {
             addCriterion("game_description not between", value1, value2, "gameDescription");
             return (Criteria) this;
         }
+
+        public Criteria andGameYearIsNull() {
+            addCriterion("game_year is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameYearIsNotNull() {
+            addCriterion("game_year is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameYearEqualTo(Integer value) {
+            addCriterion("game_year =", value, "gameYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameYearNotEqualTo(Integer value) {
+            addCriterion("game_year <>", value, "gameYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameYearGreaterThan(Integer value) {
+            addCriterion("game_year >", value, "gameYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameYearGreaterThanOrEqualTo(Integer value) {
+            addCriterion("game_year >=", value, "gameYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameYearLessThan(Integer value) {
+            addCriterion("game_year <", value, "gameYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameYearLessThanOrEqualTo(Integer value) {
+            addCriterion("game_year <=", value, "gameYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameYearIn(List<Integer> values) {
+            addCriterion("game_year in", values, "gameYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameYearNotIn(List<Integer> values) {
+            addCriterion("game_year not in", values, "gameYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameYearBetween(Integer value1, Integer value2) {
+            addCriterion("game_year between", value1, value2, "gameYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameYearNotBetween(Integer value1, Integer value2) {
+            addCriterion("game_year not between", value1, value2, "gameYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameMonthIsNull() {
+            addCriterion("game_month is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameMonthIsNotNull() {
+            addCriterion("game_month is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameMonthEqualTo(Integer value) {
+            addCriterion("game_month =", value, "gameMonth");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameMonthNotEqualTo(Integer value) {
+            addCriterion("game_month <>", value, "gameMonth");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameMonthGreaterThan(Integer value) {
+            addCriterion("game_month >", value, "gameMonth");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameMonthGreaterThanOrEqualTo(Integer value) {
+            addCriterion("game_month >=", value, "gameMonth");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameMonthLessThan(Integer value) {
+            addCriterion("game_month <", value, "gameMonth");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameMonthLessThanOrEqualTo(Integer value) {
+            addCriterion("game_month <=", value, "gameMonth");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameMonthIn(List<Integer> values) {
+            addCriterion("game_month in", values, "gameMonth");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameMonthNotIn(List<Integer> values) {
+            addCriterion("game_month not in", values, "gameMonth");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameMonthBetween(Integer value1, Integer value2) {
+            addCriterion("game_month between", value1, value2, "gameMonth");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameMonthNotBetween(Integer value1, Integer value2) {
+            addCriterion("game_month not between", value1, value2, "gameMonth");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

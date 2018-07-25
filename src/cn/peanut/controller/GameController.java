@@ -1,10 +1,12 @@
 package cn.peanut.controller;
 
 import cn.peanut.bean.po.Game;
+import cn.peanut.bean.po.GameExample;
 import cn.peanut.bean.vo.GameVo;
 import cn.peanut.bean.vo.QueryVo;
 import cn.peanut.exception.MessageException;
 import cn.peanut.service.GameService;
+import cn.peanut.util.StringUtil;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -106,7 +108,25 @@ public class GameController {
     //查询
     @RequestMapping(value = "/search.action")
     public String gameSearch(Model model,String condition){
+        String strings = StringUtil.clearBlank(condition);
+        String[] str = StringUtil.getNumber(strings);
+        String number = str[0];
+        String name = str[1];
 
+        GameExample example = new GameExample();
+        GameExample.Criteria criteria = example.createCriteria();
+        criteria.andGameNameLike("%"+name+"%");
+        List<Game> gameList = gameService.selectByExample(example);
+
+        List<GameVo> gameVoList= new ArrayList<>();
+        GameVo gameVo;
+        Iterator iter = gameList.iterator();
+        while(iter.hasNext()){
+            gameVo = gameService.change((Game) iter.next());
+            gameVoList.add(gameVo);
+        }
+
+        model.addAttribute("gamesList",gameVoList);
         return "/index";
     }
 }

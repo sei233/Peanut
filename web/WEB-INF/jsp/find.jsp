@@ -30,28 +30,22 @@
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <%--<script src="/js/jquery.min.js"></script>--%>
-    <script type="text/javascript" src="/js/page.js"></script>
-    <link rel="stylesheet" href="/css/page.css">
 
     <script type="text/javascript">
         $(function () {
-            $('.pageTest').page({
-                leng: 10,//分页总数
-                activeClass: 'activP', //active 类样式定义
-                clickBack: function (page) {
-                    console.log(page);
-                    var paramData = {
-                        page: page
-                    };
-                    // $("#table").empty();
-                    $.post({
-                        url: '${pageContext.request.contextPath}/page.action',
-                        data: paramData,
-                        dataType: "json"
-                    });
-                    window.location.reload();
-                }
-            });
+            $("#search").click(function () {
+                var paramData={
+                    condition:$("#condition").val()
+                };
+
+                // console.log($("#condition").val());
+                $.post({
+                    url:'${pageContext.request.contextPath}/search.action',
+                    data:paramData,
+                    dataType: "json"
+                });
+
+            })
         });
 
         function del() {
@@ -60,11 +54,8 @@
     </script>
 </head>
 <body>
-
-<form action="${pageContext.request.contextPath}/search.action" method="post">
 <input type="text" id="condition" name="condition" placeholder="想查询的游戏">
-<input type="submit" value="查询">
-</form>
+<button id="search">查询</button>
 
 <table id="table" border="1">
     <tr>
@@ -94,12 +85,6 @@
                    href="${pageContext.request.contextPath }/delete.action?id=${game.gameId}">删除</a></td>
         </tr>
     </c:forEach>
-    <tr>
-        <td colspan="10">
-            <!--必须要的div-->
-            <div class="pageTest"></div>
-        </td>
-    </tr>
 </table>
 </body>
 </html>
