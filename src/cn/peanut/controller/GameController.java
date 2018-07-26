@@ -32,33 +32,33 @@ public class GameController {
 
     //显示游戏列表
     @RequestMapping("/show.action")
-    public String showGameList(Model model, Integer page){
-        if(page==null)page=1;
-        Integer size=3;
+    public String showGameList(Model model, Integer page) {
+        if (page == null) page = 1;
+        Integer size = 3;
         List<GameVo> gameVoList = new ArrayList<>();
         GameVo gameVo;
-        List<Game> gameList = gameService.selectGamesListByPage(page,size);
+        List<Game> gameList = gameService.selectGamesListByPage(page, size);
         Iterator iter = gameList.iterator();
 
-        while(iter.hasNext()){
+        while (iter.hasNext()) {
             gameVo = gameService.change((Game) iter.next());
-            if(gameVo.getGameStatus().equals("启用"))gameVoList.add(gameVo);
+            if (gameVo.getGameStatus().equals("启用")) gameVoList.add(gameVo);
         }
 
-        model.addAttribute("gamesList",gameVoList);
+        model.addAttribute("gamesList", gameVoList);
         return "/index";
     }
 
     //跳转add.jsp
-    @RequestMapping(value = "/add.action",method = RequestMethod.GET)
-    public String gameRedirect(){
+    @RequestMapping(value = "/add.action", method = RequestMethod.GET)
+    public String gameRedirect() {
         return "/add";
     }
 
     //提交add表单
     @RequestMapping(value = "/add.action", method = RequestMethod.POST)
     public String gameAdd(Game game, MultipartFile gamepic) throws IOException {
-        if(gamepic.getSize()!=0) {
+        if (gamepic.getSize() != 0) {
             //图片名
             String name = UUID.randomUUID().toString().replaceAll("-", "");
             //图片后缀名
@@ -69,30 +69,30 @@ public class GameController {
             game.setGamePic(name + "." + ext);
         }
         //名字检索是否存在
-        if(game.getGameName()!=null) gameService.addGame(game);
+        if (game.getGameName() != null) gameService.addGame(game);
         return "redirect:/show.action";
     }
 
     //删除
     @RequestMapping(value = "/delete.action")
-    public String gameDelete(Integer id){
+    public String gameDelete(Integer id) {
         gameService.delete(id);
         return "redirect:/show.action";
     }
 
     //跳转update.jsp
-    @RequestMapping(value = "/update.action",method = RequestMethod.GET)
-    public String gameRedirect2(Model model,Integer id){
+    @RequestMapping(value = "/update.action", method = RequestMethod.GET)
+    public String gameRedirect2(Model model, Integer id) {
         Game game = gameService.selectGame(id);
         GameVo gameVo = gameService.change(game);
-        model.addAttribute("game",gameVo);
+        model.addAttribute("game", gameVo);
         return "/update";
     }
 
     //提交update.jsp
     @RequestMapping(value = "/update.action", method = RequestMethod.POST)
-    public String gameUpdate(QueryVo vo,MultipartFile pictureFile) throws Exception{
-        if(pictureFile.getSize()!=0) {
+    public String gameUpdate(QueryVo vo, MultipartFile pictureFile) throws Exception {
+        if (pictureFile.getSize() != 0) {
             //图片名
             String name = UUID.randomUUID().toString().replaceAll("-", "");
             //图片后缀名
@@ -107,7 +107,7 @@ public class GameController {
 
     //查询
     @RequestMapping(value = "/search.action")
-    public String gameSearch(Model model,String condition){
+    public String gameSearch(Model model, String condition) {
         String strings = StringUtil.clearBlank(condition);
         String[] str = StringUtil.getNumber(strings);
         String number = str[0];
@@ -115,22 +115,29 @@ public class GameController {
 
         GameExample example = new GameExample();
         GameExample.Criteria criteria = example.createCriteria();
-        criteria.andGameNameLike("%"+name+"%");
-        if(!"".equals(number)) {
-            criteria.andGameYearEqualTo(Integer.parseInt(number.substring(0, 4)));
-            criteria.andGameMonthEqualTo(Integer.parseInt(number.substring(4, 6)));
+        criteria.andGameNameLike("%" + name + "%");
+        if (!"".equals(number)) {
+            if (number.length() == 4 && !"".equals(number.substring(0, 4)))
+                criteria.andGameYearEqualTo(Integer.parseInt(number.substring(0, 4)));
+            if (number.length() > 4 && number.length() < 7) {
+                if (number.length() < 6) {
+                    criteria.andGameMonthEqualTo(Integer.parseInt(number.substring(4, 5)));
+                } else {
+                    criteria.andGameMonthEqualTo(Integer.parseInt(number.substring(4, 6)));
+                }
+            }
         }
         List<Game> gameList = gameService.selectByExample(example);
 
-        List<GameVo> gameVoList= new ArrayList<>();
+        List<GameVo> gameVoList = new ArrayList<>();
         GameVo gameVo;
         Iterator iter = gameList.iterator();
-        while(iter.hasNext()){
+        while (iter.hasNext()) {
             gameVo = gameService.change((Game) iter.next());
             gameVoList.add(gameVo);
         }
 
-        model.addAttribute("gamesList",gameVoList);
+        model.addAttribute("gamesList", gameVoList);
         return "/index";
     }
 }
