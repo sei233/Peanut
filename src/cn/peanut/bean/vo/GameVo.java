@@ -30,6 +30,8 @@ public class GameVo {
 
     private String gameDescription;
 
+    private String gameUpdateDate;
+
     public Integer getGameId() {
         return gameId;
     }
@@ -141,5 +143,13 @@ public class GameVo {
 
     public void setGameDescription(String gameDescription) {
         this.gameDescription = gameDescription;
+    }
+
+    public String getGameUpdateDate() {
+        return gameUpdateDate;
+    }
+
+    public void setGameUpdateDate(String gameUpdateDate) {
+        this.gameUpdateDate = gameUpdateDate;
     }
 }

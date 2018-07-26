@@ -116,6 +116,10 @@ public class GameController {
         GameExample example = new GameExample();
         GameExample.Criteria criteria = example.createCriteria();
         criteria.andGameNameLike("%"+name+"%");
+        if(!"".equals(number)) {
+            criteria.andGameYearEqualTo(Integer.parseInt(number.substring(0, 4)));
+            criteria.andGameMonthEqualTo(Integer.parseInt(number.substring(4, 6)));
+        }
         List<Game> gameList = gameService.selectByExample(example);
 
         List<GameVo> gameVoList= new ArrayList<>();

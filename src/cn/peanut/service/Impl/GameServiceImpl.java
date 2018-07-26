@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -113,6 +114,7 @@ public class GameServiceImpl implements GameService {
         gameVo.setGameIosaddress(game.getGameIosaddress());
         gameVo.setGameAndroidaddress(game.getGameAndroidaddress());
         gameVo.setGameDescription(game.getGameDescription());
+        gameVo.setGameUpdateDate(game.getGameYear()+"-"+game.getGameMonth());
         return gameVo;
     }
 
@@ -143,7 +145,13 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public void addGame(Game game) {
+        Calendar date = Calendar.getInstance();
+        String year = String.valueOf(date.get(Calendar.YEAR));
+        String month = String.valueOf(date.get(Calendar.MONTH));
+
         game.setGameDownload(0);
+        game.setGameYear(Integer.parseInt(year));
+        game.setGameMonth(Integer.parseInt(month));
         gameMapper.insert(game);
     }
 
@@ -160,6 +168,12 @@ public class GameServiceImpl implements GameService {
                 &&game.getGameType()==null
                 &&game.getGameOperation()==null
                 &&game.getGameDescription().equals("")){throw new MessageException("条目不能全为空");}
+
+        Calendar date = Calendar.getInstance();
+        String year = String.valueOf(date.get(Calendar.YEAR));
+        String month = String.valueOf(date.get(Calendar.MONTH));
+        game.setGameYear(Integer.parseInt(year));
+        game.setGameMonth(Integer.parseInt(month)+1);
         gameMapper.updateByPrimaryKeySelective(game);
     }
 

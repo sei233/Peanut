@@ -76,6 +76,7 @@
         <th>分类</th>
         <th>平台类型</th>
         <th>推荐类型</th>
+        <th>最近更新</th>
         <th>操作</th>
         <th>操作</th>
     </tr>
@@ -89,6 +90,7 @@
             <td>${game.gameType}</td>
             <td>${game.gameOperation}</td>
             <td>${game.gameAdviseType}</td>
+            <td>${game.gameUpdateDate}</td>
             <td><a href="${pageContext.request.contextPath }/update.action?id=${game.gameId}">修改</a></td>
             <td><a onclick="return del()"
                    href="${pageContext.request.contextPath }/delete.action?id=${game.gameId}">删除</a></td>
