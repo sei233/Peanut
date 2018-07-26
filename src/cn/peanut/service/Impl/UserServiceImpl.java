@@ -20,4 +20,12 @@ public class UserServiceImpl implements UserService {
     public User selectByName(String name) {
         return userMapper.selectByName(name);
     }
+
+    @Override
+    public void insertUser(User user) {
+        user.setUserPower(1);
+        userMapper.insert(user);
+    }
+
+
 }

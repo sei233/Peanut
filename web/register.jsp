@@ -3,24 +3,16 @@
 <html lang="en">
 <head>
     <meta charset="GB2312">
-    <title>登录界面</title>
-
-    <script type="text/javascript">
-        window.onload = function () {
-            if (window.parent != window) {
-                window.parent.location.href = "${pageContext.request.contextPath}/login.jsp";
-            }
-        }
-    </script>
+    <title>注册界面</title>
 </head>
 <body>
 
 <section>
     <div>
-        <h1><span>用户登录</span></h1>
+        <h1><span>用户注册</span></h1>
     </div>
     <div>
-        <form action="${pageContext.request.contextPath}/user/login.action" method="post">
+        <form action="${pageContext.request.contextPath}/user/register.action" method="post">
             <div>
                 <div><label>用户名:</label></div>
                 <div><input type="text" name="userName"></div>
@@ -33,7 +25,6 @@
             <div>
                 <input type="submit" value="提交">
                 <input type="reset" value="清除">
-                <a href="register.jsp">注册</a>
             </div>
         </form>
     </div>

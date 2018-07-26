@@ -15,7 +15,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    //显示游戏列表
+    //登录
     @RequestMapping("/login.action")
     public String login(Model model,User user) throws MessageException {
         if("".equals(user.getUserPassword())){throw new MessageException("密码不能为空");}
@@ -25,5 +25,14 @@ public class UserController {
         }else{
             throw new MessageException("账户名或者密码错误");
         }
+    }
+
+    //注册
+    @RequestMapping("/register.action")
+    public String register(Model model,User user) throws MessageException {
+        if("".equals(user.getUserName())){throw new MessageException("账户名不能为空");}
+        if("".equals(user.getUserPassword())){throw new MessageException("密码不能为空");}
+        userService.insertUser(user);
+        return "redirect:/login.jsp";
     }
 }
