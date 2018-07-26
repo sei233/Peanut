@@ -1,5 +1,7 @@
 package cn.peanut.service;
 
-public interface UserService {
+import cn.peanut.bean.po.User;
 
+public interface UserService {
+    User selectByName(String name);
 }

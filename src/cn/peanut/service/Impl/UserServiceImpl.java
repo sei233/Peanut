@@ -1,5 +1,6 @@
 package cn.peanut.service.Impl;
 
+import cn.peanut.bean.po.User;
 import cn.peanut.mapper.UserMapper;
 import cn.peanut.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,4 +16,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    @Override
+    public User selectByName(String name) {
+        return userMapper.selectByName(name);
+    }
 }

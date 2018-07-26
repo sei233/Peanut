@@ -23,12 +23,12 @@
         <form action="${pageContext.request.contextPath}/user/login.action" method="post">
             <div>
                 <div><label>用户名:</label></div>
-                <div><input type="text" name="name"></div>
+                <div><input type="text" name="userName"></div>
             </div>
 
             <div>
                 <div><label>密码:</label></div>
-                <div><input type="password" name="password"></div>
+                <div><input type="password" name="userPassword"></div>
             </div>
             <div>
                 <input type="submit" value="提交">
