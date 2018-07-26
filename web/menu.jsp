@@ -12,9 +12,9 @@
 </head>
 <body bgcolor="#EBC79E">
 <h3>FrameB</h3>
-<a href="${pageContext.request.contextPath}/show.action"
+<a href="${pageContext.request.contextPath}/game/show.action"
    target=main>－游戏管理</a><br>
-<a href="${pageContext.request.contextPath}/add.action"
+<a href="${pageContext.request.contextPath}/game/add.action"
    target=main><h6>添加游戏</h6></a>
 </body>
 </html>

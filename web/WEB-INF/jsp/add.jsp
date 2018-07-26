@@ -23,7 +23,7 @@
 </head>
 <body bgcolor="#FFFFCC">
 
-<form style="text-align: center" action="${pageContext.request.contextPath }/add.action" method="post" enctype="multipart/form-data">
+<form style="text-align: center" action="${pageContext.request.contextPath }/game/add.action" method="post" enctype="multipart/form-data">
     <div>
         <div><label>游戏名称</label></div>
         <div>

@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
+@RequestMapping("/game")
 public class GameController {
 
     @Autowired
@@ -70,14 +71,14 @@ public class GameController {
         }
         //名字检索是否存在
         if (game.getGameName() != null) gameService.addGame(game);
-        return "redirect:/show.action";
+        return "redirect:/game/show.action";
     }
 
     //删除
     @RequestMapping(value = "/delete.action")
     public String gameDelete(Integer id) {
         gameService.delete(id);
-        return "redirect:/show.action";
+        return "redirect:/game/show.action";
     }
 
     //跳转update.jsp
@@ -102,7 +103,7 @@ public class GameController {
             vo.getGame().setGamePic(name + "." + ext);
         }
         gameService.updateGame(vo.getGame());
-        return "redirect:/show.action";
+        return "redirect:/game/show.action";
     }
 
     //查询

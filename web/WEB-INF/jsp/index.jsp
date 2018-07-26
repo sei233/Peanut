@@ -45,7 +45,7 @@
                     };
                     // $("#table").empty();
                     $.post({
-                        url: '${pageContext.request.contextPath}/page.action',
+                        url: '${pageContext.request.contextPath}/game/page.action',
                         data: paramData,
                         dataType: "json"
                     });
@@ -61,7 +61,7 @@
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath}/search.action" method="post">
+<form action="${pageContext.request.contextPath}/game/search.action" method="post">
 <input type="text" id="condition" name="condition" placeholder="想查询的游戏">
 <input type="submit" value="查询">
 </form>
@@ -91,9 +91,9 @@
             <td>${game.gameOperation}</td>
             <td>${game.gameAdviseType}</td>
             <td>${game.gameUpdateDate}</td>
-            <td><a href="${pageContext.request.contextPath }/update.action?id=${game.gameId}">修改</a></td>
+            <td><a href="${pageContext.request.contextPath }/game/update.action?id=${game.gameId}">修改</a></td>
             <td><a onclick="return del()"
-                   href="${pageContext.request.contextPath }/delete.action?id=${game.gameId}">删除</a></td>
+                   href="${pageContext.request.contextPath }/game/delete.action?id=${game.gameId}">删除</a></td>
         </tr>
     </c:forEach>
     <tr>
