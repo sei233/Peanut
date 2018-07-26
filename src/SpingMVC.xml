@@ -21,6 +21,21 @@
     <!--Springmvc的异常处理器-->
     <bean class="cn.peanut.exception.CustomerExceptionResolver"/>
 
+    <!--Springmvc的拦截器-->
+    <mvc:interceptors>
+        <!--多个拦截器-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <!--自定义拦截器类-->
+            <bean class="cn.peanut.Interceptor.Interceptor1"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <!--自定义拦截器类-->
+            <bean class="cn.peanut.Interceptor.Interceptor2"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!--上传图片配置实现类-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!--上传图片的大小 B-->
