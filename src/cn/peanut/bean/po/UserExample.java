@@ -303,66 +303,6 @@ public class UserExample {
             addCriterion("user_password not between", value1, value2, "userPassword");
             return (Criteria) this;
         }
-
-        public Criteria andUserPowerIsNull() {
-            addCriterion("user_power is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPowerIsNotNull() {
-            addCriterion("user_power is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPowerEqualTo(Integer value) {
-            addCriterion("user_power =", value, "userPower");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPowerNotEqualTo(Integer value) {
-            addCriterion("user_power <>", value, "userPower");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPowerGreaterThan(Integer value) {
-            addCriterion("user_power >", value, "userPower");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPowerGreaterThanOrEqualTo(Integer value) {
-            addCriterion("user_power >=", value, "userPower");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPowerLessThan(Integer value) {
-            addCriterion("user_power <", value, "userPower");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPowerLessThanOrEqualTo(Integer value) {
-            addCriterion("user_power <=", value, "userPower");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPowerIn(List<Integer> values) {
-            addCriterion("user_power in", values, "userPower");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPowerNotIn(List<Integer> values) {
-            addCriterion("user_power not in", values, "userPower");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPowerBetween(Integer value1, Integer value2) {
-            addCriterion("user_power between", value1, value2, "userPower");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPowerNotBetween(Integer value1, Integer value2) {
-            addCriterion("user_power not between", value1, value2, "userPower");
-            return (Criteria) this;
-        }
     }
 
     public static class Criteria extends GeneratedCriteria {

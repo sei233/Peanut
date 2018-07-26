@@ -7,8 +7,6 @@ public class User {
 
     private String userPassword;
 
-    private Integer userPower;
-
     public Integer getUserId() {
         return userId;
     }
@@ -31,13 +29,5 @@ public class User {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword == null ? null : userPassword.trim();
-    }
-
-    public Integer getUserPower() {
-        return userPower;
-    }
-
-    public void setUserPower(Integer userPower) {
-        this.userPower = userPower;
     }
 }
