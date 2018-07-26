@@ -151,7 +151,7 @@ public class GameServiceImpl implements GameService {
 
         game.setGameDownload(0);
         game.setGameYear(Integer.parseInt(year));
-        game.setGameMonth(Integer.parseInt(month));
+        game.setGameMonth(Integer.parseInt(month)+1);
         gameMapper.insert(game);
     }
 

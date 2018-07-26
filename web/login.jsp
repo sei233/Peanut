@@ -20,7 +20,7 @@
         <h1><span>用户登录</span></h1>
     </div>
     <div>
-        <form action="${pageContext.request.contextPath}/login.action" method="post">
+        <form action="${pageContext.request.contextPath}/user/login.action" method="post">
             <div>
                 <div><label>用户名:</label></div>
                 <div><input type="text" name="name"></div>
@@ -32,7 +32,7 @@
             </div>
             <div>
                 <input type="submit" value="提交">
-                <a href="index.htm">注册</a>
+                <a href="WEB-INF/jsp/home.jsp">注册</a>
             </div>
         </form>
     </div>
