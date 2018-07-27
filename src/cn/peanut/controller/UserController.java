@@ -30,6 +30,7 @@ public class UserController {
         User user1 = userService.selectByName(user.getUserName());
         if(user1.getUserPassword().equals(user.getUserPassword())){
             httpSession.setAttribute("USER_SESSION",user1.getUserName());
+//            model.addAttribute("menusList", menuList);
             return "/home";
         }else{
             throw new MessageException("账户名或者密码错误");

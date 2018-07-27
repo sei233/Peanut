@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 石乾
@@ -12,9 +13,12 @@
 </head>
 <body bgcolor="#EBC79E">
 <h3>FrameB</h3>
-<a href="${pageContext.request.contextPath}/game/show.action"
-   target=main>－游戏管理</a><br>
-<a href="${pageContext.request.contextPath}/game/add.action"
-   target=main><h6>添加游戏</h6></a>
+<table id="table" border="1">
+    <c:forEach items="${menusList}" var="menu" varStatus="s">
+        <tr>
+            <td>${menu.gameName}</td>
+        </tr>
+    </c:forEach>
+</table>
 </body>
 </html>

@@ -6,6 +6,7 @@ import cn.peanut.bean.vo.GameVo;
 import cn.peanut.exception.MessageException;
 import cn.peanut.mapper.GameMapper;
 import cn.peanut.service.GameService;
+import cn.peanut.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -145,13 +146,10 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public void addGame(Game game) {
-        Calendar date = Calendar.getInstance();
-        String year = String.valueOf(date.get(Calendar.YEAR));
-        String month = String.valueOf(date.get(Calendar.MONTH));
-
+        StringUtil stringUtil = new StringUtil();
         game.setGameDownload(0);
-        game.setGameYear(Integer.parseInt(year));
-        game.setGameMonth(Integer.parseInt(month)+1);
+        game.setGameYear(Integer.parseInt(stringUtil.getYear()));
+        game.setGameMonth(Integer.parseInt(stringUtil.getMonth())+1);
         gameMapper.insert(game);
     }
 
@@ -169,11 +167,9 @@ public class GameServiceImpl implements GameService {
                 &&game.getGameOperation()==null
                 &&game.getGameDescription().equals("")){throw new MessageException("条目不能全为空");}
 
-        Calendar date = Calendar.getInstance();
-        String year = String.valueOf(date.get(Calendar.YEAR));
-        String month = String.valueOf(date.get(Calendar.MONTH));
-        game.setGameYear(Integer.parseInt(year));
-        game.setGameMonth(Integer.parseInt(month)+1);
+        StringUtil stringUtil = new StringUtil();
+        game.setGameYear(Integer.parseInt(stringUtil.getYear()));
+        game.setGameMonth(Integer.parseInt(stringUtil.getMonth())+1);
         gameMapper.updateByPrimaryKeySelective(game);
     }
 

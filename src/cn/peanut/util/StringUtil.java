@@ -1,6 +1,35 @@
 package cn.peanut.util;
 
+import java.util.Calendar;
+
 public class StringUtil {
+
+    private String month;
+    private String year;
+
+    public StringUtil() {
+        Calendar date = Calendar.getInstance();
+        String year = String.valueOf(date.get(Calendar.YEAR));
+        String month = String.valueOf(date.get(Calendar.MONTH));
+        this.month = month;
+        this.year = year;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
 
     public static final String EMPTY_STRING = "";
 
