@@ -14,9 +14,15 @@
 <body bgcolor="#EBC79E">
 <h3>FrameB</h3>
 <table id="table" border="1">
-    <c:forEach items="${menusList}" var="menu" varStatus="s">
+    <a href="${pageContext.request.contextPath}/game/show.action"
+       target=main>－ 游戏列表</a>
+    <br>
+    <a href="${pageContext.request.contextPath}/game/add.action"
+       target=main>－ 添加游戏</a>
+
+    <c:forEach items="${sessionScope.menusList}" var="menu">
         <tr>
-            <td>${menu.gameName}</td>
+            <td>${menu.childMenuId}</td>
         </tr>
     </c:forEach>
 </table>

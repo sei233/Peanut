@@ -3,7 +3,7 @@ package cn.peanut.bean.po;
 public class RoleMenuKey {
     private Integer roleId;
 
-    private String childMenuId;
+    private Integer childMenuId;
 
     public Integer getRoleId() {
         return roleId;
@@ -13,11 +13,11 @@ public class RoleMenuKey {
         this.roleId = roleId;
     }
 
-    public String getChildMenuId() {
+    public Integer getChildMenuId() {
         return childMenuId;
     }
 
-    public void setChildMenuId(String childMenuId) {
+    public void setChildMenuId(Integer childMenuId) {
         this.childMenuId = childMenuId;
     }
 }
