@@ -164,66 +164,6 @@ public class RoleMenuExample {
             return (Criteria) this;
         }
 
-        public Criteria andChildMenuIdIsNull() {
-            addCriterion("child_menu_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andChildMenuIdIsNotNull() {
-            addCriterion("child_menu_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andChildMenuIdEqualTo(Integer value) {
-            addCriterion("child_menu_id =", value, "childMenuId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChildMenuIdNotEqualTo(Integer value) {
-            addCriterion("child_menu_id <>", value, "childMenuId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChildMenuIdGreaterThan(Integer value) {
-            addCriterion("child_menu_id >", value, "childMenuId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChildMenuIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("child_menu_id >=", value, "childMenuId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChildMenuIdLessThan(Integer value) {
-            addCriterion("child_menu_id <", value, "childMenuId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChildMenuIdLessThanOrEqualTo(Integer value) {
-            addCriterion("child_menu_id <=", value, "childMenuId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChildMenuIdIn(List<Integer> values) {
-            addCriterion("child_menu_id in", values, "childMenuId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChildMenuIdNotIn(List<Integer> values) {
-            addCriterion("child_menu_id not in", values, "childMenuId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChildMenuIdBetween(Integer value1, Integer value2) {
-            addCriterion("child_menu_id between", value1, value2, "childMenuId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChildMenuIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("child_menu_id not between", value1, value2, "childMenuId");
-            return (Criteria) this;
-        }
-
         public Criteria andPidIsNull() {
             addCriterion("pid is null");
             return (Criteria) this;
@@ -234,52 +174,62 @@ public class RoleMenuExample {
             return (Criteria) this;
         }
 
-        public Criteria andPidEqualTo(Integer value) {
+        public Criteria andPidEqualTo(String value) {
             addCriterion("pid =", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotEqualTo(Integer value) {
+        public Criteria andPidNotEqualTo(String value) {
             addCriterion("pid <>", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPidGreaterThan(Integer value) {
+        public Criteria andPidGreaterThan(String value) {
             addCriterion("pid >", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPidGreaterThanOrEqualTo(Integer value) {
+        public Criteria andPidGreaterThanOrEqualTo(String value) {
             addCriterion("pid >=", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPidLessThan(Integer value) {
+        public Criteria andPidLessThan(String value) {
             addCriterion("pid <", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPidLessThanOrEqualTo(Integer value) {
+        public Criteria andPidLessThanOrEqualTo(String value) {
             addCriterion("pid <=", value, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPidIn(List<Integer> values) {
+        public Criteria andPidLike(String value) {
+            addCriterion("pid like", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidNotLike(String value) {
+            addCriterion("pid not like", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidIn(List<String> values) {
             addCriterion("pid in", values, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotIn(List<Integer> values) {
+        public Criteria andPidNotIn(List<String> values) {
             addCriterion("pid not in", values, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPidBetween(Integer value1, Integer value2) {
+        public Criteria andPidBetween(String value1, String value2) {
             addCriterion("pid between", value1, value2, "pid");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotBetween(Integer value1, Integer value2) {
+        public Criteria andPidNotBetween(String value1, String value2) {
             addCriterion("pid not between", value1, value2, "pid");
             return (Criteria) this;
         }

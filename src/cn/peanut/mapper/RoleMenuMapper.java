@@ -2,7 +2,6 @@ package cn.peanut.mapper;
 
 import cn.peanut.bean.po.RoleMenu;
 import cn.peanut.bean.po.RoleMenuExample;
-import cn.peanut.bean.po.RoleMenuKey;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,7 +11,7 @@ public interface RoleMenuMapper {
 
     int deleteByExample(RoleMenuExample example);
 
-    int deleteByPrimaryKey(RoleMenuKey key);
+    int deleteByPrimaryKey(Integer roleId);
 
     int insert(RoleMenu record);
 
@@ -20,9 +19,7 @@ public interface RoleMenuMapper {
 
     List<RoleMenu> selectByExample(RoleMenuExample example);
 
-    RoleMenu selectByPrimaryKey(RoleMenuKey key);
-
-    List<RoleMenuKey> selectByRoleId(Integer roleId);
+    RoleMenu selectByPrimaryKey(Integer roleId);
 
     int updateByExampleSelective(@Param("record") RoleMenu record, @Param("example") RoleMenuExample example);
 

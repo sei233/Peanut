@@ -1,10 +1,8 @@
 package cn.peanut.service.Impl;
 
 
-import cn.peanut.bean.po.RoleMenuKey;
-import cn.peanut.bean.po.UserRoleKey;
+import cn.peanut.bean.po.RoleMenu;
 import cn.peanut.mapper.RoleMenuMapper;
-import cn.peanut.mapper.UserRoleMapper;
 import cn.peanut.service.RoleMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +20,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     private RoleMenuMapper roleMenuMapper;
 
     @Override
-    public List<RoleMenuKey> selectByRoleId(Integer id) {
-        return roleMenuMapper.selectByRoleId(id);
+    public RoleMenu selectByRoleId(Integer id) {
+        return roleMenuMapper.selectByPrimaryKey(id);
     }
 }

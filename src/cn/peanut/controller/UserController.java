@@ -1,9 +1,6 @@
 package cn.peanut.controller;
 
-import cn.peanut.bean.po.Menu;
-import cn.peanut.bean.po.RoleMenuKey;
-import cn.peanut.bean.po.User;
-import cn.peanut.bean.po.UserRoleKey;
+import cn.peanut.bean.po.*;
 import cn.peanut.bean.vo.MenuVo;
 import cn.peanut.exception.MessageException;
 import cn.peanut.service.RoleMenuService;
@@ -49,13 +46,8 @@ public class UserController {
             //通过用户ID获取角色
             UserRoleKey userRole = userRoleService.selectByUserId(user1.getUserId());
             //通过角色ID获取子菜单表ID
-            List<RoleMenuKey> roleMenu = roleMenuService.selectByRoleId(userRole.getRoleId());
+            RoleMenu roleMenu = roleMenuService.selectByRoleId(userRole.getRoleId());
 
-//            List<MenuVo> menuVo = new ArrayList<>();
-//            MenuVo menu = new MenuVo();
-//            menu.setChildMenu();
-//            menu.setMainMenu();
-//            menuVo.add(menu);
             httpSession.setAttribute("menusList", roleMenu);
 
             return "/home";
