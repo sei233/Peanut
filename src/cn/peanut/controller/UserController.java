@@ -39,6 +39,11 @@ public class UserController {
         return "redirect:/login.jsp";
     }
 
+    @RequestMapping(value = "/home.action",method = RequestMethod.GET)
+    public String home() {
+        return "/welcome";
+    }
+
     //登录
     @RequestMapping(value = "/login.action",method = RequestMethod.POST)
     public String login(Model model,User user,HttpSession httpSession) throws MessageException {

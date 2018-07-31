@@ -10,26 +10,35 @@
 <html>
 <head>
     <title></title>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body bgcolor="#EBC79E">
-<h3>FrameB</h3>
-<table id="table" border="1">
-    <a href="${pageContext.request.contextPath}/game/show.action"
-       target=main>－ 游戏列表</a>
-    <br>
-    <a href="${pageContext.request.contextPath}/game/add.action"
-       target=main>－ 添加游戏</a>
 
+<div class="container">
+    <h3>菜单</h3>
     <c:forEach items="${sessionScope.menusList}" var="menu">
-        <tr>
-            <td><a href="${pageContext.request.contextPath}${menu.mainMenu.menuUrl}"
-                   target=main>－ ${menu.mainMenu.menuName}</a></td>
-            <c:forEach items="${menu.childMenu}" var="childmenu">
-            <td><a href="${pageContext.request.contextPath}${childmenu.childMenuUrl}"
-                   target=main>－ ${childmenu.childMenuName}</a></td>
-            </c:forEach>
-        </tr>
+        <div class="dropdown">
+            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+               target=main>－ ${menu.mainMenu.menuName}
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="${pageContext.request.contextPath}${menu.mainMenu.menuUrl}"
+                       target=main>－ ${menu.mainMenu.menuName}</a>
+                </li>
+                <c:forEach items="${menu.childMenu}" var="childmenu">
+                    <li>
+                        <a href="${pageContext.request.contextPath}${childmenu.childMenuUrl}"
+                           target=main>－ ${childmenu.childMenuName}</a>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
     </c:forEach>
-</table>
+</div>
 </body>
 </html>
