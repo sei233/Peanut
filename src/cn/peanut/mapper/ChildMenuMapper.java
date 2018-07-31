@@ -21,6 +21,8 @@ public interface ChildMenuMapper {
 
     ChildMenu selectByPrimaryKey(Integer childMenuId);
 
+    List<ChildMenu> selectByPid(Integer Pid);
+
     int updateByExampleSelective(@Param("record") ChildMenu record, @Param("example") ChildMenuExample example);
 
     int updateByExample(@Param("record") ChildMenu record, @Param("example") ChildMenuExample example);

@@ -3,9 +3,7 @@ package cn.peanut.controller;
 import cn.peanut.bean.po.*;
 import cn.peanut.bean.vo.MenuVo;
 import cn.peanut.exception.MessageException;
-import cn.peanut.service.RoleMenuService;
-import cn.peanut.service.UserRoleService;
-import cn.peanut.service.UserService;
+import cn.peanut.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +23,12 @@ public class UserController {
     UserService userService;
 
     @Autowired
+    ChildMenuService childMenuService;
+
+    @Autowired
+    MenuService menuService;
+
+    @Autowired
     UserRoleService userRoleService;
 
     @Autowired
@@ -38,6 +42,7 @@ public class UserController {
     //登录
     @RequestMapping(value = "/login.action",method = RequestMethod.POST)
     public String login(Model model,User user,HttpSession httpSession) throws MessageException {
+        httpSession.setAttribute("menusList", null);
         if("".equals(user.getUserPassword())){throw new MessageException("密码不能为空");}
         User user1 = userService.selectByName(user.getUserName());
         if(user1.getUserPassword().equals(user.getUserPassword())){
@@ -45,11 +50,31 @@ public class UserController {
 
             //通过用户ID获取角色
             UserRoleKey userRole = userRoleService.selectByUserId(user1.getUserId());
-            //通过角色ID获取子菜单表ID
-            RoleMenu roleMenu = roleMenuService.selectByRoleId(userRole.getRoleId());
+            //通过角色ID获取菜单表PID
+            if(null!=(userRole)) {
+                RoleMenu roleMenu = roleMenuService.selectByRoleId(userRole.getRoleId());
+                //将pid拆分
+                if (null != (roleMenu)) {
+                    String[] menuIdList = roleMenu.getPid().split(",");
 
-            httpSession.setAttribute("menusList", roleMenu);
+                    List<MenuVo> menuVoList = new ArrayList<>();
 
+                    for (int i = 0; i < menuIdList.length; i++) {
+                        MenuVo menuVo = new MenuVo();
+                        Menu menu = menuService.selectById(Integer.parseInt(menuIdList[i]));
+                        menuVo.setMainMenu(menu.getMenuName());
+                        List<ChildMenu> childMenu = childMenuService.selectByPid(Integer.parseInt(menuIdList[i]));
+                        List<String> childmenu = new ArrayList<>();
+                        for (int j = 0; j < childMenu.size(); j++) {
+                            childmenu.add(childMenu.get(j).getChildMenuName());
+                        }
+                        menuVo.setChildMenu(childmenu);
+                        menuVoList.add(menuVo);
+                    }
+
+                    httpSession.setAttribute("menusList", menuVoList);
+                }
+            }
             return "/home";
         }else{
             throw new MessageException("账户名或者密码错误");

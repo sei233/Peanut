@@ -22,6 +22,7 @@
 
     <c:forEach items="${sessionScope.menusList}" var="menu">
         <tr>
+            <td>${menu.mainMenu}</td>
             <td>${menu.childMenu}</td>
         </tr>
     </c:forEach>
