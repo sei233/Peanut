@@ -22,9 +22,11 @@
 
     <c:forEach items="${sessionScope.menusList}" var="menu">
         <tr>
-            <td>${menu.mainMenu.menuName}</td>
+            <td><a href="${pageContext.request.contextPath}${menu.mainMenu.menuUrl}"
+                   target=main>－ ${menu.mainMenu.menuName}</a></td>
             <c:forEach items="${menu.childMenu}" var="childmenu">
-            <td>${childmenu.childMenuName}</td>
+            <td><a href="${pageContext.request.contextPath}${childmenu.childMenuUrl}"
+                   target=main>－ ${childmenu.childMenuName}</a></td>
             </c:forEach>
         </tr>
     </c:forEach>

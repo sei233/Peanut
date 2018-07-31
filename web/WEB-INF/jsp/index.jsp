@@ -32,6 +32,7 @@
     <%--<script src="/js/jquery.min.js"></script>--%>
     <script type="text/javascript" src="/js/page.js"></script>
     <link rel="stylesheet" href="/css/page.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     <script type="text/javascript">
         $(function () {
@@ -60,48 +61,50 @@
     </script>
 </head>
 <body>
+<br>
+<div class="container">
+    <form action="${pageContext.request.contextPath}/game/search.action" method="post" class="form-inline">
+        <input type="text" id="condition" name="condition" class="form-control" placeholder="想查询的游戏">
+        <input type="submit" class="btn btn-info" value="查询">
+    </form>
 
-<form action="${pageContext.request.contextPath}/game/search.action" method="post">
-<input type="text" id="condition" name="condition" placeholder="想查询的游戏">
-<input type="submit" value="查询">
-</form>
-
-<table id="table" border="1">
-    <tr>
-        <th>游戏名</th>
-        <th>标题</th>
-        <th>下载量</th>
-        <th>大小</th>
-        <th>状态</th>
-        <th>分类</th>
-        <th>平台类型</th>
-        <th>推荐类型</th>
-        <th>最近更新</th>
-        <th>操作</th>
-        <th>操作</th>
-    </tr>
-    <c:forEach items="${gamesList}" var="game" varStatus="s">
+    <table id="table" border="1" class="table table-striped table-bordered table-hover">
         <tr>
-            <td>${game.gameName}</td>
-            <td>${game.gameTitle}</td>
-            <td>${game.gameDownload}</td>
-            <td>${game.gameSize}</td>
-            <td>${game.gameStatus}</td>
-            <td>${game.gameType}</td>
-            <td>${game.gameOperation}</td>
-            <td>${game.gameAdviseType}</td>
-            <td>${game.gameUpdateDate}</td>
-            <td><a href="${pageContext.request.contextPath }/game/update.action?id=${game.gameId}">修改</a></td>
-            <td><a onclick="return del()"
-                   href="${pageContext.request.contextPath }/game/delete.action?id=${game.gameId}">删除</a></td>
+            <th>游戏名</th>
+            <th>标题</th>
+            <th>下载量</th>
+            <th>大小</th>
+            <th>状态</th>
+            <th>分类</th>
+            <th>平台类型</th>
+            <th>推荐类型</th>
+            <th>最近更新</th>
+            <th>操作</th>
+            <th>操作</th>
         </tr>
-    </c:forEach>
-    <tr>
-        <td colspan="10">
-            <!--必须要的div-->
-            <div class="pageTest"></div>
-        </td>
-    </tr>
-</table>
+        <c:forEach items="${gamesList}" var="game" varStatus="s">
+            <tr>
+                <td>${game.gameName}</td>
+                <td>${game.gameTitle}</td>
+                <td>${game.gameDownload}</td>
+                <td>${game.gameSize}</td>
+                <td>${game.gameStatus}</td>
+                <td>${game.gameType}</td>
+                <td>${game.gameOperation}</td>
+                <td>${game.gameAdviseType}</td>
+                <td>${game.gameUpdateDate}</td>
+                <td><a href="${pageContext.request.contextPath }/game/update.action?id=${game.gameId}">修改</a></td>
+                <td><a onclick="return del()"
+                       href="${pageContext.request.contextPath }/game/delete.action?id=${game.gameId}">删除</a></td>
+            </tr>
+        </c:forEach>
+        <tr>
+            <td colspan="10">
+                <!--必须要的div-->
+                <div class="pageTest"></div>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>
