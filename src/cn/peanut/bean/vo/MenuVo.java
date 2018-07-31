@@ -1,24 +1,27 @@
 package cn.peanut.bean.vo;
 
+import cn.peanut.bean.po.ChildMenu;
+import cn.peanut.bean.po.Menu;
+
 import java.util.List;
 
 public class MenuVo {
-    private String mainMenu;
-    private List<String> childMenu;
+    private Menu mainMenu;
+    private List<ChildMenu> childMenu;
 
-    public String getMainMenu() {
+    public Menu getMainMenu() {
         return mainMenu;
     }
 
-    public void setMainMenu(String mainMenu) {
+    public void setMainMenu(Menu mainMenu) {
         this.mainMenu = mainMenu;
     }
 
-    public List<String> getChildMenu() {
+    public List<ChildMenu> getChildMenu() {
         return childMenu;
     }
 
-    public void setChildMenu(List<String> childMenu) {
+    public void setChildMenu(List<ChildMenu> childMenu) {
         this.childMenu = childMenu;
     }
 }

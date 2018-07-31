@@ -62,13 +62,13 @@ public class UserController {
                     for (int i = 0; i < menuIdList.length; i++) {
                         MenuVo menuVo = new MenuVo();
                         Menu menu = menuService.selectById(Integer.parseInt(menuIdList[i]));
-                        menuVo.setMainMenu(menu.getMenuName());
+                        menuVo.setMainMenu(menu);
                         List<ChildMenu> childMenu = childMenuService.selectByPid(Integer.parseInt(menuIdList[i]));
-                        List<String> childmenu = new ArrayList<>();
-                        for (int j = 0; j < childMenu.size(); j++) {
-                            childmenu.add(childMenu.get(j).getChildMenuName());
-                        }
-                        menuVo.setChildMenu(childmenu);
+//                        List<String> childmenu = new ArrayList<>();
+//                        for (int j = 0; j < childMenu.size(); j++) {
+//                            childmenu.add(childMenu.get(j).getChildMenuName());
+//                        }
+                        menuVo.setChildMenu(childMenu);
                         menuVoList.add(menuVo);
                     }
 
