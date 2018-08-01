@@ -47,6 +47,7 @@
                 <div><label>密码:</label></div>
                 <div><input class="form-control" type="password" name="userPassword"></div>
             </div>
+            <br>
             <div>
                 <input  class="btn btn-info" type="submit" value="提交">
                 <input  class="btn btn-info" type="reset" value="清除">

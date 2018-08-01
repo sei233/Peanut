@@ -21,11 +21,11 @@
     <h3>菜单</h3>
     <c:forEach items="${sessionScope.menusList}" var="menu">
         <div class="dropdown">
-            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+            <a class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown"
                target=main>－ ${menu.mainMenu.menuName}
                 <span class="caret"></span>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="btn btn-info btn-block dropdown-menu">
                 <li>
                     <a href="${pageContext.request.contextPath}${menu.mainMenu.menuUrl}"
                        target=main>－ ${menu.mainMenu.menuName}</a>

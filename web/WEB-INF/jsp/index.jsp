@@ -59,6 +59,13 @@
             return window.confirm("您确定删除吗?");
         }
     </script>
+
+    <style>
+        body{
+            background-image: url(../../image/top.png);
+            background-size:cover;
+        }
+    </style>
 </head>
 <body>
 <br>
@@ -83,7 +90,7 @@
             <th>操作</th>
         </tr>
         <c:forEach items="${gamesList}" var="game" varStatus="s">
-            <tr>
+            <tr class="active">
                 <td>${game.gameName}</td>
                 <td>${game.gameTitle}</td>
                 <td>${game.gameDownload}</td>
