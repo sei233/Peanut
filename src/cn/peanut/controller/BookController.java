@@ -1,6 +1,7 @@
 package cn.peanut.controller;
 
 import cn.peanut.bean.po.*;
+import cn.peanut.bean.vo.BookVo;
 import cn.peanut.bean.vo.GameVo;
 import cn.peanut.bean.vo.MenuVo;
 import cn.peanut.exception.MessageException;
@@ -23,12 +24,45 @@ public class BookController {
     @Autowired
     BookService bookService;
 
+    @Autowired
+    BookTopService bookTopService;
+
+    @Autowired
+    BookSubService bookSubService;
+
+    @Autowired
+    SubService subService;
+
+    @Autowired
+    TopService topService;
+
     @RequestMapping("/show.action")
     public String ShowBookList(Model model, Integer page){
         if (page == null) page = 1;
         Integer size = 3;
-        List<Book>  bookList = bookService.selectBooksListByPage(page, size);
-        model.addAttribute("booksList", bookList);
+        List<Book> bookList = bookService.selectBooksListByPage(page, size);
+        List<BookVo> bookVoList = new ArrayList<>();
+        Iterator iter = bookList.iterator();
+
+        while (iter.hasNext()) {
+            Book book=(Book)iter.next();
+            BookVo bookVo = new BookVo();
+            bookVo.setBook(book);
+            BookTopKey bookTopKey=bookTopService.selectByBookId(book.getBookId());
+            TopCtgy topCtgy = topService.selectById(bookTopKey.getTopCtgyId());
+            bookVo.setTopCtgy(topCtgy);
+            BookSubKey bookSubKey=bookSubService.selectByBookId(book.getBookId());
+            SubCtgy subCtgy = subService.selectById(bookSubKey.getSubCtgyId());
+            bookVo.setSubCtgy(subCtgy);
+            bookVoList.add(bookVo);
+        }
+        model.addAttribute("booksList", bookVoList);
         return "/book";
     }
+
+//    @RequestMapping("/delete.action")
+//    public String DeleteBook(Model model, Integer id){
+//        bookService.deleteBookById(id);
+//        return "/book";
+//    }
 }

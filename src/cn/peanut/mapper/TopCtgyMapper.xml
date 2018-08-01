@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.peanut.mapper.TopCtgyMapper" >
+  <resultMap id="BaseResultMap" type="cn.peanut.bean.po.TopCtgy" >
+    <id column="top_ctgy_id" property="topCtgyId" jdbcType="INTEGER" />
+    <result column="top_ctgy_name" property="topCtgyName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    top_ctgy_id, top_ctgy_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.peanut.bean.po.TopCtgyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from top_ctgy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from top_ctgy
+    where top_ctgy_id = #{topCtgyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from top_ctgy
+    where top_ctgy_id = #{topCtgyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.peanut.bean.po.TopCtgyExample" >
+    delete from top_ctgy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.peanut.bean.po.TopCtgy" >
+    insert into top_ctgy (top_ctgy_id, top_ctgy_name)
+    values (#{topCtgyId,jdbcType=INTEGER}, #{topCtgyName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.peanut.bean.po.TopCtgy" >
+    insert into top_ctgy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="topCtgyId != null" >
+        top_ctgy_id,
+      </if>
+      <if test="topCtgyName != null" >
+        top_ctgy_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="topCtgyId != null" >
+        #{topCtgyId,jdbcType=INTEGER},
+      </if>
+      <if test="topCtgyName != null" >
+        #{topCtgyName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.peanut.bean.po.TopCtgyExample" resultType="java.lang.Integer" >
+    select count(*) from top_ctgy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update top_ctgy
+    <set >
+      <if test="record.topCtgyId != null" >
+        top_ctgy_id = #{record.topCtgyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.topCtgyName != null" >
+        top_ctgy_name = #{record.topCtgyName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update top_ctgy
+    set top_ctgy_id = #{record.topCtgyId,jdbcType=INTEGER},
+      top_ctgy_name = #{record.topCtgyName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.peanut.bean.po.TopCtgy" >
+    update top_ctgy
+    <set >
+      <if test="topCtgyName != null" >
+        top_ctgy_name = #{topCtgyName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where top_ctgy_id = #{topCtgyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.peanut.bean.po.TopCtgy" >
+    update top_ctgy
+    set top_ctgy_name = #{topCtgyName,jdbcType=VARCHAR}
+    where top_ctgy_id = #{topCtgyId,jdbcType=INTEGER}
+  </update>
+</mapper>

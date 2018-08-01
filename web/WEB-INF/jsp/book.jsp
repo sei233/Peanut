@@ -60,19 +60,26 @@
             <th>书籍ID</th>
             <th>书籍名称</th>
             <th>作者</th>
+            <th>一级分类id</th>
+            <th>一级分类名</th>
+            <th>二级分类id</th>
+            <th>二级分类名</th>
             <th>更新状态</th>
-            <th>操作</th>
             <th>操作</th>
         </tr>
         <c:forEach items="${booksList}" var="book" varStatus="s">
             <tr class="active">
-                <td>${book.bookId}</td>
-                <td>${book.bookName}</td>
-                <td>${book.bookAuthor}</td>
-                <td>${book.bookStatus}</td>
-                <td><a href="${pageContext.request.contextPath }/book/update.action?id=${book.bookId}">修改</a></td>
-                <td><a onclick="return del()"
-                       href="${pageContext.request.contextPath }/book/delete.action?id=${book.bookId}">删除</a></td>
+                <td>${book.book.bookId}</td>
+                <td>${book.book.bookName}</td>
+                <td>${book.book.bookAuthor}</td>
+                <td>${book.topCtgy.topCtgyId}</td>
+                <td>${book.topCtgy.topCtgyName}</td>
+                <td>${book.subCtgy.subCtgyId}</td>
+                <td>${book.subCtgy.subCtgyName}</td>
+                <td>${book.book.bookStatus}</td>
+                <td><a href="${pageContext.request.contextPath }/book/update.action?id=${book.book.bookId}">修改</a></td>
+                <%--<td><a onclick="return del()"
+                       href="${pageContext.request.contextPath }/book/delete.action?id=${book.bookId}">删除</a></td>--%>
             </tr>
         </c:forEach>
         <tr>
