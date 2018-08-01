@@ -60,12 +60,6 @@
         }
     </script>
 
-    <style>
-        body{
-            background-image: url(../../image/top.png);
-            background-size:cover;
-        }
-    </style>
 </head>
 <body>
 <br>
