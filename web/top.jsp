@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 
+
     <style>
     body{
     background-image: url(../image/timg.jpg);
