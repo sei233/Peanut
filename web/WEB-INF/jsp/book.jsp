@@ -54,39 +54,25 @@
 <body>
 <br>
 <div class="container">
-    <form action="${pageContext.request.contextPath}/game/search.action" method="post" class="form-inline">
-        <input type="text" id="condition" name="condition" class="form-control" placeholder="想查询的游戏">
-        <input type="submit" class="btn btn-info" value="查询">
-    </form>
 
     <table id="table" border="1" class="table table-striped table-bordered table-hover">
         <tr>
-            <th>游戏名</th>
-            <th>标题</th>
-            <th>下载量</th>
-            <th>大小</th>
-            <th>状态</th>
-            <th>分类</th>
-            <th>平台类型</th>
-            <th>推荐类型</th>
-            <th>最近更新</th>
+            <th>书籍ID</th>
+            <th>书籍名称</th>
+            <th>作者</th>
+            <th>更新状态</th>
             <th>操作</th>
             <th>操作</th>
         </tr>
-        <c:forEach items="${gamesList}" var="game" varStatus="s">
+        <c:forEach items="${booksList}" var="book" varStatus="s">
             <tr class="active">
-                <td>${game.gameName}</td>
-                <td>${game.gameTitle}</td>
-                <td>${game.gameDownload}</td>
-                <td>${game.gameSize}</td>
-                <td>${game.gameStatus}</td>
-                <td>${game.gameType}</td>
-                <td>${game.gameOperation}</td>
-                <td>${game.gameAdviseType}</td>
-                <td>${game.gameUpdateDate}</td>
-                <td><a href="${pageContext.request.contextPath }/game/update.action?id=${game.gameId}">修改</a></td>
+                <td>${book.bookId}</td>
+                <td>${book.bookName}</td>
+                <td>${book.bookAuthor}</td>
+                <td>${book.bookStatus}</td>
+                <td><a href="${pageContext.request.contextPath }/book/update.action?id=${book.bookId}">修改</a></td>
                 <td><a onclick="return del()"
-                       href="${pageContext.request.contextPath }/game/delete.action?id=${game.gameId}">删除</a></td>
+                       href="${pageContext.request.contextPath }/book/delete.action?id=${book.bookId}">删除</a></td>
             </tr>
         </c:forEach>
         <tr>

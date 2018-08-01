@@ -16,13 +16,19 @@
 
     .box_relative{
         position: relative;
-        left: 30px;
-        top: 20px;
+        left: 1450px;
+        top: 60px;
+    }
+    .label_relative{
+        position: relative;
+        left: 20px;
+        top: 30px;
     }
     </style>
 </head>
 <body bgcolor="#FFFFFF">
-<a class="btn btn-info box_relative"
+<label class="control-label label_relative"><h3>花生地铁管理系统</h3></label>
+<a class="btn btn-danger box_relative"
    href="${pageContext.request.contextPath}/user/login.action">登出</a>
 </body>
 </html>
