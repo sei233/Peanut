@@ -2,11 +2,16 @@ package cn.peanut.controller;
 
 import cn.peanut.bean.po.*;
 import cn.peanut.bean.vo.BookVo;
+import cn.peanut.exception.MessageException;
 import cn.peanut.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -15,6 +20,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/book")
+@Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = false)
 public class BookController {
 
     @Autowired
@@ -95,8 +101,8 @@ public class BookController {
         List<TopSub> topSub = topSubService.selectByTop(topCtgy.getTopCtgyId());
         Iterator iter = topSub.iterator();
 
-        while(iter.hasNext()){
-            TopSub topSub1 = (TopSub)iter.next();
+        while (iter.hasNext()) {
+            TopSub topSub1 = (TopSub) iter.next();
             subCtgy = subService.selectById(topSub1.getSubCtgyId());
             data.add(subCtgy);
         }
@@ -104,7 +110,7 @@ public class BookController {
         return data;
     }
 
-    public BookVo pack(Book book) {
+    private BookVo pack(Book book) {
         BookVo bookVo = new BookVo();
         bookVo.setBook(book);
         BookTopKey bookTopKey = bookTopService.selectByBookId(book.getBookId());
@@ -115,9 +121,29 @@ public class BookController {
         bookVo.setSubCtgy(subCtgy);
         return bookVo;
     }
-//    @RequestMapping("/delete.action")
-//    public String DeleteBook(Model model, Integer id){
-//        bookService.deleteBookById(id);
-//        return "/book";
-//    }
+
+    @RequestMapping(value = "/update.action", method = RequestMethod.GET)
+    public String updateBook(Model model, Integer id) {
+        Book book = bookService.selectBookById(id);
+        BookVo bookVo = pack(book);
+        model.addAttribute("book", bookVo);
+        return "/book_update";
+    }
+
+    @RequestMapping(value = "/update.action", method = RequestMethod.POST)
+    public String updateBook(BookVo bookVo) throws MessageException {
+        Book book = bookVo.getBook();
+        bookService.update(book);
+
+        TopCtgy topCtgy = bookVo.getTopCtgy();
+        BookTopKey bookTopKey = bookTopService.selectByBookId(book.getBookId());
+        bookTopKey.setTopCtgyId(topCtgy.getTopCtgyId());
+        bookTopService.update(bookTopKey);
+
+        SubCtgy subCtgy = bookVo.getSubCtgy();
+        BookSubKey bookSubKey = bookSubService.selectByBookId(book.getBookId());
+        bookSubKey.setSubCtgyId(subCtgy.getSubCtgyId());
+        bookSubService.update(bookSubKey);
+        return "redirect:/book/show1.action";
+    }
 }

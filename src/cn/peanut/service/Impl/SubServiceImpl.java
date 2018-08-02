@@ -23,4 +23,9 @@ public class SubServiceImpl implements SubService {
     public SubCtgy selectById(Integer id) {
         return subCtgyMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public void update(SubCtgy subCtgy) {
+        subCtgyMapper.updateByPrimaryKeySelective(subCtgy);
+    }
 }

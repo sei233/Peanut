@@ -3,6 +3,7 @@ package cn.peanut.service.Impl;
 
 import cn.peanut.bean.po.Book;
 import cn.peanut.bean.po.BookExample;
+import cn.peanut.exception.MessageException;
 import cn.peanut.mapper.BookMapper;
 import cn.peanut.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,15 @@ public class BookServiceImpl implements BookService {
     @Override
     public void deleteBookById(Integer id) {
         bookMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void update(Book book) throws MessageException {
+        if ("".equals(book.getBookName())
+                && "".equals(book.getBookAuthor())
+                && "".equals(book.getBookStatus())) {
+            throw new MessageException("书籍类不能为空");
+        }
+        bookMapper.updateByPrimaryKeySelective(book);
     }
 }

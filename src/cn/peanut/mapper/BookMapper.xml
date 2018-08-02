@@ -185,10 +185,10 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.peanut.bean.po.Book" >
     update book
     <set >
-      <if test="bookName != null" >
+      <if test="bookName != null and bookName !=''" >
         book_name = #{bookName,jdbcType=VARCHAR},
       </if>
-      <if test="bookAuthor != null" >
+      <if test="bookAuthor != null and bookAuthor !=''" >
         book_author = #{bookAuthor,jdbcType=VARCHAR},
       </if>
       <if test="bookStatus != null" >

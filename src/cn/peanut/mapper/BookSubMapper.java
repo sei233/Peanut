@@ -26,4 +26,6 @@ public interface BookSubMapper {
     int updateByExampleSelective(@Param("record") BookSubKey record, @Param("example") BookSubExample example);
 
     int updateByExample(@Param("record") BookSubKey record, @Param("example") BookSubExample example);
+
+    void updateByBookSubKey(BookSubKey record);
 }

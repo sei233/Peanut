@@ -24,4 +24,6 @@ public interface BookTopMapper {
     int updateByExampleSelective(@Param("record") BookTopKey record, @Param("example") BookTopExample example);
 
     int updateByExample(@Param("record") BookTopKey record, @Param("example") BookTopExample example);
+
+    void updateByBookTopKey(BookTopKey record);
 }

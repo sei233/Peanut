@@ -20,4 +20,9 @@ public class TopServiceImpl implements TopService {
     public TopCtgy selectById(Integer topCtgyId) {
         return topCtgyMapper.selectByPrimaryKey(topCtgyId);
     }
+
+    @Override
+    public void update(TopCtgy topCtgy) {
+        topCtgyMapper.updateByPrimaryKeySelective(topCtgy);
+    }
 }

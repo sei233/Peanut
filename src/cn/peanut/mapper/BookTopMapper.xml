@@ -148,4 +148,13 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  <update id="updateByBookTopKey" parameterType="cn.peanut.bean.po.BookTopKey" >
+    update book_top
+    <set >
+      <if test="topCtgyId != null" >
+        top_ctgy_id = #{topCtgyId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where book_id = #{bookId,jdbcType=INTEGER}
+  </update>
 </mapper>

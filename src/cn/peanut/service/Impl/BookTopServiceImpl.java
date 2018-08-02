@@ -1,6 +1,7 @@
 package cn.peanut.service.Impl;
 
 import cn.peanut.bean.po.BookTopKey;
+import cn.peanut.exception.MessageException;
 import cn.peanut.mapper.BookMapper;
 import cn.peanut.mapper.BookTopMapper;
 import cn.peanut.service.BookTopService;
@@ -20,5 +21,11 @@ public class BookTopServiceImpl implements BookTopService {
     @Override
     public BookTopKey selectByBookId(Integer bookId) {
         return bookTopMapper.selectByBookId(bookId);
+    }
+
+    @Override
+    public void update(BookTopKey bookTopKey) throws MessageException {
+        if(bookTopKey.getTopCtgyId()==null){throw new MessageException("请选择一级分类");}
+        bookTopMapper.updateByBookTopKey(bookTopKey);
     }
 }

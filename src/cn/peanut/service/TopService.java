@@ -4,4 +4,5 @@ import cn.peanut.bean.po.TopCtgy;
 
 public interface TopService {
     TopCtgy selectById(Integer topCtgyId);
+    void update(TopCtgy topCtgy);
 }
