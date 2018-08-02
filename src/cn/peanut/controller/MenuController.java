@@ -82,8 +82,11 @@ public class MenuController {
 
     @RequestMapping(value = "/add2.action",method = RequestMethod.POST)
     public String addChildMenu(ChildMenu childMenu) throws MessageException {
-        List<ChildMenu> childMenus = childMenuService.selectByPid(childMenu.getParentId());
-        if(childMenus.size()==0){
+        //获取所有的PID(管理员)
+        RoleMenu roleMenu = roleMenuService.selectByRoleId(1);
+        String pid = roleMenu.getPid();
+
+        if(!pid.contains(childMenu.getParentId().toString())){
             throw new MessageException("找不到PID");}
         if(childMenu.getChildMenuName()!=null&&!"".equals(childMenu.getChildMenuName()))
             childMenuService.insert(childMenu);
