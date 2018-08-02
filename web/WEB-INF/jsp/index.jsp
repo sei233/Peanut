@@ -26,6 +26,11 @@
         td {
             text-align: center;
         }
+
+        .box_relative{
+            position: absolute;
+            right: 200px;
+        }
     </style>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -57,6 +62,7 @@
     <form action="${pageContext.request.contextPath}/game/search.action" method="post" class="form-inline">
         <input type="text" id="condition" name="condition" class="form-control" placeholder="想查询的游戏">
         <input type="submit" class="btn btn-info" value="查询">
+        <a class="btn btn-warning box_relative" href="${pageContext.request.contextPath }/game/add.action">添加游戏</a>
     </form>
 
     <table id="table" border="1" class="table table-striped table-bordered table-hover">
@@ -72,7 +78,6 @@
             <th>最近更新</th>
             <th>操作</th>
             <th>操作</th>
-            <th>操作</th>
         </tr>
         <c:forEach items="${gamesList}" var="game" varStatus="s">
             <tr class="active">
@@ -86,7 +91,6 @@
                 <td>${game.gameAdviseType}</td>
                 <td>${game.gameUpdateDate}</td>
                 <td><a href="${pageContext.request.contextPath }/game/update.action?id=${game.gameId}">修改</a></td>
-                <td><a href="${pageContext.request.contextPath }/game/add.action">添加</a></td>
                 <td><a onclick="return del()"
                        href="${pageContext.request.contextPath }/game/delete.action?id=${game.gameId}">删除</a></td>
             </tr>

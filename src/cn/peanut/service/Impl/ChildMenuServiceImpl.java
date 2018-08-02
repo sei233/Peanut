@@ -26,4 +26,19 @@ public class ChildMenuServiceImpl implements ChildMenuService {
     public List<ChildMenu> selectByPid(Integer id) {
         return childMenuMapper.selectByPid(id);
     }
+
+    @Override
+    public List<ChildMenu> findAll() {
+        return childMenuMapper.selectByExample(null);
+    }
+
+    @Override
+    public void deleteMenuById(Integer id) {
+        childMenuMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void insert(ChildMenu menu) {
+        childMenuMapper.insert(menu);
+    }
 }

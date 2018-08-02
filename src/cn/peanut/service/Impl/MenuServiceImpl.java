@@ -1,9 +1,8 @@
 package cn.peanut.service.Impl;
 
 
-import cn.peanut.bean.po.ChildMenu;
+
 import cn.peanut.bean.po.Menu;
-import cn.peanut.mapper.ChildMenuMapper;
 import cn.peanut.mapper.MenuMapper;
 import cn.peanut.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +23,25 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public Menu selectById(Integer id) {
         return menuMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public Menu selectByName(String name) {
+        return menuMapper.selectByName(name);
+    }
+
+    @Override
+    public List<Menu> findAll() {
+        return menuMapper.selectByExample(null);
+    }
+
+    @Override
+    public void deleteMenuById(Integer id) {
+        menuMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void insert(Menu menu) {
+        menuMapper.insert(menu);
     }
 }

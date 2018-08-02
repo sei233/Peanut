@@ -23,4 +23,9 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     public RoleMenu selectByRoleId(Integer id) {
         return roleMenuMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public void update(RoleMenu roleMenu) {
+        roleMenuMapper.updateByPrimaryKey(roleMenu);
+    }
 }

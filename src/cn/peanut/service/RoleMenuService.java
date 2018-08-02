@@ -4,4 +4,5 @@ import cn.peanut.bean.po.RoleMenu;
 
 public interface RoleMenuService {
     RoleMenu selectByRoleId(Integer id);
+    void update(RoleMenu roleMenu);
 }

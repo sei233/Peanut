@@ -2,18 +2,13 @@ package cn.peanut.controller;
 
 import cn.peanut.bean.po.*;
 import cn.peanut.bean.vo.BookVo;
-import cn.peanut.bean.vo.GameVo;
-import cn.peanut.bean.vo.MenuVo;
-import cn.peanut.exception.MessageException;
 import cn.peanut.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -56,23 +51,6 @@ public class BookController {
 
         model.addAttribute("booksList", bookVoList);
         return "/book_mng";
-    }
-
-    @RequestMapping("/show.action")
-    public String showBookList(Model model, Integer page) {
-        if (page == null) page = 1;
-        Integer size = 3;
-        List<Book> bookList = bookService.selectBooksListByPage(page, size);
-        List<BookVo> bookVoList = new ArrayList<>();
-        Iterator iter = bookList.iterator();
-
-        while (iter.hasNext()) {
-            Book book = (Book) iter.next();
-            BookVo bookVo = pack(book);
-            bookVoList.add(bookVo);
-        }
-        model.addAttribute("booksList", bookVoList);
-        return "/book";
     }
 
     @RequestMapping("/search.action")

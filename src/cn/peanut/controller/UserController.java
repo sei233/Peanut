@@ -66,8 +66,10 @@ public class UserController {
 
                     for (int i = 0; i < menuIdList.length; i++) {
                         MenuVo menuVo = new MenuVo();
+                        //通过pid获取主菜单
                         Menu menu = menuService.selectById(Integer.parseInt(menuIdList[i]));
                         menuVo.setMainMenu(menu);
+                        //通过pid获取子菜单们
                         List<ChildMenu> childMenu = childMenuService.selectByPid(Integer.parseInt(menuIdList[i]));
                         menuVo.setChildMenu(childMenu);
                         menuVoList.add(menuVo);
