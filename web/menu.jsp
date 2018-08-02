@@ -19,6 +19,8 @@
 
 <div class="container">
     <h3>菜单</h3>
+        <a class="btn btn-primary btn-block dropdown-toggle" href="${pageContext.request.contextPath}/user/home.action"
+           target=main>－ 首页</a>
     <c:forEach items="${sessionScope.menusList}" var="menu">
         <div class="dropdown">
             <a class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown"
@@ -26,10 +28,6 @@
                 <span class="caret"></span>
             </a>
             <ul class="btn btn-info btn-block dropdown-menu">
-                <li>
-                    <a href="${pageContext.request.contextPath}${menu.mainMenu.menuUrl}"
-                       target=main>－ ${menu.mainMenu.menuName}</a>
-                </li>
                 <c:forEach items="${menu.childMenu}" var="childmenu">
                     <li>
                         <a href="${pageContext.request.contextPath}${childmenu.childMenuUrl}"

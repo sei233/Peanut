@@ -72,6 +72,7 @@
             <th>最近更新</th>
             <th>操作</th>
             <th>操作</th>
+            <th>操作</th>
         </tr>
         <c:forEach items="${gamesList}" var="game" varStatus="s">
             <tr class="active">
@@ -85,6 +86,7 @@
                 <td>${game.gameAdviseType}</td>
                 <td>${game.gameUpdateDate}</td>
                 <td><a href="${pageContext.request.contextPath }/game/update.action?id=${game.gameId}">修改</a></td>
+                <td><a href="${pageContext.request.contextPath }/game/add.action">添加</a></td>
                 <td><a onclick="return del()"
                        href="${pageContext.request.contextPath }/game/delete.action?id=${game.gameId}">删除</a></td>
             </tr>

@@ -15,9 +15,9 @@
     }
 
     .box_relative{
-        position: relative;
-        left: 1450px;
-        top: 60px;
+        position: absolute;
+        right: 50px;
+        bottom: 20px;
     }
     .label_relative{
         position: relative;
