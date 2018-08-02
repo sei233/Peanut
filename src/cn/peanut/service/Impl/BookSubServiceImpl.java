@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = false)
 public class BookSubServiceImpl implements BookSubService {
@@ -22,5 +24,10 @@ public class BookSubServiceImpl implements BookSubService {
     @Override
     public BookSubKey selectByBookId(Integer id) {
         return bookSubMapper.selectByBookId(id);
+    }
+
+    @Override
+    public List<BookSubKey> selectBySub(Integer id) {
+        return bookSubMapper.selectBySub(id);
     }
 }

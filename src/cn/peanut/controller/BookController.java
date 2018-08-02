@@ -37,8 +37,11 @@ public class BookController {
     @Autowired
     TopService topService;
 
+    @Autowired
+    TopSubService topSubService;
+
     @RequestMapping("/show1.action")
-    public String showBookList1(Model model, Integer page){
+    public String showBookList1(Model model, Integer page) {
         if (page == null) page = 1;
         Integer size = 3;
         List<Book> bookList = bookService.selectBooksListByPage(page, size);
@@ -46,15 +49,8 @@ public class BookController {
         Iterator iter = bookList.iterator();
 
         while (iter.hasNext()) {
-            Book book=(Book)iter.next();
-            BookVo bookVo = new BookVo();
-            bookVo.setBook(book);
-            BookTopKey bookTopKey=bookTopService.selectByBookId(book.getBookId());
-            TopCtgy topCtgy = topService.selectById(bookTopKey.getTopCtgyId());
-            bookVo.setTopCtgy(topCtgy);
-            BookSubKey bookSubKey=bookSubService.selectByBookId(book.getBookId());
-            SubCtgy subCtgy = subService.selectById(bookSubKey.getSubCtgyId());
-            bookVo.setSubCtgy(subCtgy);
+            Book book = (Book) iter.next();
+            BookVo bookVo = pack(book);
             bookVoList.add(bookVo);
         }
 
@@ -63,7 +59,7 @@ public class BookController {
     }
 
     @RequestMapping("/show.action")
-    public String showBookList(Model model, Integer page){
+    public String showBookList(Model model, Integer page) {
         if (page == null) page = 1;
         Integer size = 3;
         List<Book> bookList = bookService.selectBooksListByPage(page, size);
@@ -71,15 +67,8 @@ public class BookController {
         Iterator iter = bookList.iterator();
 
         while (iter.hasNext()) {
-            Book book=(Book)iter.next();
-            BookVo bookVo = new BookVo();
-            bookVo.setBook(book);
-            BookTopKey bookTopKey=bookTopService.selectByBookId(book.getBookId());
-            TopCtgy topCtgy = topService.selectById(bookTopKey.getTopCtgyId());
-            bookVo.setTopCtgy(topCtgy);
-            BookSubKey bookSubKey=bookSubService.selectByBookId(book.getBookId());
-            SubCtgy subCtgy = subService.selectById(bookSubKey.getSubCtgyId());
-            bookVo.setSubCtgy(subCtgy);
+            Book book = (Book) iter.next();
+            BookVo bookVo = pack(book);
             bookVoList.add(bookVo);
         }
         model.addAttribute("booksList", bookVoList);
@@ -87,34 +76,66 @@ public class BookController {
     }
 
     @RequestMapping("/search.action")
-    public String searchBook(Model model, BookVo bookVo){
+    public String searchBook(Model model, BookVo bookVo) {
+        List<BookVo> bookVoList = new ArrayList<>();
+        if (bookVo.getBook().getBookId() != null) {
+            Book book = bookService.selectBookById(bookVo.getBook().getBookId());
+            BookVo bookVo1 = pack(book);
+            bookVoList.add(bookVo1);
+        } else if (bookVo.getBook().getBookName() != null && !"".equals(bookVo.getBook().getBookName())) {
+            BookExample example = new BookExample();
+            BookExample.Criteria criteria = example.createCriteria();
+            criteria.andBookNameLike("%" + bookVo.getBook().getBookName() + "%");
+            List<Book> bookList = bookService.selectByExample(example);
+            Iterator iter = bookList.iterator();
 
+            while (iter.hasNext()) {
+                Book book = (Book) iter.next();
+                BookVo bookVo1 = pack(book);
+                bookVoList.add(bookVo1);
+            }
+        } else {
+            List<BookSubKey> bookSubList = bookSubService.selectBySub(bookVo.getSubCtgy().getSubCtgyId());
+            Iterator iter = bookSubList.iterator();
+
+            while (iter.hasNext()) {
+                BookSubKey bookSubKey = (BookSubKey) iter.next();
+                Book book = bookService.selectBookById(bookSubKey.getBookId());
+                BookVo bookVo1 = pack(book);
+                bookVoList.add(bookVo1);
+            }
+        }
+        model.addAttribute("booksList", bookVoList);
         return "/book_mng";
     }
 
     @RequestMapping("/getSeconds.action")
     public @ResponseBody
-    List<SubCtgy> getSeconds(Model model, TopCtgy topCtgy){
-        List<SubCtgy> data =new ArrayList<>();
+    List<SubCtgy> getSeconds(Model model, TopCtgy topCtgy) {
+        List<SubCtgy> data = new ArrayList<>();
         SubCtgy subCtgy;
-        if(topCtgy.getTopCtgyId()==3){
-            subCtgy=subService.selectById(35);
-            data.add(subCtgy);
-        }else if(topCtgy.getTopCtgyId()==8){
-            subCtgy=subService.selectById(85);
-            data.add(subCtgy);
-        }else if(topCtgy.getTopCtgyId()==9){
-            subCtgy=subService.selectById(89);
-            data.add(subCtgy);
-            subCtgy=subService.selectById(90);
-            data.add(subCtgy);
-            subCtgy=subService.selectById(91);
-            data.add(subCtgy);
-        }else if(topCtgy.getTopCtgyId()==13){
-            subCtgy=subService.selectById(104);
+        List<TopSub> topSub = topSubService.selectByTop(topCtgy.getTopCtgyId());
+        Iterator iter = topSub.iterator();
+
+        while(iter.hasNext()){
+            TopSub topSub1 = (TopSub)iter.next();
+            subCtgy = subService.selectById(topSub1.getSubCtgyId());
             data.add(subCtgy);
         }
+
         return data;
+    }
+
+    public BookVo pack(Book book) {
+        BookVo bookVo = new BookVo();
+        bookVo.setBook(book);
+        BookTopKey bookTopKey = bookTopService.selectByBookId(book.getBookId());
+        TopCtgy topCtgy = topService.selectById(bookTopKey.getTopCtgyId());
+        bookVo.setTopCtgy(topCtgy);
+        BookSubKey bookSubKey = bookSubService.selectByBookId(book.getBookId());
+        SubCtgy subCtgy = subService.selectById(bookSubKey.getSubCtgyId());
+        bookVo.setSubCtgy(subCtgy);
+        return bookVo;
     }
 //    @RequestMapping("/delete.action")
 //    public String DeleteBook(Model model, Integer id){

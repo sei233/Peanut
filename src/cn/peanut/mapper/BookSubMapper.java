@@ -19,6 +19,8 @@ public interface BookSubMapper {
 
     List<BookSubKey> selectByExample(BookSubExample example);
 
+    List<BookSubKey> selectBySub(Integer subId);
+
     BookSubKey selectByBookId(Integer bookId);
 
     int updateByExampleSelective(@Param("record") BookSubKey record, @Param("example") BookSubExample example);

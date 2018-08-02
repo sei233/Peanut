@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.peanut.mapper.BookSubMapper" >
-  <resultMap id="BaseResultMap" type="cn.peanut.bean.po.BookSubKey" >
-    <id column="book_id" property="bookId" jdbcType="INTEGER" />
-    <id column="sub_ctgy_id" property="subCtgyId" jdbcType="INTEGER" />
+<mapper namespace="cn.peanut.mapper.TopSubMapper" >
+  <resultMap id="BaseResultMap" type="cn.peanut.bean.po.TopSub" >
+    <result column="top_ctgy_id" property="topCtgyId" jdbcType="INTEGER" />
+    <result column="sub_ctgy_id" property="subCtgyId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,15 +64,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    book_id, sub_ctgy_id
+    top_ctgy_id, sub_ctgy_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.peanut.bean.po.BookSubExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.peanut.bean.po.TopSubExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from book_sub
+    from top_sub
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -80,63 +80,52 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByBookId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByTop" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
-    from book_sub
-    WHERE book_id = #{bookId,jdbcType=INTEGER}
+    from top_sub
+    WHERE top_ctgy_id = #{topCtgyId,jdbcType=INTEGER}
   </select>
-  <select id="selectBySub" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select
-    <include refid="Base_Column_List" />
-    from book_sub
-    WHERE sub_ctgy_id = #{subId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="cn.peanut.bean.po.BookSubKey" >
-    delete from book_sub
-    where book_id = #{bookId,jdbcType=INTEGER}
-      and sub_ctgy_id = #{subCtgyId,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="cn.peanut.bean.po.BookSubExample" >
-    delete from book_sub
+  <delete id="deleteByExample" parameterType="cn.peanut.bean.po.TopSubExample" >
+    delete from top_sub
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.peanut.bean.po.BookSubKey" >
-    insert into book_sub (book_id, sub_ctgy_id)
-    values (#{bookId,jdbcType=INTEGER}, #{subCtgyId,jdbcType=INTEGER})
+  <insert id="insert" parameterType="cn.peanut.bean.po.TopSub" >
+    insert into top_sub (top_ctgy_id, sub_ctgy_id)
+    values (#{topCtgyId,jdbcType=INTEGER}, #{subCtgyId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="cn.peanut.bean.po.BookSubKey" >
-    insert into book_sub
+  <insert id="insertSelective" parameterType="cn.peanut.bean.po.TopSub" >
+    insert into top_sub
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="bookId != null" >
-        book_id,
+      <if test="topCtgyId != null" >
+        top_ctgy_id,
       </if>
       <if test="subCtgyId != null" >
         sub_ctgy_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="bookId != null" >
-        #{bookId,jdbcType=INTEGER},
+      <if test="topCtgyId != null" >
+        #{topCtgyId,jdbcType=INTEGER},
       </if>
       <if test="subCtgyId != null" >
         #{subCtgyId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.peanut.bean.po.BookSubExample" resultType="java.lang.Integer" >
-    select count(*) from book_sub
+  <select id="countByExample" parameterType="cn.peanut.bean.po.TopSubExample" resultType="java.lang.Integer" >
+    select count(*) from top_sub
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update book_sub
+    update top_sub
     <set >
-      <if test="record.bookId != null" >
-        book_id = #{record.bookId,jdbcType=INTEGER},
+      <if test="record.topCtgyId != null" >
+        top_ctgy_id = #{record.topCtgyId,jdbcType=INTEGER},
       </if>
       <if test="record.subCtgyId != null" >
         sub_ctgy_id = #{record.subCtgyId,jdbcType=INTEGER},
@@ -147,8 +136,8 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update book_sub
-    set book_id = #{record.bookId,jdbcType=INTEGER},
+    update top_sub
+    set top_ctgy_id = #{record.topCtgyId,jdbcType=INTEGER},
       sub_ctgy_id = #{record.subCtgyId,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />

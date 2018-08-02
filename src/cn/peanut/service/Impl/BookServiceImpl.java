@@ -2,6 +2,7 @@ package cn.peanut.service.Impl;
 
 
 import cn.peanut.bean.po.Book;
+import cn.peanut.bean.po.BookExample;
 import cn.peanut.mapper.BookMapper;
 import cn.peanut.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,16 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> selectBooksListByPage(Integer page, Integer size) {
         return bookMapper.selectByPage(page,size);
+    }
+
+    @Override
+    public Book selectBookById(Integer id) {
+        return bookMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Book> selectByExample(BookExample example) {
+        return bookMapper.selectByExample(example);
     }
 
     @Override

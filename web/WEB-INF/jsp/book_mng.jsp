@@ -102,7 +102,7 @@
         <div class="form-group">
             <label>一级分类:</label>
             <select id="superdept" class="btn btn-default" onchange="getsecond()" name="topCtgy.topCtgyId">
-                <option>请选择</option>
+                <option value="">请选择</option>
                 <option value="3">现代都市</option>
                 <option value="8">古代言情</option>
                 <option value="9">都市言情</option>

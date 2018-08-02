@@ -66,7 +66,12 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    book_id, book_name, book_author, book_status
+    book_id, book_name, book_author, CASE (book_status)
+    WHEN 0 THEN '完结'
+    WHEN 1 THEN '连载'
+    WHEN 2 THEN '太监'
+    END
+    AS book_status
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.peanut.bean.po.BookExample" >
     select
@@ -83,19 +88,14 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from book
     where book_id = #{bookId,jdbcType=INTEGER}
   </select>
   <select id="selectByPage" resultMap="BaseResultMap">
     select
-    book_id, book_name, book_author, CASE (book_status)
-    WHEN 0 THEN '完结'
-    WHEN 1 THEN '连载'
-    WHEN 2 THEN '太监'
-    END
-    AS book_status
+    <include refid="Base_Column_List" />
     from book
     limit #{0},#{1}
   </select>
