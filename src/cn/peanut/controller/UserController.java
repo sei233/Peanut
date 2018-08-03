@@ -38,6 +38,13 @@ public class UserController {
     @Autowired
     RoleMenuService roleMenuService;
 
+    @RequestMapping("/show.action")
+    public String showUserList(Model model){
+        List<User> userList = userService.findAll();
+        model.addAttribute("usersList",userList);
+        return "/user_list";
+    }
+
     @RequestMapping(value = "/login.action",method = RequestMethod.GET)
     public String login() {
         return "redirect:/login.jsp";
@@ -54,6 +61,7 @@ public class UserController {
         httpSession.setAttribute("menusList", null);
         if("".equals(user.getUserPassword())){throw new MessageException("密码不能为空");}
         User user1 = userService.selectByName(user.getUserName());
+        if(user1.getUserState()==null||user1.getUserState()!=1){throw new MessageException("账号未被激活或是被封禁");}
         if(user1.getUserPassword().equals(user.getUserPassword())){
             httpSession.setAttribute("USER_SESSION",user1.getUserName());
 
@@ -93,6 +101,7 @@ public class UserController {
     public String register(Model model,User user) throws MessageException {
         if("".equals(user.getUserName())){throw new MessageException("账户名不能为空");}
         if("".equals(user.getUserPassword())){throw new MessageException("密码不能为空");}
+        user.setUserState((byte) 1);
         userService.insertUser(user);
         return "redirect:/login.jsp";
     }

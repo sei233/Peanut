@@ -18,7 +18,7 @@
     <script type="text/javascript">
         $(function () {
             $('#submit').click(function () {
-                return window.confirm("您确定添加吗?");
+                return window.confirm("您确定修改吗?");
             })
         });
     </script>

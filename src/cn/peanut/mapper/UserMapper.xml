@@ -5,6 +5,7 @@
     <id column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="user_state" property="userState" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    user_id, user_name, user_password
+    user_id, user_name, user_password, user_state
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.peanut.bean.po.UserExample" >
     select
@@ -81,17 +82,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select
-    <include refid="Base_Column_List" />
-    from user
-    where user_name = #{userName,jdbcType=VARCHAR}
-  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from user
     where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where user_name = #{userName,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
@@ -104,10 +105,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.peanut.bean.po.User" >
-    insert into user (user_id, user_name, user_password
-      )
-    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}
-      )
+    insert into user (user_id, user_name, user_password, 
+      user_state)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
+      #{userState,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="cn.peanut.bean.po.User" >
     insert into user
@@ -121,6 +122,9 @@
       <if test="userPassword != null" >
         user_password,
       </if>
+      <if test="userState != null" >
+        user_state,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -131,6 +135,9 @@
       </if>
       <if test="userPassword != null" >
         #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userState != null" >
+        #{userState,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -152,6 +159,9 @@
       <if test="record.userPassword != null" >
         user_password = #{record.userPassword,jdbcType=VARCHAR},
       </if>
+      <if test="record.userState != null" >
+        user_state = #{record.userState,jdbcType=TINYINT},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -161,7 +171,8 @@
     update user
     set user_id = #{record.userId,jdbcType=INTEGER},
       user_name = #{record.userName,jdbcType=VARCHAR},
-      user_password = #{record.userPassword,jdbcType=VARCHAR}
+      user_password = #{record.userPassword,jdbcType=VARCHAR},
+      user_state = #{record.userState,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -175,13 +186,17 @@
       <if test="userPassword != null" >
         user_password = #{userPassword,jdbcType=VARCHAR},
       </if>
+      <if test="userState != null" >
+        user_state = #{userState,jdbcType=TINYINT},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.peanut.bean.po.User" >
     update user
     set user_name = #{userName,jdbcType=VARCHAR},
-      user_password = #{userPassword,jdbcType=VARCHAR}
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_state = #{userState,jdbcType=TINYINT}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>
