@@ -90,8 +90,8 @@
                 <td>${game.gameOperation}</td>
                 <td>${game.gameAdviseType}</td>
                 <td>${game.gameUpdateDate}</td>
-                <td><a href="${pageContext.request.contextPath }/game/update.action?id=${game.gameId}">修改</a></td>
-                <td><a onclick="return del()"
+                <td><a class="btn btn-primary" href="${pageContext.request.contextPath }/game/update.action?id=${game.gameId}">修改</a></td>
+                <td><a class="btn btn-danger" onclick="return del()"
                        href="${pageContext.request.contextPath }/game/delete.action?id=${game.gameId}">删除</a></td>
             </tr>
         </c:forEach>

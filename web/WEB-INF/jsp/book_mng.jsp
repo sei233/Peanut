@@ -141,7 +141,7 @@
                     <td>${book.subCtgy.subCtgyId}</td>
                     <td>${book.subCtgy.subCtgyName}</td>
                     <td>${book.book.bookStatus}</td>
-                    <td><a href="${pageContext.request.contextPath }/book/update.action?id=${book.book.bookId}">修改</a>
+                    <td><a class="btn btn-primary" href="${pageContext.request.contextPath }/book/update.action?id=${book.book.bookId}">修改</a>
                     </td>
                         <%--<td><a onclick="return del()"
                                href="${pageContext.request.contextPath }/book/delete.action?id=${book.bookId}">删除</a></td>--%>

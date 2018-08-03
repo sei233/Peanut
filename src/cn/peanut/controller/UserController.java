@@ -65,6 +65,24 @@ public class UserController {
         return "redirect:/user/show.action";
     }
 
+    @RequestMapping(value = "/update.action",method = RequestMethod.GET)
+    public String updateUser(Model model,Integer id) throws MessageException {
+        User user = userService.selectById(id);
+        model.addAttribute("user",user);
+        return "/user_update";
+    }
+
+    @RequestMapping(value = "/update.action",method = RequestMethod.POST)
+    public String updateUser(User user) throws MessageException {
+        if("".equals(user.getUserName())
+                &&"".equals(user.getUserPassword())
+                &&user.getUserState()==null){
+            throw new MessageException("提交菜单不能为空");
+        }
+        userService.updateUser(user);
+        return "redirect:/user/show.action";
+    }
+
     @RequestMapping(value = "/login.action",method = RequestMethod.GET)
     public String login() {
         return "redirect:/login.jsp";

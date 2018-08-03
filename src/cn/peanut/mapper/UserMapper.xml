@@ -180,13 +180,13 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.peanut.bean.po.User" >
     update user
     <set >
-      <if test="userName != null" >
+      <if test="userName != null and userName !=''" >
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="userPassword != null" >
+      <if test="userPassword != null and userPassword !=''" >
         user_password = #{userPassword,jdbcType=VARCHAR},
       </if>
-      <if test="userState != null" >
+      <if test="userState != null and userState !=''" >
         user_state = #{userState,jdbcType=TINYINT},
       </if>
     </set>

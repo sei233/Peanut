@@ -52,8 +52,8 @@
                     <td>${main.menuId}</td>
                     <td>${main.menuName}</td>
                     <td>0</td>
-                    <td><a href="${pageContext.request.contextPath }/menu/update1.action?menuId=${main.menuId}">修改</a></td>
-                    <td><a onclick="return del()"
+                    <td><a class="btn btn-primary" href="${pageContext.request.contextPath }/menu/update1.action?menuId=${main.menuId}">修改</a></td>
+                    <td><a class="btn btn-danger" onclick="return del()"
                            href="${pageContext.request.contextPath }/menu/delete1.action?menuId=${main.menuId}">删除</a></td>
                 </tr>
             </c:forEach>
@@ -62,9 +62,10 @@
                     <td>2000+${child.childMenuId}</td>
                     <td>${child.childMenuName}</td>
                     <td>${child.parentId}</td>
-                    <td><a href="${pageContext.request.contextPath }/menu/update2.action?childMenuId=${child.childMenuId}">
+                    <td><a class="btn btn-primary"
+                            href="${pageContext.request.contextPath }/menu/update2.action?childMenuId=${child.childMenuId}">
                         修改</a></td>
-                    <td><a onclick="return del()"
+                    <td><a class="btn btn-danger" onclick="return del()"
                            href="${pageContext.request.contextPath }/menu/delete2.action?childMenuId=${child.childMenuId}">
                         删除</a></td>
                 </tr>

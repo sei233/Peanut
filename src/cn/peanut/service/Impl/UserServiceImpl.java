@@ -24,6 +24,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User selectById(Integer id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
     public User selectByName(String name) {
         return userMapper.selectByName(name);
     }
@@ -37,4 +42,10 @@ public class UserServiceImpl implements UserService {
     public void deleteUserById(Integer id) {
         userMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public void updateUser(User user) {
+        userMapper.updateByPrimaryKeySelective(user);
+    }
+
 }

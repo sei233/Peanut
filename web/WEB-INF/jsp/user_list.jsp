@@ -53,8 +53,8 @@
                     <td>${user.userName}</td>
                     <td>0</td>
                     <td>${user.userState}</td>
-                    <td><a href="${pageContext.request.contextPath }/user/update.action?id=${user.userId}">修改</a></td>
-                    <td><a onclick="return del()"
+                    <td><a class="btn btn-primary" href="${pageContext.request.contextPath }/user/update.action?id=${user.userId}">修改</a></td>
+                    <td><a class="btn btn-danger" onclick="return del()"
                            href="${pageContext.request.contextPath }/user/delete.action?id=${user.userId}">删除</a></td>
                 </tr>
             </c:forEach>
