@@ -169,10 +169,10 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.peanut.bean.po.Menu" >
     update menu
     <set >
-      <if test="menuName != null" >
+      <if test="menuName != null and menuName != ''" >
         menu_name = #{menuName,jdbcType=VARCHAR},
       </if>
-      <if test="menuUrl != null" >
+      <if test="menuUrl != null and menuUrl != ''" >
         menu_url = #{menuUrl,jdbcType=VARCHAR},
       </if>
     </set>

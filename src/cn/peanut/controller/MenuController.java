@@ -44,16 +44,39 @@ public class MenuController {
         return "/menu_list";
     }
 
-    @RequestMapping("/update1.action")
-    public String updateMenu(Menu menu){
-
-        return "/menu_update1";
+    @RequestMapping(value = "/update1.action",method = RequestMethod.GET)
+    public String directUpdate1(Model model,Integer menuId){
+        Menu menu = menuService.selectById(menuId);
+        model.addAttribute("menu",menu);
+        return "/menu_update";
     }
 
-    @RequestMapping("/update2.action")
-    public String updateMenu(ChildMenu menu){
+    @RequestMapping(value = "/update1.action",method = RequestMethod.POST)
+    public String updateMenu(Menu menu) throws MessageException {
+        if("".equals(menu.getMenuName())
+                &&"".equals(menu.getMenuUrl())){
+            throw new MessageException("提交菜单不能为空");
+        }
+        menuService.update(menu);
+        return "redirect:/menu/show.action";
+    }
 
-        return "/menu_update2";
+    @RequestMapping(value = "/update2.action",method = RequestMethod.GET)
+    public String directUpdate2(Model model,Integer childMenuId){
+        ChildMenu childMenu = childMenuService.selectById(childMenuId);
+        model.addAttribute("childMenu",childMenu);
+        return "/childmenu_update";
+    }
+
+    @RequestMapping(value = "/update2.action",method = RequestMethod.POST)
+    public String updateChildMenu(ChildMenu menu ) throws MessageException {
+        if("".equals(menu.getChildMenuName())
+                &&menu.getParentId()==null
+                &&"".equals(menu.getChildMenuUrl())){
+            throw new MessageException("提交子菜单不能为空");
+        }
+        childMenuService.update(menu);
+        return "redirect:/menu/show.action";
     }
 
     @RequestMapping(value = "/add1.action",method = RequestMethod.GET)
@@ -62,18 +85,18 @@ public class MenuController {
     }
 
     @RequestMapping(value = "/add1.action",method = RequestMethod.POST)
-    public String addMenu(Menu menu){
-        if(menu.getMenuName()!=null&&!"".equals(menu.getMenuName()))
-            menuService.insert(menu);
+    public String addMenu(Menu menu) throws MessageException {
+        if("".equals(menu.getMenuName()))
+        {  throw new MessageException("菜单名不能为空");}
+
+        menuService.insert(menu);
 
         Menu menu1 = menuService.selectByName(menu.getMenuName());
 
 
         RoleMenu roleMenu = roleMenuService.selectByRoleId(1);
         String pid = roleMenu.getPid();
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(pid).append(",").append(menu1.getMenuId());
-        roleMenu.setPid(stringBuilder.toString());
+        roleMenu.setPid(pid + "," + menu1.getMenuId());
 
         roleMenuService.update(roleMenu);
         return "redirect:/menu/show.action";
@@ -87,6 +110,12 @@ public class MenuController {
     @RequestMapping(value = "/add2.action",method = RequestMethod.POST)
     public String addChildMenu(ChildMenu childMenu) throws MessageException {
         //获取所有的PID(管理员)
+        if("".equals(childMenu.getChildMenuName()))
+            throw new MessageException("子菜单名不能为空");
+
+        if(childMenu.getParentId()==null)
+            throw new MessageException("PID不能为空");
+
         RoleMenu roleMenu = roleMenuService.selectByRoleId(1);
         String pid = roleMenu.getPid();
 

@@ -10,4 +10,5 @@ public interface MenuService {
     List<Menu> findAll();
     void deleteMenuById(Integer id);
     void insert(Menu menu);
+    void update(Menu menu);
 }

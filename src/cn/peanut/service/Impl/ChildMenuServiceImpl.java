@@ -23,6 +23,11 @@ public class ChildMenuServiceImpl implements ChildMenuService {
 
 
     @Override
+    public ChildMenu selectById(Integer id) {
+        return childMenuMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
     public List<ChildMenu> selectByPid(Integer id) {
         return childMenuMapper.selectByPid(id);
     }
@@ -40,5 +45,10 @@ public class ChildMenuServiceImpl implements ChildMenuService {
     @Override
     public void insert(ChildMenu menu) {
         childMenuMapper.insert(menu);
+    }
+
+    @Override
+    public void update(ChildMenu menu) {
+        childMenuMapper.updateByPrimaryKeySelective(menu);
     }
 }

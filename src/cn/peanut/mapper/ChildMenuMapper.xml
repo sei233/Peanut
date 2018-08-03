@@ -180,13 +180,13 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.peanut.bean.po.ChildMenu" >
     update child_menu
     <set >
-      <if test="childMenuName != null" >
+      <if test="childMenuName != null and childMenuName !=''" >
         child_menu_name = #{childMenuName,jdbcType=VARCHAR},
       </if>
       <if test="parentId != null" >
         parent_id = #{parentId,jdbcType=INTEGER},
       </if>
-      <if test="childMenuUrl != null" >
+      <if test="childMenuUrl != null and childMenuUrl !=''" >
         child_menu_url = #{childMenuUrl,jdbcType=VARCHAR},
       </if>
     </set>
