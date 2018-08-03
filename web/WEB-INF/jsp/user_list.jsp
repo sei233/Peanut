@@ -47,15 +47,15 @@
                 <th>操作</th>
                 <th>操作</th>
             </tr>
-            <c:forEach items="${usersList}" var="user">
+            <c:forEach items="${usersList}" var="userVo">
                 <tr class="active">
-                    <td>${user.userId}</td>
-                    <td>${user.userName}</td>
-                    <td>0</td>
-                    <td>${user.userState}</td>
-                    <td><a class="btn btn-primary" href="${pageContext.request.contextPath }/user/update.action?id=${user.userId}">修改</a></td>
+                    <td>${userVo.user.userId}</td>
+                    <td>${userVo.user.userName}</td>
+                    <td>${userVo.role}</td>
+                    <td>${userVo.user.userState}</td>
+                    <td><a class="btn btn-primary" href="${pageContext.request.contextPath }/user/update.action?id=${userVo.user.userId}">修改</a></td>
                     <td><a class="btn btn-danger" onclick="return del()"
-                           href="${pageContext.request.contextPath }/user/delete.action?id=${user.userId}">删除</a></td>
+                           href="${pageContext.request.contextPath }/user/delete.action?id=${userVo.user.userId}">删除</a></td>
                 </tr>
             </c:forEach>
         </table>

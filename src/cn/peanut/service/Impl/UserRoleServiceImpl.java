@@ -22,4 +22,14 @@ public class UserRoleServiceImpl implements UserRoleService {
     public UserRoleKey selectByUserId(Integer id) {
         return userRoleMapper.selectByUserId(id);
     }
+
+    @Override
+    public void insert(UserRoleKey userRoleKey) {
+        userRoleMapper.insert(userRoleKey);
+    }
+
+    @Override
+    public void updateRoleId(UserRoleKey userRoleKey) {
+        userRoleMapper.updateRoleId(userRoleKey);
+    }
 }

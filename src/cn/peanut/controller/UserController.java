@@ -2,6 +2,7 @@ package cn.peanut.controller;
 
 import cn.peanut.bean.po.*;
 import cn.peanut.bean.vo.MenuVo;
+import cn.peanut.bean.vo.UserVo;
 import cn.peanut.exception.MessageException;
 import cn.peanut.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user")
-@Transactional(isolation = Isolation.REPEATABLE_READ,propagation = Propagation.REQUIRED,readOnly = false)
+@Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRED, readOnly = false)
 public class UserController {
 
     @Autowired
@@ -39,23 +40,46 @@ public class UserController {
     RoleMenuService roleMenuService;
 
     @RequestMapping("/show.action")
-    public String showUserList(Model model){
+    public String showUserList(Model model) {
         List<User> userList = userService.findAll();
-        model.addAttribute("usersList",userList);
+        Iterator iter = userList.iterator();
+        List<UserVo> userVoList = new ArrayList<>();
+
+        while (iter.hasNext()) {
+            User user = (User) iter.next();
+            UserRoleKey userRole = userRoleService.selectByUserId(user.getUserId());
+            UserVo userVo = new UserVo();
+            userVo.setUser(user);
+            userVo.setRole(userRole.getRoleId());
+            userVoList.add(userVo);
+        }
+
+        model.addAttribute("usersList", userVoList);
         return "/user_list";
     }
 
-    @RequestMapping(value = "/add.action",method = RequestMethod.GET)
-    public String directAdd(){
+    @RequestMapping(value = "/add.action", method = RequestMethod.GET)
+    public String directAdd() {
         return "/user_add";
     }
 
-    @RequestMapping(value = "/add.action",method = RequestMethod.POST)
+    @RequestMapping(value = "/add.action", method = RequestMethod.POST)
     public String addUser(User user) throws MessageException {
-        if("".equals(user.getUserName())){throw new MessageException("账户名不能为空");}
-        if("".equals(user.getUserPassword())){throw new MessageException("密码不能为空");}
+        if ("".equals(user.getUserName())) {
+            throw new MessageException("账户名不能为空");
+        }
+        if ("".equals(user.getUserPassword())) {
+            throw new MessageException("密码不能为空");
+        }
         user.setUserState((byte) 1);
+
         userService.insertUser(user);
+
+        User user1 = userService.selectByName(user.getUserName());
+        UserRoleKey userRole = new UserRoleKey();
+        userRole.setUserId(user1.getUserId());
+        userRole.setRoleId(2);
+        userRoleService.insert(userRole);
         return "redirect:/user/show.action";
     }
 
@@ -65,48 +89,63 @@ public class UserController {
         return "redirect:/user/show.action";
     }
 
-    @RequestMapping(value = "/update.action",method = RequestMethod.GET)
-    public String updateUser(Model model,Integer id) throws MessageException {
+    @RequestMapping(value = "/update.action", method = RequestMethod.GET)
+    public String updateUser(Model model, Integer id) throws MessageException {
         User user = userService.selectById(id);
-        model.addAttribute("user",user);
+        UserVo userVo = new UserVo();
+        userVo.setUser(user);
+        UserRoleKey userRoleKey = userRoleService.selectByUserId(user.getUserId());
+        userVo.setRole(userRoleKey.getRoleId());
+        model.addAttribute("userVo", userVo);
         return "/user_update";
     }
 
-    @RequestMapping(value = "/update.action",method = RequestMethod.POST)
-    public String updateUser(User user) throws MessageException {
-        if("".equals(user.getUserName())
-                &&"".equals(user.getUserPassword())
-                &&user.getUserState()==null){
+    @RequestMapping(value = "/update.action", method = RequestMethod.POST)
+    public String updateUser(UserVo userVo) throws MessageException {
+        if ("".equals(userVo.getUser().getUserName())
+                && "".equals(userVo.getUser().getUserPassword())
+                && userVo.getUser().getUserState() == null) {
             throw new MessageException("提交菜单不能为空");
         }
-        userService.updateUser(user);
+        userService.updateUser(userVo.getUser());
+
+        if (userVo.getRole() != null) {
+            UserRoleKey userRoleKey = new UserRoleKey();
+            userRoleKey.setUserId(userVo.getUser().getUserId());
+            userRoleKey.setRoleId(userVo.getRole());
+            userRoleService.updateRoleId(userRoleKey);
+        }
         return "redirect:/user/show.action";
     }
 
-    @RequestMapping(value = "/login.action",method = RequestMethod.GET)
+    @RequestMapping(value = "/login.action", method = RequestMethod.GET)
     public String login() {
         return "redirect:/login.jsp";
     }
 
-    @RequestMapping(value = "/home.action",method = RequestMethod.GET)
+    @RequestMapping(value = "/home.action", method = RequestMethod.GET)
     public String home() {
         return "/welcome";
     }
 
     //登录
-    @RequestMapping(value = "/login.action",method = RequestMethod.POST)
-    public String login(Model model,User user,HttpSession httpSession) throws MessageException {
+    @RequestMapping(value = "/login.action", method = RequestMethod.POST)
+    public String login(Model model, User user, HttpSession httpSession) throws MessageException {
         httpSession.setAttribute("menusList", null);
-        if("".equals(user.getUserPassword())){throw new MessageException("密码不能为空");}
+        if ("".equals(user.getUserPassword())) {
+            throw new MessageException("密码不能为空");
+        }
         User user1 = userService.selectByName(user.getUserName());
-        if(user1.getUserState()==null||user1.getUserState()!=1){throw new MessageException("账号未被激活或是被封禁");}
-        if(user1.getUserPassword().equals(user.getUserPassword())){
-            httpSession.setAttribute("USER_SESSION",user1.getUserName());
+        if (user1.getUserState() == null || user1.getUserState() != 1) {
+            throw new MessageException("账号未被激活或是被封禁");
+        }
+        if (user1.getUserPassword().equals(user.getUserPassword())) {
+            httpSession.setAttribute("USER_SESSION", user1.getUserName());
 
             //通过用户ID获取角色
             UserRoleKey userRole = userRoleService.selectByUserId(user1.getUserId());
             //通过角色ID获取菜单表PID
-            if(null!=(userRole)) {
+            if (null != (userRole)) {
                 RoleMenu roleMenu = roleMenuService.selectByRoleId(userRole.getRoleId());
                 //将pid拆分
                 if (null != (roleMenu)) {
@@ -129,16 +168,20 @@ public class UserController {
                 }
             }
             return "/home";
-        }else{
+        } else {
             throw new MessageException("账户名或者密码错误");
         }
     }
 
     //注册
     @RequestMapping("/register.action")
-    public String register(Model model,User user) throws MessageException {
-        if("".equals(user.getUserName())){throw new MessageException("账户名不能为空");}
-        if("".equals(user.getUserPassword())){throw new MessageException("密码不能为空");}
+    public String register(Model model, User user) throws MessageException {
+        if ("".equals(user.getUserName())) {
+            throw new MessageException("账户名不能为空");
+        }
+        if ("".equals(user.getUserPassword())) {
+            throw new MessageException("密码不能为空");
+        }
         user.setUserState((byte) 1);
         userService.insertUser(user);
         return "redirect:/login.jsp";

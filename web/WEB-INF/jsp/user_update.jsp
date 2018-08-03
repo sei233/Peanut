@@ -25,27 +25,34 @@
 </head>
 <body bgcolor="#FFFFCC">
 <br>
-<form action="${pageContext.request.contextPath }/user/update.action?userId=${user.userId}"
+<form action="${pageContext.request.contextPath }/user/update.action?user.userId=${userVo.user.userId}"
       method="post" enctype="multipart/form-data">
     <div class="container">
         <div class="form-group">
             <div><label class="control-label">用户名称</label></div>
             <div>
-                <input class="form-control" type="text" name="userName" placeholder="${user.userName}">
+                <input class="form-control" type="text" name="user.userName" placeholder="${userVo.user.userName}">
             </div>
         </div>
 
         <div class="form-group">
             <div><label>用户密码</label></div>
             <div>
-                <input class="form-control" type="text" name="userPassword" placeholder="${user.userPassword}">
+                <input class="form-control" type="text" name="user.userPassword" placeholder="${userVo.user.userPassword}">
             </div>
         </div>
 
         <div class="form-group">
             <div><label>用户状态</label></div>
             <div>
-                <input class="form-control" type="text" name="userState" placeholder="${user.userState}">
+                <input class="form-control" type="text" name="user.userState" placeholder="${userVo.user.userState}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div><label>用户角色</label></div>
+            <div>
+                <input class="form-control" type="text" name="role" placeholder="${userVo.role}">
             </div>
         </div>
 

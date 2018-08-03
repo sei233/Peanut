@@ -24,4 +24,6 @@ public interface UserRoleMapper {
     int updateByExampleSelective(@Param("record") UserRoleKey record, @Param("example") UserRoleExample example);
 
     int updateByExample(@Param("record") UserRoleKey record, @Param("example") UserRoleExample example);
+
+    void updateRoleId(UserRoleKey record);
 }

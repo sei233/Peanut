@@ -148,4 +148,11 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  <update id="updateRoleId" parameterType="cn.peanut.bean.po.UserRoleKey" >
+    update
+    user_role
+    set user_id = #{userId,jdbcType=INTEGER},
+    role_id = #{roleId,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
 </mapper>
