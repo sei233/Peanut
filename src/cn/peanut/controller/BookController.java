@@ -78,16 +78,18 @@ public class BookController {
                 BookVo bookVo1 = pack(book);
                 bookVoList.add(bookVo1);
             }
-        } else {
-            List<BookSubKey> bookSubList = bookSubService.selectBySub(bookVo.getSubCtgy().getSubCtgyId());
-            Iterator iter = bookSubList.iterator();
+        } else if(bookVo.getSubCtgy()!=null){
+                List<BookSubKey> bookSubList = bookSubService.selectBySub(bookVo.getSubCtgy().getSubCtgyId());
+                Iterator iter = bookSubList.iterator();
 
-            while (iter.hasNext()) {
-                BookSubKey bookSubKey = (BookSubKey) iter.next();
-                Book book = bookService.selectBookById(bookSubKey.getBookId());
-                BookVo bookVo1 = pack(book);
-                bookVoList.add(bookVo1);
-            }
+                while (iter.hasNext()) {
+                    BookSubKey bookSubKey = (BookSubKey) iter.next();
+                    Book book = bookService.selectBookById(bookSubKey.getBookId());
+                    BookVo bookVo1 = pack(book);
+                    bookVoList.add(bookVo1);
+                }
+        }else{
+            return "redirect:/book/show1.action";
         }
         model.addAttribute("booksList", bookVoList);
         return "/book_mng";

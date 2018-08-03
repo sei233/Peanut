@@ -23,6 +23,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> selectBooksListByPage(Integer page, Integer size) {
+        page=(page-1)*size;
         return bookMapper.selectByPage(page,size);
     }
 
