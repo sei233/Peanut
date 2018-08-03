@@ -28,4 +28,9 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     public void update(RoleMenu roleMenu) {
         roleMenuMapper.updateByPrimaryKey(roleMenu);
     }
+
+    @Override
+    public List<RoleMenu> findAll() {
+        return roleMenuMapper.selectByExample(null);
+    }
 }
