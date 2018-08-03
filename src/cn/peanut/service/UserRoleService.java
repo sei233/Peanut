@@ -6,4 +6,5 @@ public interface UserRoleService {
     UserRoleKey selectByUserId(Integer id);
     void insert(UserRoleKey userRoleKey);
     void updateRoleId(UserRoleKey userRoleKey);
+    void deleteById(Integer id);
 }

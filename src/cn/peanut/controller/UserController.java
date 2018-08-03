@@ -85,6 +85,7 @@ public class UserController {
 
     @RequestMapping("/delete.action")
     public String deleteUser(Integer id) throws MessageException {
+        userRoleService.deleteById(id);
         userService.deleteUserById(id);
         return "redirect:/user/show.action";
     }

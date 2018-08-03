@@ -32,4 +32,11 @@ public class UserRoleServiceImpl implements UserRoleService {
     public void updateRoleId(UserRoleKey userRoleKey) {
         userRoleMapper.updateRoleId(userRoleKey);
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        userRoleMapper.deleteByUserId(id);
+    }
+
+
 }
