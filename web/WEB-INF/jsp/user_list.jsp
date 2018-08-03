@@ -34,7 +34,7 @@
 <br>
 <div class="container">
     <div>
-        <a class="btn btn-success" href="${pageContext.request.contextPath }/menu/.action">添加用户</a>
+        <a class="btn btn-success" href="${pageContext.request.contextPath }/user/add.action">添加用户</a>
     </div>
     <br>
     <div>
@@ -53,9 +53,9 @@
                     <td>${user.userName}</td>
                     <td>0</td>
                     <td>${user.userState}</td>
-                    <td><a href="${pageContext.request.contextPath }/menu/update1.action?menuId=${main.menuId}">修改</a></td>
+                    <td><a href="${pageContext.request.contextPath }/user/update.action?id=${user.userId}">修改</a></td>
                     <td><a onclick="return del()"
-                           href="${pageContext.request.contextPath }/menu/delete1.action?menuId=${main.menuId}">删除</a></td>
+                           href="${pageContext.request.contextPath }/user/delete.action?id=${user.userId}">删除</a></td>
                 </tr>
             </c:forEach>
         </table>

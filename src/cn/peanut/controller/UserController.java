@@ -45,6 +45,26 @@ public class UserController {
         return "/user_list";
     }
 
+    @RequestMapping(value = "/add.action",method = RequestMethod.GET)
+    public String directAdd(){
+        return "/user_add";
+    }
+
+    @RequestMapping(value = "/add.action",method = RequestMethod.POST)
+    public String addUser(User user) throws MessageException {
+        if("".equals(user.getUserName())){throw new MessageException("账户名不能为空");}
+        if("".equals(user.getUserPassword())){throw new MessageException("密码不能为空");}
+        user.setUserState((byte) 1);
+        userService.insertUser(user);
+        return "redirect:/user/show.action";
+    }
+
+    @RequestMapping("/delete.action")
+    public String deleteUser(Integer id) throws MessageException {
+        userService.deleteUserById(id);
+        return "redirect:/user/show.action";
+    }
+
     @RequestMapping(value = "/login.action",method = RequestMethod.GET)
     public String login() {
         return "redirect:/login.jsp";
