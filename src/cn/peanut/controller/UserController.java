@@ -138,6 +138,7 @@ public class UserController {
         if ("".equals(user.getUserPassword())) {
             throw new MessageException("密码不能为空");
         }
+        if(userService.selectByName(user.getUserName())==null){throw new MessageException("账号不存在");}
         User user1 = userService.selectByName(user.getUserName());
         if (user1.getUserState() == null || user1.getUserState() != 1) {
             throw new MessageException("账号未被激活或是被封禁");
