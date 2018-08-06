@@ -51,7 +51,7 @@
                 <tr class="active">
                     <td>${userVo.user.userId}</td>
                     <td>${userVo.user.userName}</td>
-                    <td>${userVo.roleVo}</td>
+                    <td>${userVo.role}</td>
                     <td>${userVo.userState}</td>
                     <td><a class="btn btn-primary" href="${pageContext.request.contextPath }/user/update.action?id=${userVo.user.userId}">修改</a></td>
                     <td><a class="btn btn-danger" onclick="return del()"

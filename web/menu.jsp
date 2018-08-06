@@ -21,13 +21,13 @@
     <h3>菜单</h3>
         <a class="btn btn-primary btn-block dropdown-toggle" href="${pageContext.request.contextPath}/user/home.action"
            target=main>－ 首页</a>
-    <c:forEach items="${sessionScope.menusList}" var="menu">
-        <div class="dropdown">
-            <a class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown"
+    <c:forEach items="${sessionScope.menusList}" var="menu" varStatus="s">
+        <div>
+            <a class="btn btn-primary btn-block nav nav-header collapsed" data-toggle="collapse" data-target="#${s.index}"
                target=main>－ ${menu.mainMenu.menuName}
                 <span class="caret"></span>
             </a>
-            <ul class="btn btn-info btn-block dropdown-menu">
+            <ul id="${s.index}" class="btn btn-block nav nav-list collapse">
                 <c:forEach items="${menu.childMenu}" var="childmenu">
                     <li>
                         <a href="${pageContext.request.contextPath}${childmenu.childMenuUrl}"

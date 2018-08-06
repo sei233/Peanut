@@ -5,22 +5,7 @@ import cn.peanut.bean.po.User;
 public class UserVo {
     private User user;
     private Integer role;
-    private String roleVo;
     private String userState;
-
-    public String getRoleVo() {
-        return roleVo;
-    }
-
-    public void setRoleVo() {
-        if(role==1){
-            roleVo="超级管理员";
-        }else if(role==2){
-            roleVo="用户";
-        }else{
-            roleVo="未知";
-        }
-    }
 
     public String getUserState() {
         return userState;

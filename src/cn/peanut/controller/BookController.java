@@ -137,15 +137,17 @@ public class BookController {
         Book book = bookVo.getBook();
         bookService.update(book);
 
-        TopCtgy topCtgy = bookVo.getTopCtgy();
-        BookTopKey bookTopKey = bookTopService.selectByBookId(book.getBookId());
-        bookTopKey.setTopCtgyId(topCtgy.getTopCtgyId());
-        bookTopService.update(bookTopKey);
+        if(bookVo.getSubCtgy()!=null) {
+            TopCtgy topCtgy = bookVo.getTopCtgy();
+            BookTopKey bookTopKey = bookTopService.selectByBookId(book.getBookId());
+            bookTopKey.setTopCtgyId(topCtgy.getTopCtgyId());
+            bookTopService.update(bookTopKey);
 
-        SubCtgy subCtgy = bookVo.getSubCtgy();
-        BookSubKey bookSubKey = bookSubService.selectByBookId(book.getBookId());
-        bookSubKey.setSubCtgyId(subCtgy.getSubCtgyId());
-        bookSubService.update(bookSubKey);
+            SubCtgy subCtgy = bookVo.getSubCtgy();
+            BookSubKey bookSubKey = bookSubService.selectByBookId(book.getBookId());
+            bookSubKey.setSubCtgyId(subCtgy.getSubCtgyId());
+            bookSubService.update(bookSubKey);
+        }
         return "redirect:/book/show1.action";
     }
 }

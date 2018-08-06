@@ -52,7 +52,6 @@ public class UserController {
             userVo.setUser(user);
             userVo.setRole(userRole.getRoleId());
             userVo.setUserState();
-            userVo.setRoleVo();
             userVoList.add(userVo);
         }
 
@@ -100,7 +99,6 @@ public class UserController {
         userVo.setUserState();
         UserRoleKey userRoleKey = userRoleService.selectByUserId(user.getUserId());
         userVo.setRole(userRoleKey.getRoleId());
-        userVo.setRoleVo();
         model.addAttribute("userVo", userVo);
         return "/user_update";
     }
