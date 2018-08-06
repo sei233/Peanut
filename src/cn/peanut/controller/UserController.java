@@ -51,6 +51,7 @@ public class UserController {
             UserVo userVo = new UserVo();
             userVo.setUser(user);
             userVo.setRole(userRole.getRoleId());
+            userVo.setUserState();
             userVoList.add(userVo);
         }
 
@@ -71,7 +72,7 @@ public class UserController {
         if ("".equals(user.getUserPassword())) {
             throw new MessageException("密码不能为空");
         }
-        user.setUserState((byte) 1);
+        user.setUserState((byte) 2);
 
         userService.insertUser(user);
 
@@ -95,6 +96,7 @@ public class UserController {
         User user = userService.selectById(id);
         UserVo userVo = new UserVo();
         userVo.setUser(user);
+        userVo.setUserState();
         UserRoleKey userRoleKey = userRoleService.selectByUserId(user.getUserId());
         userVo.setRole(userRoleKey.getRoleId());
         model.addAttribute("userVo", userVo);

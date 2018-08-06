@@ -52,7 +52,7 @@
                     <td>${userVo.user.userId}</td>
                     <td>${userVo.user.userName}</td>
                     <td>${userVo.role}</td>
-                    <td>${userVo.user.userState}</td>
+                    <td>${userVo.userState}</td>
                     <td><a class="btn btn-primary" href="${pageContext.request.contextPath }/user/update.action?id=${userVo.user.userId}">修改</a></td>
                     <td><a class="btn btn-danger" onclick="return del()"
                            href="${pageContext.request.contextPath }/user/delete.action?id=${userVo.user.userId}">删除</a></td>

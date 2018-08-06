@@ -43,9 +43,14 @@
         </div>
 
         <div class="form-group">
-            <div><label>用户状态</label></div>
+            <div><label class="control-label">用户状态</label></div>
             <div>
-                <input class="form-control" type="text" name="user.userState" placeholder="${userVo.user.userState}">
+                <select class="btn btn-default" name="user.userState">
+                    <option value="">${userVo.userState}</option>
+                    <option value="">----------</option>
+                    <option value="0">封禁</option>
+                    <option value="1">激活</option>
+                </select>
             </div>
         </div>
 
