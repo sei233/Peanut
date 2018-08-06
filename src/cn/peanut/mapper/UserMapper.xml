@@ -186,7 +186,7 @@
       <if test="userPassword != null and userPassword !=''" >
         user_password = #{userPassword,jdbcType=VARCHAR},
       </if>
-      <if test="userState != null and userState !=''" >
+      <if test="userState != null">
         user_state = #{userState,jdbcType=TINYINT},
       </if>
     </set>

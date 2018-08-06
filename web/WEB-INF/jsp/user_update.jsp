@@ -55,9 +55,14 @@
         </div>
 
         <div class="form-group">
-            <div><label>用户角色</label></div>
+            <div><label class="control-label">用户角色</label></div>
             <div>
-                <input class="form-control" type="text" name="role" placeholder="${userVo.role}">
+                <select class="btn btn-default" name="role">
+                    <option value="">${userVo.roleVo}</option>
+                    <option value="">----------</option>
+                    <option value="1">超级管理员</option>
+                    <option value="2">用户</option>
+                </select>
             </div>
         </div>
 
