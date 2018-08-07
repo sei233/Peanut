@@ -5,6 +5,8 @@ public class Menu {
 
     private String menuName;
 
+    private Integer parentId;
+
     private String menuUrl;
 
     public Integer getMenuId() {
@@ -23,11 +25,29 @@ public class Menu {
         this.menuName = menuName == null ? null : menuName.trim();
     }
 
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
     public String getMenuUrl() {
         return menuUrl;
     }
 
     public void setMenuUrl(String menuUrl) {
         this.menuUrl = menuUrl == null ? null : menuUrl.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "menuId=" + menuId +
+                ", menuName='" + menuName + '\'' +
+                ", parentId=" + parentId +
+                ", menuUrl='" + menuUrl + '\'' +
+                '}';
     }
 }

@@ -8,4 +8,5 @@ public interface RoleMenuService {
     RoleMenu selectByRoleId(Integer id);
     void update(RoleMenu roleMenu);
     List<RoleMenu> findAll();
+    void insert(RoleMenu roleMenu);
 }

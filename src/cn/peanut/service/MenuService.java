@@ -5,6 +5,7 @@ import cn.peanut.bean.po.Menu;
 import java.util.List;
 
 public interface MenuService {
+    List<Menu> selectByPid(Integer Pid);
     Menu selectById(Integer id);
     Menu selectByName(String name);
     List<Menu> findAll();

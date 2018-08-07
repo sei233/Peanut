@@ -28,9 +28,6 @@ public class UserController {
     UserService userService;
 
     @Autowired
-    ChildMenuService childMenuService;
-
-    @Autowired
     MenuService menuService;
 
     @Autowired
@@ -134,11 +131,14 @@ public class UserController {
     //登录
     @RequestMapping(value = "/login.action", method = RequestMethod.POST)
     public String login(Model model, User user, HttpSession httpSession) throws MessageException {
+        int m = 0;
         httpSession.setAttribute("menusList", null);
         if ("".equals(user.getUserPassword())) {
             throw new MessageException("密码不能为空");
         }
-        if(userService.selectByName(user.getUserName())==null){throw new MessageException("账号不存在");}
+        if (userService.selectByName(user.getUserName()) == null) {
+            throw new MessageException("账号不存在");
+        }
         User user1 = userService.selectByName(user.getUserName());
         if (user1.getUserState() == null || user1.getUserState() != 1) {
             throw new MessageException("账号未被激活或是被封禁");
@@ -153,20 +153,37 @@ public class UserController {
                 RoleMenu roleMenu = roleMenuService.selectByRoleId(userRole.getRoleId());
                 //将pid拆分
                 if (null != (roleMenu)) {
-                    String[] menuIdList = roleMenu.getPid().split(",");
+                    String[] menuIdList = roleMenu.getMenuId().split(",");
 
-                    List<MenuVo> menuVoList = new ArrayList<>();
+                    List<Menu> menuVoList = new ArrayList<>();
 
-                    for (int i = 0; i < menuIdList.length; i++) {
-                        MenuVo menuVo = new MenuVo();
-                        //通过pid获取主菜单
+                    for(int i=0;i<menuIdList.length;i++){
                         Menu menu = menuService.selectById(Integer.parseInt(menuIdList[i]));
-                        menuVo.setMainMenu(menu);
-                        //通过pid获取子菜单们
-                        List<ChildMenu> childMenu = childMenuService.selectByPid(Integer.parseInt(menuIdList[i]));
-                        menuVo.setChildMenu(childMenu);
-                        menuVoList.add(menuVo);
+                        menuVoList.add(menu);
                     }
+//                    List<MenuVo> menuVoList = new ArrayList<>();
+//
+//                    for (int i = 0; i < menuIdList.length; i++) {
+//                        MenuVo menuVo = new MenuVo();
+//                        Menu menu = menuService.selectById(Integer.parseInt(menuIdList[i]));
+//
+//                        //如果pid为0就是主菜单
+//                        if (menu.getParentId() == 0) {
+//                            List<Menu> childMenu = new ArrayList<>();
+//                            menuVo.setMainMenu(menu);
+//                            menuVo.setChildMenu(childMenu);
+//                            menuVoList.add(menuVo);
+//                        }
+//
+//                        for (int j = 0; j < menuIdList.length; j++) {
+//                            Menu childmenu = menuService.selectById(Integer.parseInt(menuIdList[j]));
+//                            if (childmenu.getParentId() != 0) {
+//                                if (childmenu.getParentId().equals(menu.getMenuId())) {
+//                                    menuVo.getChildMenu().add(childmenu);
+//                                }
+//                            }
+//                        }
+//                    }
 
                     httpSession.setAttribute("menusList", menuVoList);
                 }
@@ -186,8 +203,16 @@ public class UserController {
         if ("".equals(user.getUserPassword())) {
             throw new MessageException("密码不能为空");
         }
-        user.setUserState((byte) 1);
+        user.setUserState((byte) 2);
+
         userService.insertUser(user);
+
+        User user1 = userService.selectByName(user.getUserName());
+        UserRoleKey userRole = new UserRoleKey();
+        userRole.setUserId(user1.getUserId());
+        userRole.setRoleId(2);
+        userRoleService.insert(userRole);
+
         return "redirect:/login.jsp";
     }
 }

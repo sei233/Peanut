@@ -3,7 +3,7 @@ package cn.peanut.bean.po;
 public class RoleMenu {
     private Integer roleId;
 
-    private String pid;
+    private String menuId;
 
     public Integer getRoleId() {
         return roleId;
@@ -13,11 +13,11 @@ public class RoleMenu {
         this.roleId = roleId;
     }
 
-    public String getPid() {
-        return pid;
+    public String getMenuId() {
+        return menuId;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid == null ? null : pid.trim();
+    public void setMenuId(String menuId) {
+        this.menuId = menuId == null ? null : menuId.trim();
     }
 }

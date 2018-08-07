@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="cn.peanut.bean.po.Menu" >
     <id column="menu_id" property="menuId" jdbcType="INTEGER" />
     <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
     <result column="menu_url" property="menuUrl" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    menu_id, menu_name, menu_url
+    menu_id, menu_name, parent_id, menu_url
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.peanut.bean.po.MenuExample" >
     select
@@ -87,12 +88,6 @@
     from menu
     where menu_id = #{menuId,jdbcType=INTEGER}
   </select>
-  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select
-    <include refid="Base_Column_List" />
-    from menu
-    where menu_name = #{name,jdbcType=VARCHAR}
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from menu
     where menu_id = #{menuId,jdbcType=INTEGER}
@@ -104,10 +99,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.peanut.bean.po.Menu" >
-    insert into menu (menu_id, menu_name, menu_url
-      )
-    values (#{menuId,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}
-      )
+    insert into menu (menu_id, menu_name, parent_id, 
+      menu_url)
+    values (#{menuId,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
+      #{menuUrl,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.peanut.bean.po.Menu" >
     insert into menu
@@ -117,6 +112,9 @@
       </if>
       <if test="menuName != null" >
         menu_name,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
       </if>
       <if test="menuUrl != null" >
         menu_url,
@@ -128,6 +126,9 @@
       </if>
       <if test="menuName != null" >
         #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
       </if>
       <if test="menuUrl != null" >
         #{menuUrl,jdbcType=VARCHAR},
@@ -149,6 +150,9 @@
       <if test="record.menuName != null" >
         menu_name = #{record.menuName,jdbcType=VARCHAR},
       </if>
+      <if test="record.parentId != null" >
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+      </if>
       <if test="record.menuUrl != null" >
         menu_url = #{record.menuUrl,jdbcType=VARCHAR},
       </if>
@@ -161,6 +165,7 @@
     update menu
     set menu_id = #{record.menuId,jdbcType=INTEGER},
       menu_name = #{record.menuName,jdbcType=VARCHAR},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
       menu_url = #{record.menuUrl,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -169,10 +174,13 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.peanut.bean.po.Menu" >
     update menu
     <set >
-      <if test="menuName != null and menuName != ''" >
+      <if test="menuName != null" >
         menu_name = #{menuName,jdbcType=VARCHAR},
       </if>
-      <if test="menuUrl != null and menuUrl != ''" >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="menuUrl != null" >
         menu_url = #{menuUrl,jdbcType=VARCHAR},
       </if>
     </set>
@@ -181,6 +189,7 @@
   <update id="updateByPrimaryKey" parameterType="cn.peanut.bean.po.Menu" >
     update menu
     set menu_name = #{menuName,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
       menu_url = #{menuUrl,jdbcType=VARCHAR}
     where menu_id = #{menuId,jdbcType=INTEGER}
   </update>

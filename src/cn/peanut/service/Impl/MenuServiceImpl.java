@@ -21,13 +21,19 @@ public class MenuServiceImpl implements MenuService {
     private MenuMapper menuMapper;
 
     @Override
+    public List<Menu> selectByPid(Integer Pid) {
+        return null;
+    }
+
+    @Override
     public Menu selectById(Integer id) {
         return menuMapper.selectByPrimaryKey(id);
     }
 
     @Override
     public Menu selectByName(String name) {
-        return menuMapper.selectByName(name);
+//        return menuMapper.selectByName(name);
+        return null;
     }
 
     @Override

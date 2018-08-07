@@ -33,4 +33,9 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     public List<RoleMenu> findAll() {
         return roleMenuMapper.selectByExample(null);
     }
+
+    @Override
+    public void insert(RoleMenu roleMenu) {
+        roleMenuMapper.insert(roleMenu);
+    }
 }

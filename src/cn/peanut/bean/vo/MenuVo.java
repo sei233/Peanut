@@ -1,13 +1,12 @@
 package cn.peanut.bean.vo;
 
-import cn.peanut.bean.po.ChildMenu;
 import cn.peanut.bean.po.Menu;
 
 import java.util.List;
 
 public class MenuVo {
     private Menu mainMenu;
-    private List<ChildMenu> childMenu;
+    private List<Menu> childMenu;
 
     public Menu getMainMenu() {
         return mainMenu;
@@ -17,11 +16,11 @@ public class MenuVo {
         this.mainMenu = mainMenu;
     }
 
-    public List<ChildMenu> getChildMenu() {
+    public List<Menu> getChildMenu() {
         return childMenu;
     }
 
-    public void setChildMenu(List<ChildMenu> childMenu) {
+    public void setChildMenu(List<Menu> childMenu) {
         this.childMenu = childMenu;
     }
 }

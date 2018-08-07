@@ -3,7 +3,7 @@
 <mapper namespace="cn.peanut.mapper.RoleMenuMapper" >
   <resultMap id="BaseResultMap" type="cn.peanut.bean.po.RoleMenu" >
     <id column="role_id" property="roleId" jdbcType="INTEGER" />
-    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="menu_id" property="menuId" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,7 +64,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    role_id, pid
+    role_id, menu_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.peanut.bean.po.RoleMenuExample" >
     select
@@ -97,8 +97,8 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.peanut.bean.po.RoleMenu" >
-    insert into role_menu (role_id, pid)
-    values (#{roleId,jdbcType=INTEGER}, #{pid,jdbcType=VARCHAR})
+    insert into role_menu (role_id, menu_id)
+    values (#{roleId,jdbcType=INTEGER}, #{menuId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.peanut.bean.po.RoleMenu" >
     insert into role_menu
@@ -106,16 +106,16 @@
       <if test="roleId != null" >
         role_id,
       </if>
-      <if test="pid != null" >
-        pid,
+      <if test="menuId != null" >
+        menu_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="roleId != null" >
         #{roleId,jdbcType=INTEGER},
       </if>
-      <if test="pid != null" >
-        #{pid,jdbcType=VARCHAR},
+      <if test="menuId != null" >
+        #{menuId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -131,8 +131,8 @@
       <if test="record.roleId != null" >
         role_id = #{record.roleId,jdbcType=INTEGER},
       </if>
-      <if test="record.pid != null" >
-        pid = #{record.pid,jdbcType=VARCHAR},
+      <if test="record.menuId != null" >
+        menu_id = #{record.menuId,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -142,7 +142,7 @@
   <update id="updateByExample" parameterType="map" >
     update role_menu
     set role_id = #{record.roleId,jdbcType=INTEGER},
-      pid = #{record.pid,jdbcType=VARCHAR}
+      menu_id = #{record.menuId,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -150,15 +150,15 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.peanut.bean.po.RoleMenu" >
     update role_menu
     <set >
-      <if test="pid != null" >
-        pid = #{pid,jdbcType=VARCHAR},
+      <if test="menuId != null" >
+        menu_id = #{menuId,jdbcType=VARCHAR},
       </if>
     </set>
     where role_id = #{roleId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.peanut.bean.po.RoleMenu" >
     update role_menu
-    set pid = #{pid,jdbcType=VARCHAR}
+    set menu_id = #{menuId,jdbcType=VARCHAR}
     where role_id = #{roleId,jdbcType=INTEGER}
   </update>
 </mapper>
