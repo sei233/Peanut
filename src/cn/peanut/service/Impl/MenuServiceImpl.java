@@ -32,8 +32,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public Menu selectByName(String name) {
-//        return menuMapper.selectByName(name);
-        return null;
+        return menuMapper.selectByName(name);
     }
 
     @Override

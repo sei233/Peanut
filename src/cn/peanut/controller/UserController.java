@@ -31,6 +31,9 @@ public class UserController {
     MenuService menuService;
 
     @Autowired
+    RoleService roleService;
+    
+    @Autowired
     UserRoleService userRoleService;
 
     @Autowired
@@ -107,6 +110,10 @@ public class UserController {
                 && userVo.getUser().getUserState() == null) {
             throw new MessageException("提交菜单不能为空");
         }
+
+        if(roleService.selectById(userVo.getRole())==null)
+            throw new MessageException("该角色不存在");
+
         userService.updateUser(userVo.getUser());
 
         if (userVo.getRole() != null) {
@@ -131,7 +138,6 @@ public class UserController {
     //登录
     @RequestMapping(value = "/login.action", method = RequestMethod.POST)
     public String login(Model model, User user, HttpSession httpSession) throws MessageException {
-        int m = 0;
         httpSession.setAttribute("menusList", null);
         if ("".equals(user.getUserPassword())) {
             throw new MessageException("密码不能为空");

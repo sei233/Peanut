@@ -40,18 +40,24 @@
         <div class="form-group">
             <c:forEach items="${menusList}" var="menu" varStatus="s">
                 <div>
-                    <a class="btn btn-default nav nav-header collapsed" data-toggle="collapse" data-target="#${s.index}">
-                        － ${menu.mainMenu.menuName}
-                        <span class="caret"></span>
-                    </a>
+                    <c:if test="${menu.parentId == 0 }">
+                        <a class="btn btn-default nav nav-header collapsed" data-toggle="collapse"
+                           data-target="#${s.index}">
+                            － ${menu.menuName}
+                            <span class="caret"></span>
+                        </a>
+                    </c:if>
                     <ul id="${s.index}" class="nav nav-list collapse">
-                        <c:forEach items="${menu.childMenu}" var="childmenu">
-                            <li>
-                                <label>
-                                    <input name="child" type="checkbox" class="checkbox-inline" value="${childmenu.childMenuId}">
-                                    <span class="btn">${childmenu.childMenuName}</span>
-                                </label>
-                            </li>
+                        <c:forEach items="${menusList}" var="childmenu">
+                            <c:if test="${childmenu.parentId == menu.menuId }">
+                                <li>
+                                    <label>
+                                        <input name="child" type="checkbox" class="checkbox-inline"
+                                               value="${childmenu.menuId}">
+                                        <span class="btn">${childmenu.menuName}</span>
+                                    </label>
+                                </li>
+                            </c:if>
                         </c:forEach>
                     </ul>
                 </div>

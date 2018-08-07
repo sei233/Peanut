@@ -63,6 +63,8 @@ public class GameController {
     //提交add表单
     @RequestMapping(value = "/add.action", method = RequestMethod.POST)
     public String gameAdd(Game game, MultipartFile gamepic) throws IOException, MessageException {
+        if (game.getGameName() == null || "".equals(game.getGameName()) )
+        {throw new MessageException("游戏名不能为空");}
         if (gamepic.getSize() != 0) {
             //图片名
             String name = UUID.randomUUID().toString().replaceAll("-", "");
@@ -74,8 +76,6 @@ public class GameController {
             game.setGamePic(name + "." + ext);
         }
         //名字检索是否存在
-        if (game.getGameName() == null || "".equals(game.getGameName()) )
-        {throw new MessageException("游戏名不能为空");}
         gameService.addGame(game);
         return "redirect:/game/show.action";
     }

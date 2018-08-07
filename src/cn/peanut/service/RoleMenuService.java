@@ -9,4 +9,5 @@ public interface RoleMenuService {
     void update(RoleMenu roleMenu);
     List<RoleMenu> findAll();
     void insert(RoleMenu roleMenu);
+    void deleteById(Integer id);
 }

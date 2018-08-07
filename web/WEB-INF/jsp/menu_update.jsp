@@ -25,7 +25,7 @@
 </head>
 <body bgcolor="#FFFFCC">
 <br>
-<form action="${pageContext.request.contextPath }/menu/update1.action?menuId=${menu.menuId}" method="post"
+<form action="${pageContext.request.contextPath }/menu/update.action?menuId=${menu.menuId}" method="post"
       enctype="multipart/form-data">
     <div class="container">
         <div class="form-group">
@@ -39,6 +39,13 @@
             <div><label>菜单url</label></div>
             <div>
                 <input class="form-control" type="text" name="menuUrl" placeholder="${menu.menuUrl}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div><label>PID</label></div>
+            <div>
+                <input class="form-control" type="text" name="parentId" placeholder="PID">
             </div>
         </div>
 

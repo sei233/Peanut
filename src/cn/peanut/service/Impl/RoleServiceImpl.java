@@ -16,7 +16,6 @@ public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleMapper roleMapper;
 
-
     @Override
     public void insert(Role role) {
         roleMapper.insert(role);
@@ -25,5 +24,14 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role selectByName(String roleName) {
         return roleMapper.selectByName(roleName);
+    }
+
+    @Override
+    public Role selectById(Integer id) {
+        return roleMapper.selectByPrimaryKey(id);
+    }
+
+    public void deleteById(Integer id){
+        roleMapper.deleteByPrimaryKey(id);
     }
 }

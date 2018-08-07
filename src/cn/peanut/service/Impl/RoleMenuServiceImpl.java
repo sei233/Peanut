@@ -38,4 +38,8 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     public void insert(RoleMenu roleMenu) {
         roleMenuMapper.insert(roleMenu);
     }
+
+    public void deleteById(Integer id){
+        roleMenuMapper.deleteByPrimaryKey(id);
+    }
 }

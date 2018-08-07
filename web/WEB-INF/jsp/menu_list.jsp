@@ -34,8 +34,7 @@
 <br>
 <div class="container">
     <div>
-        <a class="btn btn-success" href="${pageContext.request.contextPath }/menu/add1.action">添加主菜单</a>
-        <a class="btn btn-success" href="${pageContext.request.contextPath }/menu/add2.action">添加子菜单</a>
+        <a class="btn btn-success" href="${pageContext.request.contextPath }/menu/add.action">添加菜单</a>
     </div>
     <br>
     <div>
@@ -47,27 +46,14 @@
                 <th>操作</th>
                 <th>操作</th>
             </tr>
-            <c:forEach items="${menusList.mainMenu}" var="main">
+            <c:forEach items="${menusList}" var="main">
                 <tr class="active">
                     <td>${main.menuId}</td>
                     <td>${main.menuName}</td>
-                    <td>0</td>
-                    <td><a class="btn btn-primary" href="${pageContext.request.contextPath }/menu/update1.action?menuId=${main.menuId}">修改</a></td>
+                    <td>${main.parentId}</td>
+                    <td><a class="btn btn-primary" href="${pageContext.request.contextPath }/menu/update.action?menuId=${main.menuId}">修改</a></td>
                     <td><a class="btn btn-danger" onclick="return del()"
-                           href="${pageContext.request.contextPath }/menu/delete1.action?menuId=${main.menuId}">删除</a></td>
-                </tr>
-            </c:forEach>
-            <c:forEach items="${menusList.childMenu}" var="child">
-                <tr class="active">
-                    <td>2000+${child.childMenuId}</td>
-                    <td>${child.childMenuName}</td>
-                    <td>${child.parentId}</td>
-                    <td><a class="btn btn-primary"
-                            href="${pageContext.request.contextPath }/menu/update2.action?childMenuId=${child.childMenuId}">
-                        修改</a></td>
-                    <td><a class="btn btn-danger" onclick="return del()"
-                           href="${pageContext.request.contextPath }/menu/delete2.action?childMenuId=${child.childMenuId}">
-                        删除</a></td>
+                           href="${pageContext.request.contextPath }/menu/delete.action?menuId=${main.menuId}">删除</a></td>
                 </tr>
             </c:forEach>
         </table>

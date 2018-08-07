@@ -40,18 +40,22 @@
     <div>
         <table id="table" border="1" class="table table-striped table-bordered table-hover">
             <tr>
-                <th>角色</th>
-                <th>菜单</th>
+                <th>角色ID</th>
+                <th>角色名</th>
+                <th>菜单ID</th>
+                <th>菜单名</th>
                 <th>操作</th>
                 <th>操作</th>
             </tr>
             <c:forEach items="${roleMenuList}" var="roleMenu">
                 <tr class="active">
-                    <td>${roleMenu.roleId}</td>
-                    <td>${roleMenu.pid}</td>
-                    <td><a class="btn btn-primary" href="${pageContext.request.contextPath }/role/update.action?id=${roleMenu.roleId}">修改</a></td>
+                    <td>${roleMenu.roleMenu.roleId}</td>
+                    <td>${roleMenu.roleName}</td>
+                    <td>${roleMenu.roleMenu.menuId}</td>
+                    <td>${roleMenu.menuName}</td>
+                    <td><a class="btn btn-primary" href="${pageContext.request.contextPath }/role/update.action?id=${roleMenu.roleMenu.roleId}">修改</a></td>
                     <td><a class="btn btn-danger" onclick="return del()"
-                           href="${pageContext.request.contextPath }/role/delete.action?id=${roleMenu.roleId}">删除</a></td>
+                           href="${pageContext.request.contextPath }/role/delete.action?id=${roleMenu.roleMenu.roleId}">删除</a></td>
                 </tr>
             </c:forEach>
         </table>

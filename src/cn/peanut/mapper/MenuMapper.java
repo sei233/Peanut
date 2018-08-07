@@ -21,6 +21,8 @@ public interface MenuMapper {
 
     Menu selectByPrimaryKey(Integer menuId);
 
+    Menu selectByName(String menuName);
+
     int updateByExampleSelective(@Param("record") Menu record, @Param("example") MenuExample example);
 
     int updateByExample(@Param("record") Menu record, @Param("example") MenuExample example);
