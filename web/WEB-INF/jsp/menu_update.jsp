@@ -45,7 +45,7 @@
         <div class="form-group">
             <div><label>PID</label></div>
             <div>
-                <input class="form-control" type="text" name="parentId" placeholder="PID">
+                <input class="form-control" type="text" name="parentId" placeholder="${menu.parentId}">
             </div>
         </div>
 

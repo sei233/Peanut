@@ -127,6 +127,15 @@ public class RoleController {
         return "redirect:/role/show.action";
     }
 
+    @RequestMapping(value = "/update.action",method = RequestMethod.GET)
+    public String updateRole(Model model,Integer id){
+        RoleVo roleVo = new RoleVo();
+        Role role = roleService.selectById(id);
+        roleVo.setRoleName(role.getRoleName());
+        RoleMenu roleMenu = roleMenuService.selectByRoleId(1);
+        return "/role_update";
+    }
+
     @RequestMapping("/delete.action")
     public String deleteRole(Integer id) throws MessageException {
         if (id == 1 || id == 2) {

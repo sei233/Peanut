@@ -32,7 +32,7 @@ public class UserController {
 
     @Autowired
     RoleService roleService;
-    
+
     @Autowired
     UserRoleService userRoleService;
 
@@ -72,6 +72,9 @@ public class UserController {
         if ("".equals(user.getUserPassword())) {
             throw new MessageException("密码不能为空");
         }
+        if (userService.selectByName(user.getUserName())!=null) {
+            throw new MessageException("用户名重复");
+        }
         user.setUserState((byte) 2);
 
         userService.insertUser(user);
@@ -108,10 +111,10 @@ public class UserController {
         if ("".equals(userVo.getUser().getUserName())
                 && "".equals(userVo.getUser().getUserPassword())
                 && userVo.getUser().getUserState() == null) {
-            throw new MessageException("提交菜单不能为空");
+            throw new MessageException("提交用户不能为空");
         }
 
-        if(roleService.selectById(userVo.getRole())==null)
+        if(userVo.getRole() != null && roleService.selectById(userVo.getRole())==null)
             throw new MessageException("该角色不存在");
 
         userService.updateUser(userVo.getUser());

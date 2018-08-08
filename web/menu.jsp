@@ -48,7 +48,7 @@
                     <span class="caret"></span>
                 </a>
             </c:if>
-            <ul id="${s.index}" class="btn btn-block nav nav-list collapse">
+            <ul id="${s.index}" class="nav nav-list collapse">
                 <c:forEach items="${sessionScope.menusList}" var="childmenu">
                     <c:if test="${childmenu.parentId == menu.menuId }">
                         <li>

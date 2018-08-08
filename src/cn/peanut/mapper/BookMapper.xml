@@ -191,7 +191,7 @@
       <if test="bookAuthor != null and bookAuthor !=''" >
         book_author = #{bookAuthor,jdbcType=VARCHAR},
       </if>
-      <if test="bookStatus != null" >
+      <if test="bookStatus != null and bookStatus !=''" >
         book_status = #{bookStatus,jdbcType=TINYINT},
       </if>
     </set>
