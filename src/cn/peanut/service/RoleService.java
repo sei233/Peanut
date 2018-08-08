@@ -7,4 +7,5 @@ public interface RoleService {
     Role selectByName(String roleName);
     Role selectById(Integer id);
     void deleteById(Integer id);
+    void update(Role role);
 }

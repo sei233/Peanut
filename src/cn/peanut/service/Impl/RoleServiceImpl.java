@@ -34,4 +34,9 @@ public class RoleServiceImpl implements RoleService {
     public void deleteById(Integer id){
         roleMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public void update(Role role) {
+        roleMapper.updateByPrimaryKey(role);
+    }
 }

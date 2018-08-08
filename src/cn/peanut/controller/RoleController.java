@@ -27,6 +27,8 @@ import java.util.*;
 @RequestMapping("/role")
 @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRED, readOnly = false)
 public class RoleController {
+    private Integer updateId;
+
     @Autowired
     RoleMenuService roleMenuService;
 
@@ -94,7 +96,7 @@ public class RoleController {
     @RequestMapping(value = "/add.action", method = RequestMethod.POST)
     public String addRole(String roleName, Integer[] child) throws MessageException {
         if ("".equals(roleName) || roleName == null) {throw new MessageException("请输入用户名");}
-        if (roleService.selectByName(roleName)!=null) {throw new MessageException("用户名重复");}
+        if (roleService.selectByName(roleName)!=null) {throw new MessageException("角色名重复");}
         if (child == null) throw new MessageException("请勾选菜单");
 
         Role role = new Role();
@@ -130,7 +132,8 @@ public class RoleController {
     }
 
     @RequestMapping(value = "/update.action",method = RequestMethod.GET)
-    public String updateRole(HttpSession httpSession, Model model, Integer id){
+    public String directUpdate(HttpSession httpSession, Model model, Integer id){
+        updateId=id;
         //得到的权限+角色名
         MenuVo menuVo = new MenuVo();
         Role role = roleService.selectById(id);
@@ -160,6 +163,49 @@ public class RoleController {
         httpSession.setAttribute("allMenus", menuVoList);
 
         return "/role_update";
+    }
+
+    @RequestMapping(value = "/update.action",method = RequestMethod.POST)
+    public String updateRole(String roleName, Integer[] child) throws MessageException {
+        if (roleService.selectByName(roleName)!=null) {throw new MessageException("角色已存在");}
+        if (child == null) throw new MessageException("请勾选菜单");
+
+
+        if (!"".equals(roleName)) {
+            Role role = new Role();
+            role.setRoleId(updateId);
+            role.setRoleName(roleName);
+            roleService.update(role);
+        }
+
+
+        //获取Menu
+        Set<Integer> test = new HashSet<Integer>();
+        StringBuilder Menu = new StringBuilder();
+        for (int i = 0; i < child.length; i++) {
+            //获取所勾选的菜单的id，通过id获取menu
+            Menu menu = menuService.selectById(child[i]);
+            Integer parentId = menu.getParentId();
+            Integer menuId = menu.getMenuId();
+            List list = new ArrayList(test);
+            if (i == 0) {
+                Menu.append(parentId + "," + menuId);
+            } else if (list.contains(parentId)) {
+                Menu.append("," + menuId);
+            } else {
+                Menu.append("," + parentId + "," + menuId);
+            }
+            test.add(parentId);
+            test.add(menuId);
+        }
+
+
+        RoleMenu roleMenu = new RoleMenu();
+        roleMenu.setRoleId(updateId);
+        roleMenu.setMenuId(Menu.toString());
+        roleMenuService.update(roleMenu);
+
+        return "redirect:/role/show.action";
     }
 
     @RequestMapping("/delete.action")
