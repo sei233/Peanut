@@ -10,7 +10,7 @@ public class StringUtil {
     public StringUtil() {
         Calendar date = Calendar.getInstance();
         String year = String.valueOf(date.get(Calendar.YEAR));
-        String month = String.valueOf(date.get(Calendar.MONTH));
+        String month = String.valueOf(date.get(Calendar.MONTH)+1);
         this.month = month;
         this.year = year;
     }

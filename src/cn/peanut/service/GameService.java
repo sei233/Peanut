@@ -13,7 +13,7 @@ public interface GameService {
     List<Game> selectGamesListByPage(Integer page,Integer size);
     List<Game> selectAllGamesList();
     Game selectGame(Integer id);
-    GameVo change(Game game);
+    Game selectGameName(String name);
     void addGame(Game game);
     void updateGame(Game game) throws MessageException;
     void delete(Integer id);

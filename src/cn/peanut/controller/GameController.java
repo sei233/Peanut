@@ -41,13 +41,14 @@ public class GameController {
         if (page == null) page = 1;
         Integer size = 3;
         List<GameVo> gameVoList = new ArrayList<>();
-        GameVo gameVo;
         List<Game> gameList = gameService.selectGamesListByPage(page, size);
         Iterator iter = gameList.iterator();
 
         while (iter.hasNext()) {
-            gameVo = gameService.change((Game) iter.next());
-            if (gameVo.getGameStatus().equals("启用")) gameVoList.add(gameVo);
+            Game game = (Game) iter.next();
+            GameVo gameVo = change(game);
+            if (gameVo.getGameStatus()!=null
+                    &&gameVo.getGameStatus().equals("启用")) gameVoList.add(gameVo);
         }
 
         model.addAttribute("gamesList", gameVoList);
@@ -65,6 +66,8 @@ public class GameController {
     public String gameAdd(Game game, MultipartFile gamepic) throws IOException, MessageException {
         if (game.getGameName() == null || "".equals(game.getGameName()) )
         {throw new MessageException("游戏名不能为空");}
+        if (gameService.selectGameName(game.getGameName())!=null)
+        {throw new MessageException("游戏名不能重复");}
         if (gamepic.getSize() != 0) {
             //图片名
             String name = UUID.randomUUID().toString().replaceAll("-", "");
@@ -91,7 +94,7 @@ public class GameController {
     @RequestMapping(value = "/update.action", method = RequestMethod.GET)
     public String gameRedirect2(Model model, Integer id) {
         Game game = gameService.selectGame(id);
-        GameVo gameVo = gameService.change(game);
+        GameVo gameVo = change(game);
         model.addAttribute("game", gameVo);
         return "/update";
     }
@@ -99,6 +102,8 @@ public class GameController {
     //提交update.jsp
     @RequestMapping(value = "/update.action", method = RequestMethod.POST)
     public String gameUpdate(QueryVo vo, MultipartFile pictureFile) throws Exception {
+        if (gameService.selectGameName(vo.getGame().getGameName())!=null)
+        {throw new MessageException("游戏名已存在");}
         if (pictureFile.getSize() != 0) {
             //图片名
             String name = UUID.randomUUID().toString().replaceAll("-", "");
@@ -140,11 +145,22 @@ public class GameController {
         GameVo gameVo;
         Iterator iter = gameList.iterator();
         while (iter.hasNext()) {
-            gameVo = gameService.change((Game) iter.next());
+            gameVo = change((Game) iter.next());
             gameVoList.add(gameVo);
         }
 
         model.addAttribute("gamesList", gameVoList);
         return "/index";
+    }
+
+    public GameVo change(Game game){
+        GameVo gameVo = new GameVo();
+        gameVo.setGame(game);
+        gameVo.setGameType();
+        gameVo.setGameStatus();
+        gameVo.setGameOperation();
+        gameVo.setGameAdviseType();
+        gameVo.setGameUpdateDate();
+        return gameVo;
     }
 }

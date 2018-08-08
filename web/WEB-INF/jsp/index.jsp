@@ -81,18 +81,18 @@
         </tr>
         <c:forEach items="${gamesList}" var="game" varStatus="s">
             <tr class="active">
-                <td>${game.gameName}</td>
-                <td>${game.gameTitle}</td>
-                <td>${game.gameDownload}</td>
-                <td>${game.gameSize}</td>
+                <td>${game.game.gameName}</td>
+                <td>${game.game.gameTitle}</td>
+                <td>${game.game.gameDownload}</td>
+                <td>${game.game.gameSize}</td>
                 <td>${game.gameStatus}</td>
                 <td>${game.gameType}</td>
                 <td>${game.gameOperation}</td>
                 <td>${game.gameAdviseType}</td>
                 <td>${game.gameUpdateDate}</td>
-                <td><a class="btn btn-primary" href="${pageContext.request.contextPath }/game/update.action?id=${game.gameId}">修改</a></td>
+                <td><a class="btn btn-primary" href="${pageContext.request.contextPath }/game/update.action?id=${game.game.gameId}">修改</a></td>
                 <td><a class="btn btn-danger" onclick="return del()"
-                       href="${pageContext.request.contextPath }/game/delete.action?id=${game.gameId}">删除</a></td>
+                       href="${pageContext.request.contextPath }/game/delete.action?id=${game.game.gameId}">删除</a></td>
             </tr>
         </c:forEach>
         <tr>

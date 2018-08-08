@@ -25,14 +25,14 @@
 </head>
 <body bgcolor="#FFFFCC">
 <br>
-<form action="${pageContext.request.contextPath }/game/update.action?game.gameId=${game.gameId}" method="post"
+<form action="${pageContext.request.contextPath }/game/update.action?game.gameId=${game.game.gameId}" method="post"
       enctype="multipart/form-data">
     <div class="container">
         <div class="form-group">
             <div><label class="control-label">游戏名称</label></div>
             <div>
                 <input class="form-control" type="text" name="game.gameName"
-                       placeholder="${game.gameName}">
+                       placeholder="${game.game.gameName}">
             </div>
         </div>
 
@@ -40,7 +40,7 @@
             <div><label class="control-label">游戏标题</label></div>
             <div>
                 <input class="form-control" type="text" name="game.gameTitle"
-                       placeholder="${game.gameTitle}">
+                       placeholder="${game.game.gameTitle}">
             </div>
         </div>
 
@@ -48,7 +48,7 @@
             <div><label class="control-label">游戏大小</label></div>
             <div>
                 <input class="form-control" type="text" name="game.gameSize"
-                       placeholder="${game.gameSize}">
+                       placeholder="${game.game.gameSize}">
             </div>
         </div>
 
@@ -62,8 +62,8 @@
         <div class="form-group">
             <div><label class="control-label">游戏详情图片</label></div>
             <div>
-                <c:if test="${game.gamePic !=null}">
-                    <img src="/pic/${game.gamePic}" width=100 height=100/>
+                <c:if test="${game.game.gamePic !=null}">
+                    <img src="/pic/${game.game.gamePic}" width=100 height=100/>
                     <br/>
                 </c:if>
                 <input class="btn btn-primary" type="file" name="pictureFile">
@@ -74,7 +74,7 @@
             <div><label class="control-label">ios下载地址</label></div>
             <div>
                 <input class="form-control" type="text" name="game.gameIosaddress"
-                       placeholder="${game.gameIosaddress}">
+                       placeholder="${game.game.gameIosaddress}">
             </div>
         </div>
 
@@ -82,7 +82,7 @@
             <div><label class="control-label">android下载地址</label></div>
             <div>
                 <input class="form-control" type="text" name="game.gameAndroidaddress"
-                       placeholder="${game.gameAndroidaddress}">
+                       placeholder="${game.game.gameAndroidaddress}">
             </div>
         </div>
 
@@ -149,7 +149,7 @@
             <div><label class="control-label">游戏描述</label></div>
             <div>
                 <input class="form-control" type="text" name="game.gameDescription"
-                       placeholder="${game.gameDescription}">
+                       placeholder="${game.game.gameDescription}">
             </div>
         </div>
 
