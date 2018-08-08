@@ -114,6 +114,10 @@ public class UserController {
             throw new MessageException("提交用户不能为空");
         }
 
+        if (userService.selectByName(userVo.getUser().getUserName())!=null) {
+            throw new MessageException("用户名已存在");
+        }
+
         if(userVo.getRole() != null && roleService.selectById(userVo.getRole())==null)
             throw new MessageException("该角色不存在");
 
