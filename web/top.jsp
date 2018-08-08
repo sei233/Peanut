@@ -27,7 +27,7 @@
     </style>
 </head>
 <body bgcolor="#FFFFFF">
-<label class="control-label label_relative"><h3>花生地铁管理系统</h3></label>
+<label class="control-label label_relative"><h3>花生地铁管理系统欢迎您,${sessionScope.USER_SESSION}</h3></label>
 <a class="btn btn-danger box_relative"
    href="${pageContext.request.contextPath}/user/login.action">登出</a>
 </body>

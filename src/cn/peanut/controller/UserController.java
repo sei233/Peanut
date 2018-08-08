@@ -109,12 +109,21 @@ public class UserController {
     public String updateUser(UserVo userVo) throws MessageException {
         if ("".equals(userVo.getUser().getUserName())
                 && "".equals(userVo.getUser().getUserPassword())
-                && userVo.getUser().getUserState() == null) {
+                && userVo.getUser().getUserState() == null
+                && userVo.getRole() == null) {
             throw new MessageException("提交用户不能为空");
         }
 
         if(userVo.getRole() != null && roleService.selectById(userVo.getRole())==null)
             throw new MessageException("该角色不存在");
+
+        if ("".equals(userVo.getUser().getUserName())
+                && "".equals(userVo.getUser().getUserPassword())
+                && userVo.getUser().getUserState() == null
+                && userVo.getRole() != null) {
+            User user = userService.selectById(userVo.getUser().getUserId());
+            userVo.getUser().setUserState(user.getUserState());
+        }
 
         userService.updateUser(userVo.getUser());
 

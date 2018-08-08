@@ -43,12 +43,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void update(Book book) throws MessageException {
-        if ("".equals(book.getBookName())
-                && "".equals(book.getBookAuthor())
-                && "".equals(book.getBookStatus())) {
-            throw new MessageException("书籍类不能为空");
-        }
+    public void update(Book book) {
         bookMapper.updateByPrimaryKeySelective(book);
     }
 }

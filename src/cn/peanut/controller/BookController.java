@@ -134,8 +134,23 @@ public class BookController {
 
     @RequestMapping(value = "/update.action", method = RequestMethod.POST)
     public String updateBook(BookVo bookVo) throws MessageException {
+        if ("".equals(bookVo.getBook().getBookName())
+                && "".equals(bookVo.getBook().getBookAuthor())
+                && "".equals(bookVo.getBook().getBookStatus())
+                && bookVo.getSubCtgy()==null) {
+            throw new MessageException("书籍类不能为空");
+        }
+
+        if ("".equals(bookVo.getBook().getBookName())
+                && "".equals(bookVo.getBook().getBookAuthor())
+                && "".equals(bookVo.getBook().getBookStatus())
+                && bookVo.getSubCtgy()!=null) {
+            Book book = bookService.selectBookById(bookVo.getBook().getBookId());
+            bookVo.getBook().setBookName(book.getBookName());
+        }
+
+        bookService.update(bookVo.getBook());
         Book book = bookVo.getBook();
-        bookService.update(book);
 
         if(bookVo.getSubCtgy()!=null) {
             TopCtgy topCtgy = bookVo.getTopCtgy();
