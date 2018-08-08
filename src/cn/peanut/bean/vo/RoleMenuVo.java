@@ -2,7 +2,7 @@ package cn.peanut.bean.vo;
 
 import cn.peanut.bean.po.RoleMenu;
 
-public class RoleVo{
+public class RoleMenuVo {
     private RoleMenu roleMenu;
     private String menuName;
     private String roleName;

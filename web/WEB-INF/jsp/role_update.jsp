@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--
   Created by IntelliJ IDEA.
   User: 石乾
@@ -27,18 +28,18 @@
 </head>
 <body bgcolor="#FFFFCC">
 <br>
-<form action="${pageContext.request.contextPath }/role/add.action" method="post"
+<form action="${pageContext.request.contextPath }/role/update.action" method="post"
       enctype="multipart/form-data">
     <div class="container">
         <div class="form-group">
             <div><label class="control-label">角色名称</label></div>
             <div>
-                <input class="form-control" type="text" name="roleName" placeholder="角色名称">
+                <input class="form-control" type="text" name="roleName" placeholder="${menuVo.roleName}">
             </div>
         </div>
 
         <div class="form-group">
-            <c:forEach items="${menusList}" var="menu" varStatus="s">
+            <c:forEach items="${sessionScope.allMenus}" var="menu" varStatus="s">
                 <div>
                     <c:if test="${menu.parentId == 0 }">
                         <a class="btn btn-default nav nav-header collapsed" data-toggle="collapse"
@@ -48,12 +49,12 @@
                         </a>
                     </c:if>
                     <ul id="${s.index}" class="nav nav-list collapse">
-                        <c:forEach items="${menusList}" var="childmenu">
+                        <c:forEach items="${sessionScope.allMenus}" var="childmenu">
                             <c:if test="${childmenu.parentId == menu.menuId }">
                                 <li>
                                     <label>
-                                        <input name="child" type="checkbox" class="checkbox-inline"
-                                               value="${childmenu.menuId}">
+                                        <input name="child" type="checkbox" class="checkbox-inline" value="${childmenu.menuId}"
+                                               <c:if test="${fn:contains(menuVo.menuList,childmenu)}">checked="checked"</c:if>>
                                         <span class="btn">${childmenu.menuName}</span>
                                     </label>
                                 </li>

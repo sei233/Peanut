@@ -1,7 +1,6 @@
 package cn.peanut.controller;
 
 import cn.peanut.bean.po.*;
-import cn.peanut.bean.vo.MenuVo;
 import cn.peanut.bean.vo.UserVo;
 import cn.peanut.exception.MessageException;
 import cn.peanut.service.*;

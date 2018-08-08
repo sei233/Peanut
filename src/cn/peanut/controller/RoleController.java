@@ -4,7 +4,8 @@ import cn.peanut.bean.po.Menu;
 import cn.peanut.bean.po.Role;
 import cn.peanut.bean.po.RoleMenu;
 import cn.peanut.bean.po.UserRoleKey;
-import cn.peanut.bean.vo.RoleVo;
+import cn.peanut.bean.vo.MenuVo;
+import cn.peanut.bean.vo.RoleMenuVo;
 import cn.peanut.exception.MessageException;
 import cn.peanut.service.MenuService;
 import cn.peanut.service.RoleMenuService;
@@ -19,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @Controller
@@ -39,12 +41,12 @@ public class RoleController {
 
     @RequestMapping("/show.action")
     public String showRoleList(Model model) {
-        List<RoleVo> roleVoList = new ArrayList<>();
+        List<RoleMenuVo> roleMenuVoList = new ArrayList<>();
         List<RoleMenu> all = roleMenuService.findAll();
         Iterator iter = all.iterator();
 
         while (iter.hasNext()) {
-            RoleVo roleVo = new RoleVo();
+            RoleMenuVo roleMenuVo = new RoleMenuVo();
             RoleMenu roleMenu = (RoleMenu) iter.next();
 
             Role role = roleService.selectById(roleMenu.getRoleId());
@@ -61,13 +63,13 @@ public class RoleController {
                 }
             }
 
-            roleVo.setRoleMenu(roleMenu);
-            roleVo.setRoleName(role.getRoleName());
-            roleVo.setMenuName(MenuName.toString());
-            roleVoList.add(roleVo);
+            roleMenuVo.setRoleMenu(roleMenu);
+            roleMenuVo.setRoleName(role.getRoleName());
+            roleMenuVo.setMenuName(MenuName.toString());
+            roleMenuVoList.add(roleMenuVo);
         }
 
-        model.addAttribute("roleMenuList", roleVoList);
+        model.addAttribute("roleMenuList", roleMenuVoList);
         return "/role_list";
     }
 
@@ -128,11 +130,35 @@ public class RoleController {
     }
 
     @RequestMapping(value = "/update.action",method = RequestMethod.GET)
-    public String updateRole(Model model,Integer id){
-        RoleVo roleVo = new RoleVo();
+    public String updateRole(HttpSession httpSession, Model model, Integer id){
+        //得到的权限+角色名
+        MenuVo menuVo = new MenuVo();
         Role role = roleService.selectById(id);
-        roleVo.setRoleName(role.getRoleName());
+        RoleMenu roleMenu1 = roleMenuService.selectByRoleId(id);
+        //将pid拆分
+        String[] menuIdList1 = roleMenu1.getMenuId().split(",");
+        List<Menu> menuList = new ArrayList<>();
+        for(int i=0;i<menuIdList1.length;i++){
+            Menu menu = menuService.selectById(Integer.parseInt(menuIdList1[i]));
+            menuList.add(menu);
+        }
+
+        menuVo.setRoleName(role.getRoleName());
+        menuVo.setMenuList(menuList);
+        model.addAttribute("menuVo",menuVo);
+
+
+        //所有的权限
         RoleMenu roleMenu = roleMenuService.selectByRoleId(1);
+        //将pid拆分
+        String[] menuIdList = roleMenu.getMenuId().split(",");
+        List<Menu> menuVoList = new ArrayList<>();
+        for(int i=0;i<menuIdList.length;i++){
+                Menu menu = menuService.selectById(Integer.parseInt(menuIdList[i]));
+                menuVoList.add(menu);
+        }
+        httpSession.setAttribute("allMenus", menuVoList);
+
         return "/role_update";
     }
 

@@ -5,22 +5,22 @@ import cn.peanut.bean.po.Menu;
 import java.util.List;
 
 public class MenuVo {
-    private Menu mainMenu;
-    private List<Menu> childMenu;
+    private List<Menu> menuList;
+    private String roleName;
 
-    public Menu getMainMenu() {
-        return mainMenu;
+    public List<Menu> getMenuList() {
+        return menuList;
     }
 
-    public void setMainMenu(Menu mainMenu) {
-        this.mainMenu = mainMenu;
+    public void setMenuList(List<Menu> menuList) {
+        this.menuList = menuList;
     }
 
-    public List<Menu> getChildMenu() {
-        return childMenu;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setChildMenu(List<Menu> childMenu) {
-        this.childMenu = childMenu;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }
