@@ -49,6 +49,8 @@ public class MenuController {
                 && menu.getParentId() == null) {
             throw new MessageException("提交菜单不能为空");
         }
+        if(menuService.selectByName(menu.getMenuName())!=null)
+            throw new MessageException("菜单名已存在");
         menuService.update(menu);
         return "redirect:/menu/show.action";
     }
@@ -63,6 +65,9 @@ public class MenuController {
         if ("".equals(menu.getMenuName())) {
             throw new MessageException("菜单名不能为空");
         }
+
+        if(menuService.selectByName(menu.getMenuName())!=null)
+            throw new MessageException("菜单名重复");
 
         menuService.insert(menu);
 
